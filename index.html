@@ -1,6 +1,51 @@
-<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>החנות של דובי</title><style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(#78d8f5,#fff0b2);color:#123b61}.app{max-width:1100px;margin:auto;padding:12px}h1{text-align:center;color:#fff;text-shadow:0 4px #ed8a31;font-size:40px;margin:5px}.stats,.levels,.buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.stats{margin-bottom:14px}.levels{margin-bottom:6px}.pill,.levels button{background:#fff;border-radius:18px;padding:9px 18px;font-weight:bold;box-shadow:0 5px #ddae35;border:0}.levels button{border:3px solid #00b983;color:#08795b;box-shadow:none}.levels button.on{background:#00c995;color:#fff}.shop,.panel{background:#fff;border-radius:28px;margin:16px 0;padding:16px;box-shadow:0 8px #137d9f}.shop{border:6px solid #ff9e40;box-shadow:0 8px #db7923;display:flex;justify-content:center;align-items:center;gap:18px;text-align:center}.bear,.thing{font-size:58px}.price{font-size:46px;font-weight:900;color:#e83f70}.question,.title{font-size:20px;font-weight:bold}.panel.pay{border:6px solid #00c995;box-shadow:0 8px #078d6d}.moneybox{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center;min-height:90px}.money{cursor:pointer;filter:drop-shadow(0 5px 5px #0005);transition:.15s}.money:hover{transform:translateY(-5px) scale(1.04)}.money img{display:block;object-fit:contain}.coin img{border-radius:50%}.total,.message,.stars{text-align:center;font-size:26px;font-weight:bold;min-height:35px}.total span{font-size:34px;color:#e83f70}.progress{max-width:560px;height:18px;border:3px solid #178aaf;border-radius:20px;overflow:hidden;margin:10px auto}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#00c995,#ffd447)}.buttons button{border:0;border-radius:18px;padding:14px 26px;font-size:20px;font-weight:bold;color:#fff;cursor:pointer}.check{background:#00c995}.clear{background:#168db7}.next{background:#ff9e40}.good{color:#00976e}.bad{color:#e83f70}.note{text-align:center;font-size:12px;opacity:.7}@media(max-width:650px){h1{font-size:28px}.bear,.thing{font-size:42px}}
-
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>החנות של דובי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:Rubik,Arial,sans-serif;background:linear-gradient(#78d8f5,#fff0b2);color:#123b61;min-height:100vh}
+button{font-family:inherit}
+.app{max-width:1100px;margin:auto;padding:12px}
+h1{text-align:center;color:#fff;text-shadow:0 4px #ed8a31;font-size:40px;margin:5px}
+.stats,.buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.stats{margin-bottom:14px;align-items:center}
+.pill{background:#fff;border-radius:18px;padding:9px 18px;font-weight:bold;box-shadow:0 5px #ddae35;border:0}
+.iconbtn{border:0;background:#fff;border-radius:16px;width:48px;height:42px;font-size:22px;cursor:pointer;box-shadow:0 5px #137d9f;flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:0}
+.iconbtn:active{transform:translateY(3px);box-shadow:0 2px #137d9f}
+.level-pill{background:#fff7e6}
+.shop,.panel{background:#fff;border-radius:28px;margin:16px 0;padding:16px;box-shadow:0 8px #137d9f}
+.shop{position:relative;padding-left:62px!important;border:6px solid #ff9e40;box-shadow:0 8px #db7923;display:flex;justify-content:center;align-items:center;gap:18px;text-align:center}
+.bear,.thing{font-size:58px}
+.price{font-size:46px;font-weight:900;color:#e83f70}
+.question,.title{font-size:20px;font-weight:bold}
+.replay{position:absolute;top:8px;left:8px;border:0;background:#ffd447;border-radius:50%;width:44px;height:44px;font-size:21px;cursor:pointer;box-shadow:0 4px #ddae35;padding:0}
+.replay:active{transform:translateY(3px);box-shadow:0 1px #ddae35}
+.app.muted .replay{display:none}
+.panel.pay{border:6px solid #00c995;box-shadow:0 8px #078d6d}
+.moneybox{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center;min-height:90px}
+.money{cursor:pointer;filter:drop-shadow(0 5px 5px #0005);transition:.15s}
+.money:hover{transform:translateY(-5px) scale(1.04)}
+.money:active{transform:scale(.92)}
+.money img{display:block;object-fit:contain}
+.coin img{border-radius:50%}
+.total,.message,.stars{text-align:center;font-size:26px;font-weight:bold;min-height:35px}
+.total span{font-size:34px;color:#e83f70}
+.progress{max-width:560px;height:18px;border:3px solid #178aaf;border-radius:20px;overflow:hidden;margin:10px auto}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#00c995,#ffd447)}
+.buttons button{border:0;border-radius:18px;padding:14px 26px;font-size:20px;font-weight:bold;color:#fff;cursor:pointer}
+.buttons button:active{transform:translateY(3px)}
+.check{background:#00c995;box-shadow:0 5px #078d6d}
+.clear{background:#168db7;box-shadow:0 5px #0c6a8c}
+.next{background:#ff9e40;box-shadow:0 5px #c86510}
+.good{color:#00976e}.bad{color:#e83f70}
+.note{text-align:center;font-size:12px;opacity:.7}
+@media(max-width:650px){h1{font-size:28px}.bear,.thing{font-size:42px}}
 #celebration{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999}
 .progress{position:relative;overflow:visible!important;background:#e9f4f7}
 .progress i{border-radius:14px;transition:width .25s,background .25s,box-shadow .25s}
@@ -15,20 +60,6 @@
 .app.hide-bar .progress{display:none!important}
 .app.hide-total .total{display:none!important}
 .app.hide-overflow .overflow-bubble{display:none!important}
-.modal-overlay{position:fixed;inset:0;background:rgba(10,35,45,.55);display:none;align-items:center;justify-content:center;z-index:10000;padding:16px}
-.modal-overlay.show{display:flex}
-.modal-box{background:#fff;border-radius:26px;padding:22px 20px 18px;max-width:340px;width:100%;box-shadow:0 10px 0 #d8dee6,0 20px 40px rgba(0,0,0,.28);text-align:center}
-.modal-title{font-size:19px;font-weight:900;margin:0 0 16px;color:#123b61}
-.toggle-row{display:flex;align-items:center;justify-content:space-between;background:#f2f8f9;border-radius:16px;padding:11px 14px;margin-bottom:10px;font-size:15px;font-weight:700;color:#123b61;cursor:pointer;user-select:none}
-.toggle-row input{position:absolute;opacity:0;width:0;height:0}
-.switch{position:relative;width:46px;height:26px;background:#cfd8dc;border-radius:20px;transition:background .2s;flex-shrink:0}
-.switch:before{content:'';position:absolute;width:20px;height:20px;top:3px;left:3px;background:#fff;border-radius:50%;transition:transform .2s;box-shadow:0 2px 4px rgba(0,0,0,.25)}
-.toggle-row input:checked+.switch{background:#00c995}
-.toggle-row input:checked+.switch:before{transform:translateX(20px)}
-.modal-actions{display:flex;gap:8px;margin-top:8px}
-.modal-actions button{flex:1 1 0;border:0;border-radius:18px;padding:12px 10px;font-size:15px;font-weight:900;color:#fff;cursor:pointer}
-.modal-confirm{background:#00c995;box-shadow:0 5px #078d6d}
-.modal-cancel{background:#9aa7ad;box-shadow:0 5px #737f84}
 .streak-pill{transition:transform .25s,background .25s,box-shadow .25s}
 .streak-pill.x2{background:#ffe1a8;box-shadow:0 5px #ff9e40;transform:scale(1.06)}
 .streak-pill.x3{background:#ffd1e0;box-shadow:0 5px #ff3b6b;transform:scale(1.13);animation:flamePulse 1s ease infinite}
@@ -39,30 +70,67 @@
 @keyframes bonusGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25)}}
 .msg-bonus{display:block;font-size:15px;color:#9b5cff;font-weight:800}
 .msg-eff{display:block;font-size:15px;color:#ff9e40;font-weight:800}
-.modal-subtitle{font-size:13px;font-weight:800;color:#137d9f;margin:0 0 8px;text-align:center}
-.mode-row{display:flex;gap:6px;margin-bottom:14px}
-.mode-btn{flex:1 1 0;background:#fff;border:3px solid #00b983;color:#08795b;border-radius:14px;padding:9px 4px;font-size:12px;font-weight:800;cursor:pointer}
-.mode-btn.on{background:#00c995;color:#fff;border-color:#00c995}
-.unlock-toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%) translateY(24px);background:#123b61;color:#fff;padding:11px 20px;border-radius:22px;font-weight:800;font-size:14px;box-shadow:0 6px 18px rgba(0,0,0,.35);opacity:0;transition:opacity .3s,transform .3s;z-index:10001;pointer-events:none;white-space:nowrap;max-width:90vw;text-overflow:ellipsis;overflow:hidden}
+.unlock-toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(24px);background:#123b61;color:#fff;padding:12px 22px;border-radius:22px;font-weight:800;font-size:17px;box-shadow:0 6px 18px rgba(0,0,0,.35);opacity:0;transition:opacity .3s,transform .3s;z-index:10001;pointer-events:none;text-align:center;max-width:92vw}
 .unlock-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .cart-list{display:none;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;width:100%}
 .app.mode-cart .cart-list{display:flex}
 .app.mode-cart .thing,.app.mode-cart .price{display:none}
 .cart-item{background:#fff7e6;border:2px solid #ff9e40;border-radius:14px;padding:7px 12px;font-weight:800;font-size:16px;display:flex;align-items:center;gap:5px;color:#123b61}
 .cart-item .p{color:#e83f70}
+
+/* ================= START SCREEN ================= */
+.start{position:fixed;inset:0;z-index:10000;background:linear-gradient(180deg,#7ddcf2 0%,#cdf0e2 55%,#fff1a9 100%);overflow:hidden;transition:opacity .35s}
+.start.gone{opacity:0;pointer-events:none}
+.start .screen{position:absolute;inset:0;display:flex;flex-direction:column;padding:16px 16px calc(16px + env(safe-area-inset-bottom));overflow-y:auto;transition:transform .45s cubic-bezier(.6,-0.2,.3,1.3),opacity .3s}
+.start .inner{margin:auto;width:100%;display:flex;flex-direction:column;align-items:center;gap:14px}
+.start .screen.off{transform:translateX(-110%);opacity:0;pointer-events:none}
+.start .screen.off.right{transform:translateX(110%)}
+.start-title{font-size:34px;font-weight:900;color:#fff;text-shadow:0 4px #ed8a31;margin:0}
+.sbear{font-size:80px;line-height:1;animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+.bubble{background:#fff;border-radius:24px;padding:10px 20px;font-size:26px;font-weight:900;box-shadow:0 6px #137d9f;position:relative;display:flex;align-items:center;gap:10px}
+.bubble:after{content:'';position:absolute;top:-20px;right:50%;border:10px solid transparent;border-bottom:12px solid #fff}
+.say{border:0;background:#ffd447;border-radius:50%;width:44px;height:44px;font-size:21px;cursor:pointer;box-shadow:0 4px #ddae35;flex-shrink:0;padding:0}
+.say:active{transform:translateY(3px);box-shadow:0 1px #ddae35}
+.cards{display:flex;flex-direction:column;gap:16px;width:100%;max-width:440px}
+.card{position:relative;border:0;border-radius:26px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;color:#fff;text-align:right;transition:transform .15s,filter .15s}
+.card.pop{animation:popIn .5s both}
+.card.pop:nth-child(2){animation-delay:.1s}.card.pop:nth-child(3){animation-delay:.2s}
+@keyframes popIn{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+.card:active{transform:translateY(6px) scale(.98)}
+.card.picked{transform:scale(1.06);filter:brightness(1.12)}
+.card.picked:after{content:'✅';position:absolute;top:-12px;left:-8px;font-size:34px;animation:bubblePop .3s both}
+.card .big{font-size:36px;letter-spacing:-4px;min-width:96px;text-align:center;filter:drop-shadow(0 3px 0 #0003);line-height:1.1}
+.card .txt{font-size:25px;font-weight:900;flex:1;min-width:0}
+.card .txt small{display:block;font-size:15px;font-weight:600;opacity:.95;margin-top:2px}
+.card .wins{display:inline-block;font-size:14px;font-weight:800;background:#ffffff38;border-radius:10px;padding:1px 8px;margin-top:4px}
+.mini{display:flex;flex-wrap:wrap;gap:3px;align-items:center;margin-top:5px}
+.mini img{display:block;height:26px;width:auto;filter:drop-shadow(0 2px 2px #0004)}
+.mini img.c{width:26px;border-radius:50%}
+.mini img.b{height:24px;width:44px;object-fit:cover;border-radius:3px}
+.card.cg{background:linear-gradient(135deg,#27d99f,#00b983);box-shadow:0 8px #078d6d}
+.card.co{background:linear-gradient(135deg,#ffb45c,#ff8a1f);box-shadow:0 8px #c86510}
+.card.cp{background:linear-gradient(135deg,#b07cff,#8a4dff);box-shadow:0 8px #5f2cc0}
+.card.cb{background:linear-gradient(135deg,#4cc3ee,#168db7);box-shadow:0 8px #0c6a8c}
+.card.cr{background:linear-gradient(135deg,#ff6f93,#ff3b6b);box-shadow:0 8px #b91f40}
+.back{position:absolute;top:14px;right:14px;border:0;background:#fff;border-radius:18px;width:54px;height:54px;font-size:26px;box-shadow:0 5px #137d9f;cursor:pointer;z-index:2;padding:0}
+.chosen{font-size:26px;font-weight:900;background:#ffffffb0;border-radius:16px;padding:4px 16px;letter-spacing:-2px}
+@media(max-height:680px){.sbear{font-size:56px}.start-title{font-size:26px}.bubble{font-size:21px;padding:8px 16px}.card{padding:10px 12px}.card .big{font-size:30px;min-width:80px}.card .txt{font-size:21px}.cards{gap:12px}.start .inner{gap:10px}}
+
 @media(max-width:700px){
 html,body{width:100%;height:100%;margin:0!important;padding:0!important;overflow-x:hidden!important}
 body{min-height:100dvh;background:linear-gradient(180deg,#7ddcf2 0%,#cdf0e2 55%,#fff1a9 100%);background-attachment:fixed}
 .app{width:100%!important;max-width:480px!important;margin:0 auto!important;padding:10px 12px calc(10px + env(safe-area-inset-bottom))!important;box-sizing:border-box;display:flex!important;flex-direction:column!important;min-height:100dvh;height:100dvh;gap:8px;overflow:hidden}
 h1,.note{display:none!important}
-.stats{flex:0 0 auto;display:flex;width:100%;gap:6px;flex-wrap:nowrap}
-.pill{flex:1 1 0;padding:6px 4px!important;border-radius:12px!important;font-size:12px!important;line-height:16px;text-align:center;white-space:nowrap;box-shadow:0 3px #ddae35!important}
-.levels{flex:0 0 auto;display:flex;width:100%;gap:6px}
-.levels button{flex:1 1 0;padding:8px 6px!important;font-size:13px!important;line-height:18px;border-width:2px!important;border-radius:14px!important}
+.stats{flex:0 0 auto;display:flex;width:100%;gap:6px;flex-wrap:nowrap;margin:0}
+.pill{flex:1 1 0;padding:6px 4px!important;border-radius:12px!important;font-size:13px!important;line-height:18px;text-align:center;white-space:nowrap;box-shadow:0 3px #ddae35!important}
+.pill .lbl{display:none}
+.iconbtn{width:40px;height:32px;font-size:18px;border-radius:12px;box-shadow:0 3px #137d9f}
 .shop{flex:0 0 auto;display:flex;width:100%;min-height:96px;margin:0!important;padding:10px 12px!important;border-width:3px!important;border-radius:18px!important;box-shadow:0 4px #db7923!important;gap:10px;align-items:center}
+.replay{width:34px;height:34px;font-size:16px;top:6px;left:6px}
+.shop{padding-left:44px!important}
 .bear{font-size:34px!important}.thing{font-size:28px!important;line-height:30px!important}.question{font-size:15px!important;line-height:19px!important}.price{font-size:32px!important;line-height:34px!important}
 .cart-item{font-size:13px!important;padding:5px 9px!important;border-width:2px!important;border-radius:12px!important}
-.mode-btn{padding:8px 3px!important;font-size:11px!important}
 .panel.pay,.wallet-panel{flex:1 1 0;display:flex!important;flex-direction:column!important;width:100%;min-height:0;margin:0!important;padding:10px!important;border-width:3px!important;border-radius:18px!important;overflow:hidden}
 .panel.pay{box-shadow:0 4px #078d6d!important}
 .wallet-panel{box-shadow:0 4px #137d9f!important}
@@ -78,8 +146,9 @@ h1,.note{display:none!important}
 .message{flex:0 0 auto;min-height:24px!important;font-size:16px!important;line-height:24px!important;margin:0!important}
 .stars{display:none!important}
 .buttons{flex:0 0 auto;display:flex!important;width:100%;gap:6px!important;flex-wrap:nowrap!important;padding:0!important;background:transparent!important}
-.buttons button{flex:1 1 0;min-width:0;min-height:44px;padding:8px 4px!important;font-size:13px!important;line-height:20px;white-space:nowrap;border-radius:14px!important;box-shadow:0 4px rgba(0,0,0,.15)}
+.buttons button{flex:1 1 0;min-width:0;min-height:44px;padding:8px 4px!important;font-size:14px!important;line-height:20px;white-space:nowrap;border-radius:14px!important;box-shadow:0 4px rgba(0,0,0,.15)!important}
 .overflow-bubble{top:-34px!important;left:2px!important;font-size:12px!important;padding:4px 8px!important}
+.unlock-toast{font-size:15px;padding:10px 16px}
 }
 @media(max-width:700px) and (max-height:600px){
 .app{gap:5px}
@@ -91,14 +160,508 @@ h1,.note{display:none!important}
 @media(max-width:340px){
 .app{padding-left:6px!important;padding-right:6px!important}
 .pill{font-size:10px!important}
+.iconbtn{width:34px}
 .buttons button{font-size:11px!important}
 }
-</style></head><body><canvas id="celebration" aria-hidden="true"></canvas><div class="unlock-toast" id="unlockToast"></div><div class="modal-overlay" id="modalOverlay"><div class="modal-box"><div class="modal-title">⚙️ מה להציג במשחק?</div><div class="modal-subtitle">🎮 מצב משחק</div><div class="mode-row" id="modeRow"><button class="mode-btn on" data-mode="normal">🛍️ רגיל</button><button class="mode-btn" data-mode="change">💵 עודף</button><button class="mode-btn" data-mode="cart">🛒 עגלה</button></div><div class="modal-subtitle">👁️ עזרים</div><label class="toggle-row"><span>📊 בר התקדמות</span><input type="checkbox" id="toggleBar"><span class="switch"></span></label><label class="toggle-row"><span>💰 סה״כ (סכום נוכחי)</span><input type="checkbox" id="toggleTotal"><span class="switch"></span></label><label class="toggle-row"><span>⚠️ אזהרת עודף</span><input type="checkbox" id="toggleOverflow"><span class="switch"></span></label><div class="modal-actions"><button class="modal-cancel" id="modalCancel">ביטול</button><button class="modal-confirm" id="modalConfirm">✅ התחלה</button></div></div></div><main class="app"><h1>🛒 החנות של דובי</h1><div class="stats"><div class="pill">🏆 ניקוד: <b id="score">0</b></div><div class="pill">⭐ כוכבים: <b id="sc">0</b></div><div class="pill">❓ שאלה: <b id="qn">1</b></div><div class="pill streak-pill" id="streakPill">🔥 <span id="streakMultText">x1</span></div></div><div class="levels"><button class="on" data-l="1">קל</button><button data-l="2">בינוני</button><button data-l="3">אלוף</button></div><div class="bonus-banner" id="bonusBanner">🎁 סיבוב בונוס! ניקוד כפול!</div><section class="shop"><div class="bear">🐻</div><div><div class="thing" id="thing"></div><div class="question" id="question"></div><div class="price" id="target"></div><div class="cart-list" id="cartList"></div></div></section><section class="panel pay"><div class="title">🧺 הקופה שלי</div><div class="moneybox" id="tray"></div><div class="piece-count" id="pieceCount">🧮 מטבעות ושטרות: <b id="pcVal">0</b></div><div class="progress" id="progress"><i id="prog"></i><span class="overflow-bubble" id="overflowBubble">⚠️ יותר מדי</span></div><div class="total">סה״כ: <span id="sum">0 ₪</span></div></section><div class="message" id="msg"></div><div class="stars" id="stars"></div><div class="buttons"><button class="check" id="check">✅ בדיקה</button><button class="clear" id="clear">🔄 לנקות</button><button class="next" id="next">➡️ שאלה חדשה</button></div><section class="panel wallet-panel"><div class="title">👛 הארנק שלי - לחצו על מטבע או שטר כדי לשלם</div><div class="moneybox" id="wallet"></div></section><div class="note">תמונות הצד הקדמי מתוך הקבצים שסופקו • הגדלים מוצגים לפי המידות שסומנו בקבצים</div></main><script>
-const $=x=>document.getElementById(x);const M=[
-{v:.1,n:'10 אגורות',f:'assets/coin-10-agorot.png',w:66,h:66,k:'coin'},{v:.5,n:'חצי שקל',f:'assets/coin-half-shekel.png',w:78,h:78,k:'coin'},{v:1,n:'שקל אחד',f:'assets/coin-1-shekel.png',w:54,h:54,k:'coin'},{v:2,n:'שני שקלים',f:'assets/coin-2-shekels.png',w:65,h:65,k:'coin'},{v:5,n:'חמישה שקלים',f:'assets/coin-5-shekels.png',w:72,h:72,k:'coin'},{v:10,n:'עשרה שקלים',f:'assets/coin-10-shekels.png',w:69,h:69,k:'coin'},{v:20,n:'20 שקלים',f:'assets/bill-20.jpg',w:200,h:110,k:'bill'},{v:50,n:'50 שקלים',f:'assets/bill-50.jpg',w:211,h:110,k:'bill'},{v:100,n:'100 שקלים',f:'assets/bill-100.jpg',w:222,h:110,k:'bill'},{v:200,n:'200 שקלים',f:'assets/bill-200.jpg',w:233,h:110,k:'bill'}];
-const ORDER=[200,100,50,20,10,5,2,1,.5,.1],G_ALL=[{n:'גלידה',e:'🍦',u:0},{n:'כדור',e:'⚽',u:0},{n:'ספר',e:'📚',u:0},{n:'פיצה',e:'🍕',u:0},{n:'מיץ',e:'🧃',u:0},{n:'בובה',e:'🧸',u:0},{n:'עוגה',e:'🎂',u:5},{n:'משקפי שמש',e:'🕶️',u:10},{n:'רובוט',e:'🤖',u:15},{n:'גיטרה',e:'🎸',u:20},{n:'אופניים',e:'🚲',u:25}];let level=1,target=0,tray=[],score=0,stars=0,q=1,checking=false,streak=0,correctCount=0,nextBonus=false,bonusRound=false,gameMode='normal',pendingMode='normal',toastTimer=null;function unlockedItems(){return G_ALL.filter(g=>stars>=g.u)}function pickItem(){let arr=unlockedItems();return arr[Math.floor(Math.random()*arr.length)]}function showUnlockToast(item){let el=$('unlockToast');el.textContent='🆕 פריט חדש נפתח: '+item.e+' '+item.n+'!';el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2600)}
-const celebrateCanvas=$('celebration'),celebrateCtx=celebrateCanvas.getContext('2d');let celebrationBits=[],celebrationFrame=0;
-function resizeCelebration(){celebrateCanvas.width=innerWidth*devicePixelRatio;celebrateCanvas.height=innerHeight*devicePixelRatio;celebrateCanvas.style.width=innerWidth+'px';celebrateCanvas.style.height=innerHeight+'px';celebrateCtx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}addEventListener('resize',resizeCelebration);resizeCelebration();
-function celebrate(){cancelAnimationFrame(celebrationFrame);celebrationBits=[];const colors=['#ff3b6b','#ffd447','#00c995','#168db7','#9b5cff','#ff9e40'];for(let i=0;i<180;i++)celebrationBits.push({x:innerWidth/2+(Math.random()-.5)*120,y:innerHeight*.38,vx:(Math.random()-.5)*15,vy:-8-Math.random()*12,g:.25+Math.random()*.18,r:Math.random()*6.28,w:6+Math.random()*8,h:4+Math.random()*7,c:colors[i%colors.length],life:90+Math.random()*45});$('msg').classList.remove('celebrate-pop');void $('msg').offsetWidth;$('msg').classList.add('celebrate-pop');function draw(){celebrateCtx.clearRect(0,0,innerWidth,innerHeight);celebrationBits=celebrationBits.filter(p=>p.life-->0);for(const p of celebrationBits){p.x+=p.vx;p.y+=p.vy;p.vy+=p.g;p.r+=.18;celebrateCtx.save();celebrateCtx.translate(p.x,p.y);celebrateCtx.rotate(p.r);celebrateCtx.fillStyle=p.c;celebrateCtx.fillRect(-p.w/2,-p.h/2,p.w,p.h);celebrateCtx.restore()}if(celebrationBits.length)celebrationFrame=requestAnimationFrame(draw);else celebrateCtx.clearRect(0,0,innerWidth,innerHeight)}draw();}
-function moneyScale(){return innerWidth<=380?.8:innerWidth<=700?.92:1}function el(m,s){let d=document.createElement('div');d.className='money '+m.k;let i=new Image;i.src=m.f;i.alt=m.n;i.draggable=false;i.style.width=Math.round(m.w*s)+'px';i.style.height=Math.round(m.h*s)+'px';d.append(i);return d}function levelMoney(){let max=level===1?20:level===2?100:200;return ORDER.filter(v=>v<=max&&!((level===1&&(v===.1||v===.5||v===20))||(level===2&&(v===.1||v===.5)))).map(v=>M.find(x=>x.v===v))}function wallet(){let w=$('wallet'),items=levelMoney(),s=moneyScale(),minS=innerWidth<=700?.32:.5;w.innerHTML='';items.forEach(m=>{let d=el(m,s);d.onclick=()=>{tray.push(m);render()};w.append(d)});if(innerWidth<=700){let tries=0;while(w.scrollHeight>w.clientHeight+2&&s>minS&&tries<20){s=Math.max(minS,s-.05);w.innerHTML='';items.forEach(m=>{let d=el(m,s);d.onclick=()=>{tray.push(m);render()};w.append(d)});tries++}}}function minPiecesFor(t){let avail=levelMoney().map(m=>m.v).sort((a,b)=>b-a),remaining=Math.round(t*10),cnt=0;for(const v of avail){let vi=Math.round(v*10);if(vi<=0)continue;let n=Math.floor(remaining/vi);cnt+=n;remaining-=n*vi}return cnt}function streakMultiplier(){return streak>=3?3:streak>=2?2:1}function updateStreakUI(){let m=streakMultiplier();$('streakMultText').textContent='x'+m;let p=$('streakPill');p.classList.remove('x2','x3');if(m===2)p.classList.add('x2');if(m===3)p.classList.add('x3')}function total(){return Math.round(tray.reduce((a,x)=>a+x.v,0)*100)/100}function fmt(n){return n%1?n.toFixed(2):n}function render(){let t=$('tray'),ms=moneyScale(),minS=innerWidth<=700?.32:.5;t.innerHTML='';tray.forEach((m,j)=>{let d=el(m,ms);d.onclick=()=>{tray.splice(j,1);render()};t.append(d)});if(innerWidth<=700){let tries=0;while(t.scrollHeight>t.clientHeight+2&&ms>minS&&tries<20){ms=Math.max(minS,ms-.05);t.innerHTML='';tray.forEach((m,j)=>{let d=el(m,ms);d.onclick=()=>{tray.splice(j,1);render()};t.append(d)});tries++}}let s=total(),over=Math.round((s-target)*100)/100,pct=target?Math.min(100,s/target*100):0,progress=$('progress');$('sum').textContent=fmt(s)+' ₪';$('pcVal').textContent=tray.length;$('prog').style.width=pct+'%';progress.classList.toggle('over',over>0);$('overflowBubble').textContent=over>0?'⚠️ יותר מדי ב־'+fmt(over)+' ₪':'';$('msg').textContent=''}function randInt(a,b){return a+Math.floor(Math.random()*(b-a+1))}function genNormalTarget(){return level===1?2+Math.floor(Math.random()*18):level===2?(2+Math.floor(Math.random()*39))*5:Math.round((1+Math.random()*200)*10)/10}function genChange(){let price=genNormalTarget();let avail=levelMoney().map(m=>m.v).sort((a,b)=>a-b);let given=avail.find(v=>v>price);if(given===undefined){given=Math.round((price+Math.max(...avail))*10)/10}let change=Math.round((given-price)*100)/100;return{price,given,change}}function genCart(){let n=level===3?3:2;let pool=unlockedItems(),items=[],used=new Set();for(let i=0;i<n && used.size<pool.length;i++){let idx;do{idx=Math.floor(Math.random()*pool.length)}while(used.has(idx));used.add(idx);let it=pool[idx];let price=level===1?randInt(1,9):level===2?randInt(1,10)*5:Math.round((1+Math.random()*40)*10)/10;items.push({n:it.n,e:it.e,price})}let total=Math.round(items.reduce((a,x)=>a+x.price,0)*100)/100;return{items,total}}function newq(){tray=[];bonusRound=nextBonus;nextBonus=false;let qType=bonusRound?'normal':gameMode;let app=document.querySelector('.app');app.classList.remove('mode-normal','mode-change','mode-cart');app.classList.add('mode-'+qType);if(bonusRound){target=2+Math.floor(Math.random()*8);let g=pickItem();$('thing').textContent=g.e;$('question').textContent='כמה כסף צריך בשביל '+g.n+'?';$('target').textContent=fmt(target)+' ₪'}else if(qType==='change'){let{price,given,change}=genChange();target=change;let g=pickItem();$('thing').textContent=g.e;$('question').textContent=g.n+' '+g.e+' עולה '+fmt(price)+' ₪. דובי שילם '+fmt(given)+' ₪. כמה עודף להחזיר?';$('target').textContent=fmt(given)+' ₪ (שולם)'}else if(qType==='cart'){let{items,total}=genCart();target=total;$('question').textContent='כמה כסף צריך בשביל כל הפריטים ביחד?';let cl=$('cartList');cl.innerHTML='';items.forEach(it=>{let d=document.createElement('div');d.className='cart-item';d.innerHTML='<span>'+it.e+' '+it.n+'</span><span class="p">'+fmt(it.price)+' ₪</span>';cl.append(d)})}else{target=genNormalTarget();let g=pickItem();$('thing').textContent=g.e;$('question').textContent='כמה כסף צריך בשביל '+g.n+'?';$('target').textContent=fmt(target)+' ₪'}$('qn').textContent=q;$('bonusBanner').classList.toggle('show',bonusRound);updateStreakUI();render()}$('check').onclick=()=>{let s=total(),d=Math.round(Math.abs(s-target)*100)/100;if(s===target&&!checking){checking=true;let piecesUsed=tray.length,minP=minPiecesFor(target),effBonus=0,effMsg='';if(piecesUsed===minP){effBonus=15;effMsg='<span class="msg-eff">⭐ סופר חכם! מספר מטבעות מינימלי! (+15)</span>'}else if(piecesUsed===minP+1){effBonus=5;effMsg='<span class="msg-eff">👍 כמעט מושלם! מטבע אחד מיותר (+5)</span>'}streak++;let mult=streakMultiplier(),base=10,subtotal=base+effBonus,points=subtotal*mult;if(bonusRound)points*=2;score+=points;stars++;correctCount++;if(correctCount%5===0)nextBonus=true;let newlyUnlocked=G_ALL.find(g=>g.u===stars);if(newlyUnlocked)showUnlockToast(newlyUnlocked);q++;$('score').textContent=score;$('sc').textContent=stars;$('stars').textContent='⭐'.repeat(Math.min(stars,10));updateStreakUI();let bonusMsg=bonusRound?'<span class="msg-bonus">🎁 סיבוב בונוס - ניקוד כפול!</span>':'';let streakMsg=mult>1?'<span class="msg-eff">🔥 רצף x'+mult+'!</span>':'';$('msg').innerHTML='<span class="good">כל הכבוד! בדיוק נכון! 🎉</span>'+effMsg+streakMsg+bonusMsg;celebrate();setTimeout(()=>{checking=false;newq()},2200)}else{streak=0;updateStreakUI();$('msg').innerHTML='<span class="bad">'+(s<target?'חסר ':'יש יותר מדי ')+fmt(d)+' ₪</span>'}};$('clear').onclick=()=>{tray=[];render()};$('next').onclick=()=>{q++;streak=0;updateStreakUI();newq()};let helpers={bar:true,total:true,overflow:true},pendingLevel=level;function applyHelperClasses(){let app=document.querySelector('.app');app.classList.toggle('hide-bar',!helpers.bar);app.classList.toggle('hide-total',!helpers.total);app.classList.toggle('hide-overflow',!helpers.overflow)}applyHelperClasses();function openLevelModal(l){pendingLevel=l;pendingMode=gameMode;$('toggleBar').checked=helpers.bar;$('toggleTotal').checked=helpers.total;$('toggleOverflow').checked=helpers.overflow;document.querySelectorAll('.mode-btn').forEach(x=>x.classList.toggle('on',x.dataset.mode===pendingMode));$('modalOverlay').classList.add('show')}document.querySelectorAll('.mode-btn').forEach(b=>b.onclick=()=>{pendingMode=b.dataset.mode;document.querySelectorAll('.mode-btn').forEach(x=>x.classList.toggle('on',x===b))});function closeModal(){$('modalOverlay').classList.remove('show')}document.querySelectorAll('.levels button').forEach(b=>b.onclick=()=>openLevelModal(+b.dataset.l));$('modalConfirm').onclick=()=>{helpers.bar=$('toggleBar').checked;helpers.total=$('toggleTotal').checked;helpers.overflow=$('toggleOverflow').checked;applyHelperClasses();document.querySelectorAll('.levels button').forEach(x=>x.classList.remove('on'));document.querySelector('.levels button[data-l="'+pendingLevel+'"]').classList.add('on');level=pendingLevel;gameMode=pendingMode;streak=0;closeModal();wallet();newq()};$('modalCancel').onclick=closeModal;$('modalOverlay').onclick=e=>{if(e.target.id==='modalOverlay')closeModal()};wallet();newq();addEventListener('resize',()=>{wallet();render()});
-</script></body></html>
+</style>
+</head>
+<body>
+<canvas id="celebration" aria-hidden="true"></canvas>
+<div class="unlock-toast" id="unlockToast"></div>
+
+<!-- ================= START SCREEN ================= -->
+<div class="start" id="start">
+  <!-- step 1: how many stars -->
+  <section class="screen" id="step1"><div class="inner">
+    <h2 class="start-title">🛒 החנות של דובי</h2>
+    <div class="sbear">🐻</div>
+    <div class="bubble">כמה כוכבים? <button class="say" data-audio="q_stars" data-say="כמה כוכבים?" aria-label="השמע">🔊</button></div>
+    <div class="cards">
+      <button class="card cg" data-level="1" data-audio="lvl1" data-say="כוכב אחד. קל!">
+        <span class="big">⭐</span>
+        <span class="txt">קל<span class="mini" data-mini="1"></span><span class="wins" data-wins="1"></span></span>
+      </button>
+      <button class="card co" data-level="2" data-audio="lvl2" data-say="שני כוכבים. בינוני!">
+        <span class="big">⭐⭐</span>
+        <span class="txt">בינוני<span class="mini" data-mini="2"></span><span class="wins" data-wins="2"></span></span>
+      </button>
+      <button class="card cp" data-level="3" data-audio="lvl3" data-say="שלושה כוכבים. אלוף!">
+        <span class="big">⭐⭐⭐</span>
+        <span class="txt">אלוף 👑<span class="mini" data-mini="3"></span><span class="wins" data-wins="3"></span></span>
+      </button>
+    </div>
+  </div></section>
+  <!-- step 2: what do we play -->
+  <section class="screen off right" id="step2">
+    <button class="back" id="startBack" aria-label="חזרה">➡️</button>
+    <div class="inner">
+    <div class="chosen" id="chosenStars">⭐</div>
+    <div class="bubble">מה נשחק? <button class="say" data-audio="q_mode" data-say="מה נשחק?" aria-label="השמע">🔊</button></div>
+    <div class="cards">
+      <button class="card cg" data-mode="normal" data-audio="mode_normal" data-say="לקנות!">
+        <span class="big">🛍️</span><span class="txt">לקנות<small>דובי קונה משהו אחד</small></span>
+      </button>
+      <button class="card cb" data-mode="change" data-audio="mode_change" data-say="עודף!">
+        <span class="big">🤲</span><span class="txt">עודף<small>מחזירים לדובי כסף</small></span>
+      </button>
+      <button class="card cr" data-mode="cart" data-audio="mode_cart" data-say="עגלה!">
+        <span class="big">🛒</span><span class="txt">עגלה<small>הרבה דברים ביחד</small></span>
+      </button>
+    </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= GAME ================= -->
+<main class="app">
+  <h1>🛒 החנות של דובי</h1>
+  <div class="stats">
+    <button class="iconbtn" id="homeBtn" aria-label="בית">🏠</button>
+    <div class="pill level-pill" id="levelPill">⭐</div>
+    <div class="pill">🏆 <span class="lbl">ניקוד: </span><b id="score">0</b></div>
+    <div class="pill">⭐ <span class="lbl">כוכבים: </span><b id="sc">0</b></div>
+    <div class="pill streak-pill" id="streakPill">🔥 <span id="streakMultText">x1</span></div>
+    <button class="iconbtn" id="soundBtn" aria-label="קול">🔊</button>
+  </div>
+  <div class="bonus-banner" id="bonusBanner">🎁 סיבוב בונוס! ניקוד כפול!</div>
+  <section class="shop">
+    <button class="replay" id="replay" aria-label="השמע שוב">🔊</button>
+    <div class="bear">🐻</div>
+    <div>
+      <div class="thing" id="thing"></div>
+      <div class="question" id="question"></div>
+      <div class="price" id="target"></div>
+      <div class="cart-list" id="cartList"></div>
+    </div>
+  </section>
+  <section class="panel pay">
+    <div class="title">🧺 הקופה שלי</div>
+    <div class="moneybox" id="tray"></div>
+    <div class="piece-count" id="pieceCount">🧮 מטבעות ושטרות: <b id="pcVal">0</b></div>
+    <div class="progress" id="progress"><i id="prog"></i><span class="overflow-bubble" id="overflowBubble">⚠️ יותר מדי</span></div>
+    <div class="total">סה״כ: <span id="sum">0 ₪</span></div>
+  </section>
+  <div class="message" id="msg"></div>
+  <div class="stars" id="stars"></div>
+  <div class="buttons">
+    <button class="check" id="check">✅ בדיקה</button>
+    <button class="clear" id="clear">🔄 לנקות</button>
+    <button class="next" id="next">➡️ שאלה חדשה</button>
+  </div>
+  <section class="panel wallet-panel">
+    <div class="title">👛 הארנק שלי - לחצו על מטבע או שטר כדי לשלם</div>
+    <div class="moneybox" id="wallet"></div>
+  </section>
+  <div class="note">תמונות הצד הקדמי מתוך הקבצים שסופקו • הגדלים מוצגים לפי המידות שסומנו בקבצים</div>
+</main>
+
+<script>
+'use strict';
+const $=x=>document.getElementById(x);
+
+/* ================= MONEY DATA ================= */
+const M=[
+{v:.1,n:'10 אגורות',f:'assets/coin-10-agorot.png',w:66,h:66,k:'coin',a:'m_0_1'},
+{v:.5,n:'חצי שקל',f:'assets/coin-half-shekel.png',w:78,h:78,k:'coin',a:'m_0_5'},
+{v:1,n:'שקל אחד',f:'assets/coin-1-shekel.png',w:54,h:54,k:'coin',a:'m_1'},
+{v:2,n:'שני שקלים',f:'assets/coin-2-shekels.png',w:65,h:65,k:'coin',a:'m_2'},
+{v:5,n:'חמישה שקלים',f:'assets/coin-5-shekels.png',w:72,h:72,k:'coin',a:'m_5'},
+{v:10,n:'עשרה שקלים',f:'assets/coin-10-shekels.png',w:69,h:69,k:'coin',a:'m_10'},
+{v:20,n:'20 שקלים',f:'assets/bill-20.jpg',w:200,h:110,k:'bill',a:'m_20'},
+{v:50,n:'50 שקלים',f:'assets/bill-50.jpg',w:211,h:110,k:'bill',a:'m_50'},
+{v:100,n:'100 שקלים',f:'assets/bill-100.jpg',w:222,h:110,k:'bill',a:'m_100'},
+{v:200,n:'200 שקלים',f:'assets/bill-200.jpg',w:233,h:110,k:'bill',a:'m_200'}];
+const ORDER=[200,100,50,20,10,5,2,1,.5,.1];
+const G_ALL=[
+{n:'גלידה',e:'🍦',u:0,a:'buy_icecream'},{n:'כדור',e:'⚽',u:0,a:'buy_ball'},{n:'ספר',e:'📚',u:0,a:'buy_book'},
+{n:'פיצה',e:'🍕',u:0,a:'buy_pizza'},{n:'מיץ',e:'🧃',u:0,a:'buy_juice'},{n:'בובה',e:'🧸',u:0,a:'buy_teddy'},
+{n:'עוגה',e:'🎂',u:5,a:'buy_cake'},{n:'משקפי שמש',e:'🕶️',u:10,a:'buy_glasses'},{n:'רובוט',e:'🤖',u:15,a:'buy_robot'},
+{n:'גיטרה',e:'🎸',u:20,a:'buy_guitar'},{n:'אופניים',e:'🚲',u:25,a:'buy_bike'}];
+
+let level=1,target=0,tray=[],score=0,stars=0,q=1,checking=false,streak=0,correctCount=0,
+    nextBonus=false,bonusRound=false,gameMode='normal',toastTimer=null,
+    wrongOnQ=0,pendingWheels=null,qToken=0,lastParts=[],chosenLevel=1,startBusy=false;
+
+/* ================= SAVED PROGRESS (per level) ================= */
+const SAVE_KEY='dubiShop.v2';
+let prog={stage:[0,0,0],run:[0,0,0],wins:[0,0,0],sound:true};
+(function loadProg(){
+  try{
+    const d=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}');
+    ['stage','run','wins'].forEach(k=>{
+      if(Array.isArray(d[k])&&d[k].length===3)prog[k]=d[k].map(x=>Math.max(0,Math.floor(+x)||0));
+    });
+    prog.stage=prog.stage.map(x=>Math.min(3,x));
+    if(typeof d.sound==='boolean')prog.sound=d.sound;
+  }catch(e){}
+})();
+function saveProg(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(prog))}catch(e){}}
+
+/* ================= SOUND: MP3 first, browser voice as fallback ================= */
+const AUDIO_DIR='assets/audio/';
+const Sound={token:0,el:null,broken:new Set(),voice:null};
+try{Sound.el=new Audio();Sound.el.preload='auto'}catch(e){Sound.el=null}
+function hasTTS(){return 'speechSynthesis' in window&&typeof SpeechSynthesisUtterance!=='undefined'}
+function loadVoice(){
+  if(!hasTTS())return;
+  try{Sound.voice=speechSynthesis.getVoices().find(v=>/^(he|iw)/i.test(v.lang||''))||null}catch(e){Sound.voice=null}
+}
+loadVoice();
+if(hasTTS()){
+  if(speechSynthesis.addEventListener)speechSynthesis.addEventListener('voiceschanged',loadVoice);
+  else speechSynthesis.onvoiceschanged=loadVoice;
+}
+function stopSound(){
+  Sound.token++;
+  if(Sound.el){try{Sound.el.onended=null;Sound.el.onerror=null;Sound.el.pause()}catch(e){}}
+  if(hasTTS()){try{speechSynthesis.cancel()}catch(e){}}
+}
+function tts(text,tk,done){
+  if(!text||!Sound.voice||!hasTTS()){done();return}
+  let called=false,timer=null;
+  const fin=()=>{if(called)return;called=true;clearTimeout(timer);if(tk===Sound.token)done()};
+  try{
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='he-IL';u.rate=.9;try{u.voice=Sound.voice}catch(e){}
+    u.onend=fin;u.onerror=fin;
+    timer=setTimeout(fin,2000+text.length*130);
+    speechSynthesis.speak(u);
+  }catch(e){fin()}
+}
+function playPart(p,tk,done){
+  const a=Sound.el;
+  if(!a||!p.id||Sound.broken.has(p.id)){tts(p.text,tk,done);return}
+  let finished=false;
+  a.onended=()=>{if(finished)return;finished=true;if(tk===Sound.token)done()};
+  const fail=err=>{
+    if(finished)return;
+    finished=true;
+    if(tk!==Sound.token)return;                              // stopped on purpose
+    const name=err&&err.name;
+    if(name==='NotAllowedError'||name==='AbortError')return; // autoplay blocked -> stay quiet
+    Sound.broken.add(p.id);                                   // file missing -> browser voice
+    tts(p.text,tk,done);
+  };
+  a.onerror=()=>fail(null);
+  try{
+    a.src=AUDIO_DIR+p.id+'.mp3';
+    const pr=a.play();
+    if(pr&&pr.catch)pr.catch(fail);
+  }catch(e){fail(e)}
+}
+/* parts = [{id:'mp3 name', text:'fallback text'}, {text:'browser voice only'}] */
+function speak(parts,onDone){
+  stopSound();
+  const cb=typeof onDone==='function'?onDone:null;
+  if(!prog.sound||!parts||!parts.length){if(cb)cb();return}
+  const tk=Sound.token;let i=0;
+  const next=()=>{
+    if(tk!==Sound.token)return;
+    if(i>=parts.length){if(cb)cb();return}
+    playPart(parts[i++],tk,next);
+  };
+  next();
+}
+function sayEl(el){speak([{id:el.dataset.audio,text:el.dataset.say}])}
+function priceText(n){
+  n=Math.round(n*100)/100;
+  const w=Math.floor(n+1e-9),ag=Math.round((n-w)*100);
+  const a=w===1?'שקל אחד':w===2?'שני שקלים':w>0?w+' שקלים':'';
+  const b=ag>0?ag+' אגורות':'';
+  return a&&b?a+' ו '+b:(a||b||'0 שקלים');
+}
+function updateSoundUI(){
+  $('soundBtn').textContent=prog.sound?'🔊':'🔇';
+  document.querySelector('.app').classList.toggle('muted',!prog.sound);
+}
+
+/* ================= HELPERS (training wheels) ================= */
+/* stage 0: all helpers | 1: no total | 2: no total + no overflow warning | 3: no helpers */
+const WHEELS_UP=3; // correct answers in a row (first try) to remove one helper
+function helpersFor(stage){return{total:stage<1,overflow:stage<2,bar:stage<3}}
+function applyHelpers(){
+  const h=helpersFor(prog.stage[level-1]),app=document.querySelector('.app');
+  app.classList.toggle('hide-bar',!h.bar);
+  app.classList.toggle('hide-total',!h.total);
+  app.classList.toggle('hide-overflow',!h.overflow);
+}
+function toast(text,ms){
+  const el=$('unlockToast');el.textContent=text;el.classList.add('show');
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),ms||2800);
+}
+
+/* ================= GAME LOGIC ================= */
+function unlockedItems(){return G_ALL.filter(g=>stars>=g.u)}
+function pickItem(){const arr=unlockedItems();return arr[Math.floor(Math.random()*arr.length)]}
+
+const celebrateCanvas=$('celebration'),celebrateCtx=celebrateCanvas.getContext('2d');
+let celebrationBits=[],celebrationFrame=0;
+function resizeCelebration(){
+  const dpr=window.devicePixelRatio||1;
+  celebrateCanvas.width=innerWidth*dpr;celebrateCanvas.height=innerHeight*dpr;
+  celebrateCanvas.style.width=innerWidth+'px';celebrateCanvas.style.height=innerHeight+'px';
+  celebrateCtx.setTransform(dpr,0,0,dpr,0,0);
+}
+addEventListener('resize',resizeCelebration);resizeCelebration();
+function celebrate(){
+  cancelAnimationFrame(celebrationFrame);celebrationBits=[];
+  const colors=['#ff3b6b','#ffd447','#00c995','#168db7','#9b5cff','#ff9e40'];
+  for(let i=0;i<180;i++)celebrationBits.push({x:innerWidth/2+(Math.random()-.5)*120,y:innerHeight*.38,vx:(Math.random()-.5)*15,vy:-8-Math.random()*12,g:.25+Math.random()*.18,r:Math.random()*6.28,w:6+Math.random()*8,h:4+Math.random()*7,c:colors[i%colors.length],life:90+Math.random()*45});
+  $('msg').classList.remove('celebrate-pop');void $('msg').offsetWidth;$('msg').classList.add('celebrate-pop');
+  (function draw(){
+    celebrateCtx.clearRect(0,0,innerWidth,innerHeight);
+    celebrationBits=celebrationBits.filter(p=>p.life-->0);
+    for(const p of celebrationBits){p.x+=p.vx;p.y+=p.vy;p.vy+=p.g;p.r+=.18;celebrateCtx.save();celebrateCtx.translate(p.x,p.y);celebrateCtx.rotate(p.r);celebrateCtx.fillStyle=p.c;celebrateCtx.fillRect(-p.w/2,-p.h/2,p.w,p.h);celebrateCtx.restore()}
+    if(celebrationBits.length)celebrationFrame=requestAnimationFrame(draw);else celebrateCtx.clearRect(0,0,innerWidth,innerHeight);
+  })();
+}
+function moneyScale(){return innerWidth<=380?.8:innerWidth<=700?.92:1}
+function el(m,s){
+  const d=document.createElement('div');d.className='money '+m.k;
+  const i=new Image;i.src=m.f;i.alt=m.n;i.draggable=false;
+  i.style.width=Math.round(m.w*s)+'px';i.style.height=Math.round(m.h*s)+'px';
+  d.append(i);return d;
+}
+function levelMoneyFor(l){
+  const max=l===1?20:l===2?100:200;
+  return ORDER.filter(v=>v<=max&&!((l===1&&(v===.1||v===.5||v===20))||(l===2&&(v===.1||v===.5)))).map(v=>M.find(x=>x.v===v));
+}
+function levelMoney(){return levelMoneyFor(level)}
+function onWalletTap(m){
+  if(checking)return;
+  tray.push(m);render();
+  speak([{id:m.a,text:m.n}]);
+}
+function fillBox(box,items,s,onTap){
+  box.innerHTML='';
+  items.forEach((m,j)=>{const d=el(m,s);d.onclick=()=>onTap(m,j);box.append(d)});
+}
+function wallet(){
+  const w=$('wallet'),items=levelMoney(),minS=innerWidth<=700?.32:.5;let s=moneyScale();
+  fillBox(w,items,s,onWalletTap);
+  if(innerWidth<=700){let tries=0;while(w.scrollHeight>w.clientHeight+2&&s>minS&&tries<20){s=Math.max(minS,s-.05);fillBox(w,items,s,onWalletTap);tries++}}
+}
+function minPiecesFor(t){
+  const avail=levelMoney().map(m=>m.v).sort((a,b)=>b-a);let remaining=Math.round(t*10),cnt=0;
+  for(const v of avail){const vi=Math.round(v*10);if(vi<=0)continue;const n=Math.floor(remaining/vi);cnt+=n;remaining-=n*vi}
+  return cnt;
+}
+function streakMultiplier(){return streak>=3?3:streak>=2?2:1}
+function updateStreakUI(){
+  const m=streakMultiplier();$('streakMultText').textContent='x'+m;
+  const p=$('streakPill');p.classList.remove('x2','x3');if(m===2)p.classList.add('x2');if(m===3)p.classList.add('x3');
+}
+function total(){return Math.round(tray.reduce((a,x)=>a+x.v,0)*100)/100}
+function fmt(n){return n%1?n.toFixed(2):n}
+function onTrayTap(m,j){if(checking)return;tray.splice(j,1);render()}
+function render(keepMsg){
+  const t=$('tray'),minS=innerWidth<=700?.32:.5;let ms=moneyScale();
+  fillBox(t,tray,ms,onTrayTap);
+  if(innerWidth<=700){let tries=0;while(t.scrollHeight>t.clientHeight+2&&ms>minS&&tries<20){ms=Math.max(minS,ms-.05);fillBox(t,tray,ms,onTrayTap);tries++}}
+  const s=total(),over=Math.round((s-target)*100)/100,pct=target?Math.min(100,s/target*100):0,progress=$('progress');
+  $('sum').textContent=fmt(s)+' ₪';$('pcVal').textContent=tray.length;$('prog').style.width=pct+'%';
+  progress.classList.toggle('over',over>0);
+  $('overflowBubble').textContent=over>0?'⚠️ יותר מדי ב־'+fmt(over)+' ₪':'';
+  if(!keepMsg)$('msg').textContent='';
+}
+function randInt(a,b){return a+Math.floor(Math.random()*(b-a+1))}
+function genNormalTarget(){return level===1?2+Math.floor(Math.random()*18):level===2?(2+Math.floor(Math.random()*39))*5:Math.round((1+Math.random()*200)*10)/10}
+function genChange(){
+  const price=genNormalTarget();const avail=levelMoney().map(m=>m.v).sort((a,b)=>a-b);
+  let given=avail.find(v=>v>price);
+  if(given===undefined)given=Math.round((price+Math.max(...avail))*10)/10;
+  return{price,given,change:Math.round((given-price)*100)/100};
+}
+function genCart(){
+  const n=level===3?3:2,pool=unlockedItems(),items=[],used=new Set();
+  for(let i=0;i<n&&used.size<pool.length;i++){
+    let idx;do{idx=Math.floor(Math.random()*pool.length)}while(used.has(idx));used.add(idx);
+    const it=pool[idx];
+    const price=level===1?randInt(1,9):level===2?randInt(1,10)*5:Math.round((1+Math.random()*40)*10)/10;
+    items.push({n:it.n,e:it.e,price});
+  }
+  return{items,total:Math.round(items.reduce((a,x)=>a+x.price,0)*100)/100};
+}
+function buyParts(g,price){return[{id:g.a,text:'כמה כסף צריך בשביל '+g.n+'?'},{text:priceText(price)}]}
+function newq(prefix){
+  tray=[];wrongOnQ=0;checking=false;
+  bonusRound=nextBonus;nextBonus=false;
+  const pre=Array.isArray(prefix)?prefix.slice():[];
+  // training-wheels change waiting from the last answer
+  if(pendingWheels){
+    applyHelpers();
+    if(pendingWheels==='all'){toast('🏆 וואו! עכשיו משחקים בלי שום עזרה!');pre.push({id:'wheels_all',text:'וואו! עכשיו משחקים בלי שום עזרה!'})}
+    else{toast('🚲 אתם כבר גדולים! הורדנו עזר אחד');pre.push({id:'wheels_off',text:'מעולה! אתם כבר גדולים! הורדנו עזר אחד'})}
+    pendingWheels=null;
+  }
+  const qType=bonusRound?'normal':gameMode,app=document.querySelector('.app');
+  app.classList.remove('mode-normal','mode-change','mode-cart');app.classList.add('mode-'+qType);
+  let qParts;
+  if(bonusRound){
+    target=2+Math.floor(Math.random()*8);const g=pickItem();
+    $('thing').textContent=g.e;$('question').textContent='כמה כסף צריך בשביל '+g.n+'?';$('target').textContent=fmt(target)+' ₪';
+    qParts=[{id:'bonus',text:'סיבוב בונוס! ניקוד כפול!'}].concat(buyParts(g,target));
+  }else if(qType==='change'){
+    const{price,given,change}=genChange();target=change;const g=pickItem();
+    $('thing').textContent=g.e;
+    $('question').textContent=g.n+' '+g.e+' עולה '+fmt(price)+' ₪. דובי שילם '+fmt(given)+' ₪. כמה עודף להחזיר?';
+    $('target').textContent=fmt(given)+' ₪ (שולם)';
+    qParts=[{text:g.n+' עולה '+priceText(price)+'. דובי שילם '+priceText(given)+'.'},{id:'q_change',text:'כמה עודף צריך להחזיר לדובי?'}];
+  }else if(qType==='cart'){
+    const{items,total:tt}=genCart();target=tt;
+    $('question').textContent='כמה כסף צריך בשביל כל הפריטים ביחד?';
+    const cl=$('cartList');cl.innerHTML='';
+    items.forEach(it=>{const d=document.createElement('div');d.className='cart-item';d.innerHTML='<span>'+it.e+' '+it.n+'</span><span class="p">'+fmt(it.price)+' ₪</span>';cl.append(d)});
+    qParts=[{id:'q_cart',text:'כמה כסף צריך בשביל כל הפריטים ביחד?'},{text:items.map(it=>it.n+' '+priceText(it.price)).join(', ')}];
+  }else{
+    target=genNormalTarget();const g=pickItem();
+    $('thing').textContent=g.e;$('question').textContent='כמה כסף צריך בשביל '+g.n+'?';$('target').textContent=fmt(target)+' ₪';
+    qParts=buyParts(g,target);
+  }
+  lastParts=qParts;
+  $('bonusBanner').classList.toggle('show',bonusRound);
+  updateStreakUI();render();
+  speak(pre.concat(qParts));
+}
+const PRAISE=[
+  {id:'correct1',text:'כל הכבוד! בדיוק נכון!'},
+  {id:'correct2',text:'מעולה! איזה יופי!'},
+  {id:'correct3',text:'וואו! אתה אלוף!'}];
+$('check').onclick=()=>{
+  if(checking)return;
+  const s=total(),d=Math.round(Math.abs(s-target)*100)/100,L=level-1;
+  if(!tray.length){
+    $('msg').innerHTML='<span class="bad">👛 לחצו על מטבע או שטר מהארנק</span>';
+    speak([{id:'wallet_hint',text:'לחצו על מטבע או שטר מהארנק'}]);
+    return;
+  }
+  if(s===target){
+    checking=true;
+    const myQ=++qToken;
+    const piecesUsed=tray.length,minP=minPiecesFor(target);let effBonus=0,effMsg='';
+    if(piecesUsed===minP){effBonus=15;effMsg='<span class="msg-eff">⭐ סופר חכם! מספר מטבעות מינימלי! (+15)</span>'}
+    else if(piecesUsed===minP+1){effBonus=5;effMsg='<span class="msg-eff">👍 כמעט מושלם! מטבע אחד מיותר (+5)</span>'}
+    streak++;
+    const mult=streakMultiplier();let points=(10+effBonus)*mult;if(bonusRound)points*=2;
+    score+=points;stars++;correctCount++;if(correctCount%5===0)nextBonus=true;
+    // training wheels: only first-try answers count
+    if(wrongOnQ===0){
+      prog.run[L]++;
+      if(prog.run[L]>=WHEELS_UP&&prog.stage[L]<3){prog.stage[L]++;prog.run[L]=0;pendingWheels=prog.stage[L]===3?'all':'off'}
+    }else prog.run[L]=0;
+    prog.wins[L]++;saveProg();
+    const newlyUnlocked=G_ALL.find(g=>g.u===stars);
+    if(newlyUnlocked)toast('🆕 פריט חדש נפתח: '+newlyUnlocked.e+' '+newlyUnlocked.n+'!');
+    q++;
+    $('score').textContent=score;$('sc').textContent=stars;$('stars').textContent='⭐'.repeat(Math.min(stars,10));
+    updateStreakUI();
+    const bonusMsg=bonusRound?'<span class="msg-bonus">🎁 סיבוב בונוס - ניקוד כפול!</span>':'';
+    const streakMsg=mult>1?'<span class="msg-eff">🔥 רצף x'+mult+'!</span>':'';
+    $('msg').innerHTML='<span class="good">כל הכבוד! בדיוק נכון! 🎉</span>'+effMsg+streakMsg+bonusMsg;
+    celebrate();
+    // voice: praise + max 2 extras
+    const parts=[PRAISE[Math.floor(Math.random()*PRAISE.length)]],extra=[];
+    if(effBonus===15)extra.push({id:'smart',text:'סופר חכם! הכי מעט מטבעות!'});
+    else if(effBonus===5)extra.push({id:'almost',text:'כמעט מושלם!'});
+    if(mult===3)extra.push({id:'streak3',text:'רצף מטורף! ניקוד משולש!'});
+    else if(mult===2)extra.push({id:'streak2',text:'רצף! ניקוד כפול!'});
+    if(newlyUnlocked)extra.unshift({id:'unlock',text:'פריט חדש נפתח!'},{text:newlyUnlocked.n});
+    // go to the next question when BOTH: 2.2s passed AND the voice finished (max 7s)
+    let minPassed=false,voiceDone=false,moved=false;
+    const go=()=>{if(moved||myQ!==qToken)return;moved=true;newq()};
+    const tryGo=()=>{if(minPassed&&voiceDone)go()};
+    setTimeout(()=>{minPassed=true;tryGo()},2200);
+    setTimeout(go,7000);
+    speak(parts.concat(extra.slice(0,newlyUnlocked?3:2)),()=>{voiceDone=true;tryGo()});
+  }else{
+    streak=0;updateStreakUI();wrongOnQ++;prog.run[L]=0;
+    const parts=[s<target?{id:'missing',text:'חסר עוד קצת כסף. נסו שוב!'}:{id:'too_much',text:'יש יותר מדי כסף. נסו שוב!'}];
+    $('msg').innerHTML='<span class="bad">'+(s<target?'חסר ':'יש יותר מדי ')+fmt(d)+' ₪</span>';
+    // 2 mistakes on the same question -> give one helper back
+    if(wrongOnQ===2&&prog.stage[L]>0){
+      prog.stage[L]--;applyHelpers();
+      toast('🛟 הנה עזרה קטנה!');
+      parts.push({id:'wheels_on',text:'הנה עזרה קטנה!'});
+    }
+    saveProg();
+    speak(parts);
+  }
+};
+$('clear').onclick=()=>{if(checking)return;tray=[];render()};
+$('next').onclick=()=>{
+  if(checking)return;
+  q++;streak=0;prog.run[level-1]=0;saveProg();updateStreakUI();newq();
+};
+$('replay').onclick=()=>speak(lastParts);
+$('soundBtn').onclick=()=>{
+  prog.sound=!prog.sound;saveProg();updateSoundUI();
+  if(!prog.sound)stopSound();else speak(lastParts);
+};
+$('homeBtn').onclick=()=>openStart();
+
+/* ================= START SCREEN LOGIC ================= */
+function buildMini(){
+  document.querySelectorAll('[data-mini]').forEach(box=>{
+    const l=+box.dataset.mini;box.innerHTML='';
+    levelMoneyFor(l).slice().reverse().forEach(m=>{
+      const i=new Image;i.src=m.f;i.alt=m.n;i.draggable=false;i.className=m.k==='coin'?'c':'b';box.append(i);
+    });
+  });
+}
+function refreshCards(){
+  document.querySelectorAll('[data-wins]').forEach(w=>{
+    const n=prog.wins[+w.dataset.wins-1];
+    w.textContent='🏆 '+n;w.style.display=n>0?'':'none';
+  });
+}
+function showStep(n){
+  [1,2].forEach(k=>{
+    const s=$('step'+k);
+    s.classList.toggle('off',k!==n);
+    s.classList.toggle('right',k>n);
+  });
+  const cur=$('step'+n);
+  cur.scrollTop=0;
+  cur.querySelectorAll('.card').forEach(c=>{c.classList.remove('picked','pop');void c.offsetWidth;c.classList.add('pop')});
+}
+function openStart(){
+  qToken++;checking=false;startBusy=false;
+  refreshCards();showStep(1);
+  $('start').classList.remove('gone');
+  speak([{id:'q_stars',text:'כמה כוכבים?'}]);
+}
+function startGame(l,mode){
+  level=l;gameMode=mode;streak=0;pendingWheels=null;
+  $('levelPill').textContent='⭐'.repeat(level);
+  applyHelpers();
+  $('start').classList.add('gone');
+  $('msg').textContent='';
+  wallet();
+  newq([{id:'go',text:'יאללה!'}]);
+  startBusy=false;
+}
+document.querySelectorAll('.say').forEach(b=>b.onclick=e=>{e.stopPropagation();sayEl(b)});
+document.querySelectorAll('[data-level]').forEach(c=>c.onclick=()=>{
+  if(startBusy)return;startBusy=true;
+  chosenLevel=+c.dataset.level;
+  c.classList.add('picked');
+  $('chosenStars').textContent='⭐'.repeat(chosenLevel);
+  speak([{id:c.dataset.audio,text:c.dataset.say},{id:'q_mode',text:'מה נשחק?'}]);
+  setTimeout(()=>{showStep(2);startBusy=false},650);
+});
+document.querySelectorAll('[data-mode]').forEach(c=>c.onclick=()=>{
+  if(startBusy)return;startBusy=true;
+  c.classList.add('picked');
+  speak([{id:c.dataset.audio,text:c.dataset.say}]);
+  setTimeout(()=>startGame(chosenLevel,c.dataset.mode),600);
+});
+$('startBack').onclick=()=>{if(startBusy)return;showStep(1);speak([{id:'q_stars',text:'כמה כוכבים?'}])};
+
+/* ================= INIT ================= */
+buildMini();updateSoundUI();applyHelpers();wallet();render();
+openStart();
+let resizeT=null;
+addEventListener('resize',()=>{clearTimeout(resizeT);resizeT=setTimeout(()=>{wallet();render(true)},120)});
+</script>
+</body>
+</html>
