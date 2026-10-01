@@ -99,7 +99,7 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .wallet{flex:0 0 auto;display:flex;align-items:center;gap:8px;min-height:70px;box-shadow:0 5px #078d6d;border:3px solid #00c995;padding:6px 10px}
 .wtitle{font-size:15px;font-weight:900;flex:0 0 auto;text-align:center;line-height:1.1}
 .wcoins{flex:1;display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;height:58px;overflow:hidden}
-.wcoins:empty:before{content:'הארנק ריק! 🫙';font-weight:800;color:#56807a}
+.wcoins:empty:before{content:'הארנק ריק! 📭';font-weight:800;color:#56807a}
 .wnum{flex:0 0 auto;background:#e9fff7;border:3px solid #00c995;border-radius:14px;padding:4px 10px;font-size:19px;font-weight:900;color:#08795b;white-space:nowrap}
 .wclosed{flex:1;display:none;text-align:center;font-size:18px;font-weight:900;color:#08795b}
 .app:not(.w-num) .wnum{display:none}
@@ -200,7 +200,7 @@ if(/[?&]compat/.test(location.search))addEventListener('load',function(){var b=d
 
 <!-- ================= START ================= -->
 <div class="start" id="start"><div class="inner">
-  <h1 class="start-title">🧺 השוק של דובי</h1>
+  <h1 class="start-title">🛒 השוק של דובי</h1>
   <div class="sbear">🐻</div>
   <div class="bubble">כמה כוכבים? <button class="say" id="startSay" aria-label="השמע">🔊</button></div>
   <div class="cards">
@@ -241,7 +241,7 @@ if(/[?&]compat/.test(location.search))addEventListener('load',function(){var b=d
   <section class="shelf"><div class="awning"></div><div class="grid" id="shelf"></div></section>
   <section class="panel basket" id="basketP">
     <div class="bleft">
-      <div class="bhead"><span>🧺 הסל שלי <b id="bcount"></b></span><span class="btotal" id="btotal"></span></div>
+      <div class="bhead"><span>🛒 הסל שלי <b id="bcount"></b></span><span class="btotal" id="btotal"></span></div>
       <div class="bitems" id="basket"></div>
     </div>
     <button class="bigbtn go" id="checkout">🛒 לקופה!</button>
@@ -348,10 +348,10 @@ function MC(c){return M.find(m=>m.c===c)}
 /* ================= PRODUCTS (voice: assets/audio/p_<k>.mp3) ================= */
 const P=[
 {k:'apple',n:'תפוח',e:'🍎'},{k:'banana',n:'בננה',e:'🍌'},{k:'carrot',n:'גזר',e:'🥕'},
-{k:'cookie',n:'עוגייה',e:'🍪'},{k:'candy',n:'סוכרייה',e:'🍭'},{k:'juice',n:'מיץ',e:'🧃'},
+{k:'cookie',n:'עוגייה',e:'🍪'},{k:'candy',n:'סוכרייה',e:'🍭'},{k:'juice',n:'מיץ',e:'🥤'},
 {k:'milk',n:'חלב',e:'🥛'},{k:'bread',n:'לחם',e:'🍞'},{k:'cheese',n:'גבינה',e:'🧀'},
 {k:'icecream',n:'גלידה',e:'🍦'},{k:'balloon',n:'בלון',e:'🎈'},{k:'crayons',n:'צבעים',e:'🖍️'},
-{k:'teddy',n:'בובה',e:'🧸'},{k:'ball',n:'כדור',e:'⚽'},{k:'book',n:'ספר',e:'📚'},
+{k:'teddy',n:'בובה',e:'🐻'},{k:'ball',n:'כדור',e:'⚽'},{k:'book',n:'ספר',e:'📚'},
 {k:'watermelon',n:'אבטיח',e:'🍉'},{k:'chocolate',n:'שוקולד',e:'🍫'},{k:'pizza',n:'פיצה',e:'🍕'},
 {k:'cake',n:'עוגה',e:'🎂'},{k:'car',n:'מכונית',e:'🚗'}];
 
@@ -604,7 +604,7 @@ function unbuy(j){
 function wrongOnce(parts){
   wrongs++;
   if(wrongs===2&&wheelsBack(store,level-1)){
-    saveStore(KEY,store);toast('🛟 הנה עזרה קטנה!');parts.push(WHEELS_ON);
+    saveStore(KEY,store);toast('💡 הנה עזרה קטנה!');parts.push(WHEELS_ON);
     render();if(qOpen)openQuestion(true);
   }
   speak(parts);
@@ -641,7 +641,7 @@ function openQuestion(keep){
     (st<1?'<div class="sh-coins-t">👛 מה שנשאר בארנק:</div><div class="sh-coins" id="shCoins"></div>':'')+
     '<div class="opts" id="opts"></div>'+
     '<button class="linkbtn" id="backShop">↩️ חזרה לחנות</button>';
-  if(st<1){const b=$('shCoins');greedyCoins(remaining,cfg.denoms).forEach(c=>b.append(moneyEl(MC(c),isMobile()?.5:.6,null)));if(!remaining)b.textContent='🫙'}
+  if(st<1){const b=$('shCoins');greedyCoins(remaining,cfg.denoms).forEach(c=>b.append(moneyEl(MC(c),isMobile()?.5:.6,null)));if(!remaining)b.textContent='📭'}
   const o=$('opts');
   curOpts.forEach(v=>{
     const b=document.createElement('button');b.className='opt';b.dataset.v=v;

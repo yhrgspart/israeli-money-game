@@ -268,9 +268,9 @@ if(/[?&]compat/.test(location.search))addEventListener('load',function(){var b=d
     </div>
   </section>
   <section class="panel pay">
-    <div class="title">🧺 הקופה שלי</div>
+    <div class="title">🛒 הקופה שלי</div>
     <div class="moneybox" id="tray"></div>
-    <div class="piece-count" id="pieceCount">🧮 מטבעות ושטרות: <b id="pcVal">0</b></div>
+    <div class="piece-count" id="pieceCount">🔢 מטבעות ושטרות: <b id="pcVal">0</b></div>
     <div class="progress" id="progress"><i id="prog"></i><span class="overflow-bubble" id="overflowBubble">⚠️ יותר מדי</span></div>
     <div class="total">סה״כ: <span id="sum">0 ₪</span></div>
   </section>
@@ -310,7 +310,7 @@ const M=[
 const ORDER=[200,100,50,20,10,5,2,1,.5,.1];
 const G_ALL=[
 {n:'גלידה',e:'🍦',u:0,a:'buy_icecream'},{n:'כדור',e:'⚽',u:0,a:'buy_ball'},{n:'ספר',e:'📚',u:0,a:'buy_book'},
-{n:'פיצה',e:'🍕',u:0,a:'buy_pizza'},{n:'מיץ',e:'🧃',u:0,a:'buy_juice'},{n:'בובה',e:'🧸',u:0,a:'buy_teddy'},
+{n:'פיצה',e:'🍕',u:0,a:'buy_pizza'},{n:'מיץ',e:'🥤',u:0,a:'buy_juice'},{n:'בובה',e:'🐻',u:0,a:'buy_teddy'},
 {n:'עוגה',e:'🎂',u:5,a:'buy_cake'},{n:'משקפי שמש',e:'🕶️',u:10,a:'buy_glasses'},{n:'רובוט',e:'🤖',u:15,a:'buy_robot'},
 {n:'גיטרה',e:'🎸',u:20,a:'buy_guitar'},{n:'אופניים',e:'🚲',u:25,a:'buy_bike'}];
 
@@ -553,7 +553,7 @@ $('check').onclick=()=>{
     // 2 mistakes on the same question -> give one helper back
     if(wrongOnQ===2&&prog.stage[L]>0){
       prog.stage[L]--;applyHelpers();
-      toast('🛟 הנה עזרה קטנה!');
+      toast('💡 הנה עזרה קטנה!');
       parts.push({id:'wheels_on',text:'הנה עזרה קטנה!'});
     }
     saveProg();

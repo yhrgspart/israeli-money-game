@@ -200,7 +200,7 @@ if(/[?&]compat/.test(location.search))addEventListener('load',function(){var b=d
 
 <!-- ================= START ================= -->
 <div class="start" id="start"><div class="inner">
-  <h1 class="start-title">🧑‍💼 הקופאי הקטן</h1>
+  <h1 class="start-title">🏪 הקופאי הקטן</h1>
   <div class="sbear">🐰🐶🐱</div>
   <div class="bubble">כמה כוכבים? <button class="say" id="startSay" aria-label="השמע">🔊</button></div>
   <div class="cards">
@@ -245,7 +245,7 @@ if(/[?&]compat/.test(location.search))addEventListener('load',function(){var b=d
     <div class="choices">
       <button class="choice cl" data-a="-1"><span>😟</span>חסר</button>
       <button class="choice ce" data-a="0"><span>👌</span>בדיוק</button>
-      <button class="choice cm" data-a="1"><span>🪙</span>יותר<small>צריך עודף</small></button>
+      <button class="choice cm" data-a="1"><span>💰</span>יותר<small>צריך עודף</small></button>
     </div>
   </section>
   <section class="panel change" id="chP">
@@ -286,10 +286,10 @@ function MC(c){return M.find(m=>m.c===c)}
 /* ================= PRODUCTS (voice: assets/audio/p_<k>.mp3) ================= */
 const P=[
 {k:'apple',n:'תפוח',e:'🍎'},{k:'banana',n:'בננה',e:'🍌'},{k:'carrot',n:'גזר',e:'🥕'},
-{k:'cookie',n:'עוגייה',e:'🍪'},{k:'candy',n:'סוכרייה',e:'🍭'},{k:'juice',n:'מיץ',e:'🧃'},
+{k:'cookie',n:'עוגייה',e:'🍪'},{k:'candy',n:'סוכרייה',e:'🍭'},{k:'juice',n:'מיץ',e:'🥤'},
 {k:'milk',n:'חלב',e:'🥛'},{k:'bread',n:'לחם',e:'🍞'},{k:'cheese',n:'גבינה',e:'🧀'},
 {k:'icecream',n:'גלידה',e:'🍦'},{k:'balloon',n:'בלון',e:'🎈'},{k:'crayons',n:'צבעים',e:'🖍️'},
-{k:'teddy',n:'בובה',e:'🧸'},{k:'ball',n:'כדור',e:'⚽'},{k:'book',n:'ספר',e:'📚'},
+{k:'teddy',n:'בובה',e:'🐻'},{k:'ball',n:'כדור',e:'⚽'},{k:'book',n:'ספר',e:'📚'},
 {k:'watermelon',n:'אבטיח',e:'🍉'},{k:'chocolate',n:'שוקולד',e:'🍫'},{k:'pizza',n:'פיצה',e:'🍕'},
 {k:'cake',n:'עוגה',e:'🎂'},{k:'car',n:'מכונית',e:'🚗'}];
 
@@ -500,7 +500,7 @@ function newCustomer(prefix){
 }
 function wrongOnce(parts){
   wrongs++;
-  if(wrongs===2&&wheelsBack(store,level-1)){saveStore(KEY,store);toast('🛟 הנה עזרה קטנה!');parts.push(WHEELS_ON);render()}
+  if(wrongs===2&&wheelsBack(store,level-1)){saveStore(KEY,store);toast('💡 הנה עזרה קטנה!');parts.push(WHEELS_ON);render()}
   speak(parts);
 }
 function answer(a,btn){

@@ -150,7 +150,7 @@ if(/[?&]compat/.test(location.search))addEventListener('load',function(){var b=d
   <div class="cash-op">−</div>
   <button type="button" class="cash-step price-box" id="priceBox"><span class="step-title">🍦 הגלידה עולה</span><span class="step-sum" id="priceSum">0 ₪</span><span class="step-icon">🍦</span></button>
   <div class="cash-op">=</div>
-  <button type="button" class="cash-step change" id="changeBox"><span class="step-title">🪙 העודף שאתם נותנים</span><span class="step-sum" id="chgTotal">0 ₪</span><span class="step-money" id="change"></span></button>
+  <button type="button" class="cash-step change" id="changeBox"><span class="step-title">💰 העודף שאתם נותנים</span><span class="step-sum" id="chgTotal">0 ₪</span><span class="step-money" id="change"></span></button>
  </div>
  <div class="cash-actions"><button type="button" class="btn blue" id="clear">🔄 להתחיל מחדש</button><button type="button" class="btn green serve-btn" id="serve">✅ להגיש ללקוח</button></div>
 </section>
@@ -277,7 +277,7 @@ function submitOrder(ev){
  if(ch!==need){
    document.querySelector('.change').classList.add('bad-zone');
    let text=ch<need?'חסר עודף. צריך להחזיר '+need+' ₪, ובחרתם '+ch+' ₪.':'יש יותר מדי עודף. צריך להחזיר '+need+' ₪, ובחרתם '+ch+' ₪.';
-   setFeedback('🪙 '+text,'bad');DubiSound.sfx('wrong');sequence([ch<need?['cs_change_less','חסר לי עוד עודף. נסו שוב!']:['cs_change_more','זה יותר מדי עודף. נסו שוב!'],['ice_need_back','צריך להחזיר'],...priceTalk(need)]);setTimeout(()=>{submitBusy=false;btn.classList.remove('checking')},180);return false;
+   setFeedback('💰 '+text,'bad');DubiSound.sfx('wrong');sequence([ch<need?['cs_change_less','חסר לי עוד עודף. נסו שוב!']:['cs_change_more','זה יותר מדי עודף. נסו שוב!'],['ice_need_back','צריך להחזיר'],...priceTalk(need)]);setTimeout(()=>{submitBusy=false;btn.classList.remove('checking')},180);return false;
  }
  document.querySelector('.change').classList.add('good-zone');setFeedback('✅ מצוין! הגלידה והעודף נכונים. מגישים ללקוח!','good');
  score++;$('score').textContent=score;
