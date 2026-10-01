@@ -1,0 +1,235 @@
+/* =====================================================================
+   DUBI GAMES – LEGACY DEVICE COMPATIBILITY LAYER
+   =====================================================================
+   Why this file exists:
+   The Samsung Chromebook XE303C12 (2012 ARM "Series 3") was cut off by
+   Google in 2019 and is permanently stuck on Chrome 75/76. It can never
+   update further. Two CSS features used throughout these games were not
+   invented yet at that Chrome version:
+     - the "inset" shorthand (top/right/bottom/left in one word) -> added
+       in Chrome 87 (2020). Every full-screen popup/overlay in these
+       games uses it, so on Chrome 75 those popups don't cover the
+       screen at all - a real functional bug, not just a style nit.
+     - flexbox "gap" (spacing between flex items) -> added in Chrome 84
+       (2020). Without it, rows of buttons/coins render glued together
+       with zero space between them.
+     - CSS clamp() -> added in Chrome 79 (2019). The one place that uses
+       it (the train menu title) would simply lose its font-size.
+
+   HOW THIS FILE WORKS (no browser/device sniffing at all):
+   Every fix below lives inside an "@supports not (...)" feature query.
+   That means: a modern phone, tablet, or PC - old Chromebook included
+   only gets these rules IF its own browser actually lacks the feature.
+   Nothing here ever runs on a browser that already supports gap/inset/
+   clamp, so the current look on new devices is 100% untouched.
+
+   Just add this one line to the <head> of every game, after the
+   existing <style> block, and it does the rest automatically:
+     <link rel="stylesheet" href="assets/legacy-compat.css">
+
+   Each game's <body> also gets one small marker so the few rules that
+   differ per game (gap sizes, etc.) only ever apply to their own game
+   and can never leak into another file:
+     <body data-game="shop">       (shop-game.html)
+     <body data-game="market">     (market.html)
+     <body data-game="cashier">    (cashier.html)
+     <body data-game="catch">      (catch-the-money.html)
+     <body data-game="icecream">   (ice-cream-shop.html)
+     <body data-game="treasure">   (treasure-map.html)
+     <body data-game="menu">       (index.html)
+
+   Scope note: the gap fallback below restores the *default* (desktop/
+   tablet) spacing values, which is what actually renders on the named
+   Chromebook's 1366x768 screen. On very old AND very small/narrow
+   screens the spacing may be a touch more generous than the mobile-
+   tuned value - never zero, never broken, just slightly roomier.
+   ===================================================================== */
+
+
+/* ---------------------------------------------------------------------
+   1) FULL-SCREEN OVERLAYS / POPUPS - "inset:0" fallback
+   (functional fix: without this, start screens, win popups, veils and
+   confetti canvases will not cover the screen on Chrome <87)
+   --------------------------------------------------------------------- */
+@supports not (inset: 10px) {
+  .hello-gate,
+  .start,
+  .overlay,
+  .veil,
+  #celebration,
+  #conf,
+  .scoop-label,
+  .window:after,
+  .quest:before,
+  .basket:after {
+    top: 0; right: 0; bottom: 0; left: 0;
+  }
+  /* index.html: sky backdrop uses a non-zero inset (top/left/right 0, bottom 45%) */
+  .sky { top: 0; right: 0; left: 0; bottom: 45%; }
+  /* treasure-map.html: dashed path uses an inset with 3 custom values */
+  .path:before { top: 15%; right: 8%; bottom: 12%; left: 8%; }
+  /* treasure-map.html: decorative map background layer */
+  .map:before { top: 0; right: 0; bottom: 0; left: 0; }
+  /* shop-game / market / cashier / treasure-map / ice-cream-shop start screens */
+  .start .screen { top: 0; right: 0; bottom: 0; left: 0; }
+}
+
+/* ---------------------------------------------------------------------
+   2) clamp() fallback - index.html only (train menu title/subtitle)
+   (functional fix: clamp() is simply ignored pre-Chrome 79, which drops
+   the font-size declaration entirely)
+   --------------------------------------------------------------------- */
+@supports not (width: clamp(1px, 1px, 1px)) {
+  body[data-game="menu"] .title { font-size: 40px; }
+  body[data-game="menu"] .subtitle { font-size: 19px; }
+}
+
+/* ---------------------------------------------------------------------
+   3) BACKDROP-FILTER fallback - treasure-map.html top bar only
+   (visual fix: blur() behind the icon buttons is unreliable on Chrome 75
+   and costs extra GPU work on the Chromebook's weak Mali-T604 GPU)
+   --------------------------------------------------------------------- */
+@supports not (backdrop-filter: blur(1px)) {
+  body[data-game="treasure"] .top .ib {
+    background: #fffdf2;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   4) FLEXBOX "gap" fallback (spacing restored via margins)
+   (visual fix: Chrome <84 silently ignores "gap" inside display:flex,
+   so rows/columns of buttons, coins and cards render with no spacing)
+
+   Each rule only adds margin between items (nothing is removed or
+   overridden), so it is always safe to layer on top of the existing
+   design. Selectors are scoped with body[data-game="..."] only where
+   the same class name is reused with a different gap value in another
+   game; shared design-system classes with one consistent value are
+   left unscoped so this file stays easy to maintain.
+   --------------------------------------------------------------------- */
+@supports not (gap: 1px) {
+
+  /* ---- shared top bar (cashier / market / ice-cream-shop / treasure-map / catch-the-money) ---- */
+  .top > * + * { margin-inline-start: 6px; }
+  /* index.html's top bar uses a slightly larger gap */
+  body[data-game="menu"] .top > * + * { margin-inline-start: 8px; }
+  /* shop-game.html's equivalent top bar is called .stats (shares a combined
+     rule with .buttons below it, both at 10px) */
+  body[data-game="shop"] .stats > * + * { margin-inline-start: 10px; }
+
+  /* ---- "how many stars" start screen, old-style (icecream/treasure/catch) ---- */
+  .levels > * + * { margin-block-start: 14px; }
+  .level > * + * { margin-inline-start: 12px; }
+  .inside .bubble > * + * { margin-inline-start: 8px; }
+  .options > * { margin-inline-start: 10px; margin-block-start: 10px; }
+  .options > *:first-child { margin-inline-start: 0; }
+
+  /* ---- "how many stars" start screen, new-style (cashier/market/shop-game) ---- */
+  .cards > * + * { margin-block-start: 16px; }
+  .card > * + * { margin-inline-start: 12px; }
+  .start .inner > * + * { margin-block-start: 14px; }
+  .inner .bubble > * + * { margin-inline-start: 10px; }
+  .mini > * { margin-inline-start: 3px; margin-block-start: 3px; }
+  .mini > *:first-child { margin-inline-start: 0; }
+
+  /* ---- cashier.html specific ---- */
+  body[data-game="cashier"] .app > * + * { margin-block-start: 8px; }
+  body[data-game="cashier"] .dayrow > * + * { margin-inline-start: 8px; }
+  body[data-game="cashier"] .slots > * + * { margin-inline-start: 4px; }
+  body[data-game="cashier"] .scene > * + * { margin-inline-start: 10px; }
+  body[data-game="cashier"] .sbub > * + * { margin-inline-start: 10px; }
+  body[data-game="cashier"] .want > * + * { margin-inline-start: 6px; }
+  body[data-game="cashier"] .ptitle > * { margin-inline-start: 8px; margin-block-start: 8px; }
+  body[data-game="cashier"] .ptitle > *:first-child { margin-inline-start: 0; }
+  body[data-game="cashier"] .mbox > * { margin-inline-start: 8px; margin-block-start: 8px; }
+  body[data-game="cashier"] .mbox > *:first-child { margin-inline-start: 0; }
+  body[data-game="cashier"] .q > * + * { margin-inline-start: 8px; }
+  body[data-game="cashier"] .choices > * + * { margin-inline-start: 10px; }
+  body[data-game="cashier"] .change > * + * { margin-block-start: 4px; }
+  body[data-game="cashier"] .crow > * + * { margin-inline-start: 8px; }
+
+  /* ---- market.html specific ---- */
+  body[data-game="market"] .app > * + * { margin-block-start: 8px; }
+  body[data-game="market"] .mission > * + * { margin-inline-start: 10px; }
+  body[data-game="market"] .wallet > * + * { margin-inline-start: 8px; }
+  body[data-game="market"] .wcoins > * { margin-inline-start: 6px; margin-block-start: 6px; }
+  body[data-game="market"] .wcoins > *:first-child { margin-inline-start: 0; }
+  body[data-game="market"] .prod > * + * { margin-block-start: 2px; }
+  body[data-game="market"] .basket > * + * { margin-inline-start: 8px; }
+  body[data-game="market"] .bhead > * + * { margin-inline-start: 6px; }
+  body[data-game="market"] .bitems > * + * { margin-inline-start: 6px; }
+  body[data-game="market"] .sh-head > * + * { margin-inline-start: 10px; }
+  body[data-game="market"] .sh-q > * + * { margin-inline-start: 8px; }
+  body[data-game="market"] .rl > * + * { margin-inline-start: 10px; }
+  body[data-game="market"] .sh-coins > * { margin-inline-start: 6px; margin-block-start: 6px; }
+  body[data-game="market"] .sh-coins > *:first-child { margin-inline-start: 0; }
+  body[data-game="market"] .opts > * + * { margin-inline-start: 12px; }
+
+  /* ---- catch-the-money.html specific ---- */
+  body[data-game="catch"] .game > * + * { margin-block-start: 7px; }
+  body[data-game="catch"] .hud > * + * { margin-inline-start: 7px; }
+  body[data-game="catch"] .power-row > * + * { margin-inline-start: 5px; }
+  body[data-game="catch"] .btns > * + * { margin-inline-start: 9px; }
+
+  /* ---- ice-cream-shop.html specific ---- */
+  body[data-game="icecream"] .app > * + * { margin-block-start: 8px; }
+  body[data-game="icecream"] .order > * + * { margin-inline-start: 10px; }
+  body[data-game="icecream"] .flavors > * { margin-inline-start: 7px; margin-block-start: 7px; }
+  body[data-game="icecream"] .flavors > *:first-child { margin-inline-start: 0; }
+  body[data-game="icecream"] .flavor > * + * { margin-block-start: 2px; }
+  body[data-game="icecream"] .order-summary > * { margin-inline-start: 5px; margin-block-start: 5px; }
+  body[data-game="icecream"] .order-summary > *:first-child { margin-inline-start: 0; }
+  body[data-game="icecream"] .order-chip > * + * { margin-inline-start: 5px; }
+  body[data-game="icecream"] .cash-step > * + * { margin-block-start: 4px; }
+  body[data-game="icecream"] .step-money > * { margin-inline-start: 4px; margin-block-start: 4px; }
+  body[data-game="icecream"] .step-money > *:first-child { margin-inline-start: 0; }
+  body[data-game="icecream"] .cash-actions > * + * { margin-inline-start: 10px; }
+  /* ice-cream-shop's own "#drawer" coin tray (not to be confused with cashier's .mbox.drawer box) */
+  body[data-game="icecream"] .drawer:not(.mbox) > * { margin-inline-start: 12px; margin-block-start: 12px; }
+  body[data-game="icecream"] .drawer:not(.mbox) > *:first-child { margin-inline-start: 0; }
+
+  /* ---- treasure-map.html specific ---- */
+  body[data-game="treasure"] .app > * + * { margin-block-start: 8px; }
+  body[data-game="treasure"] .quest > * + * { margin-inline-start: 10px; }
+  body[data-game="treasure"] .bag .wallet > * + * { margin-inline-start: 7px; }
+  body[data-game="treasure"] #bag > * + * { margin-inline-start: 5px; }
+  body[data-game="treasure"] .final-buttons > * + * { margin-inline-start: 10px; }
+
+  /* ---- shop-game.html specific ---- */
+  body[data-game="shop"] .buttons > * { margin-inline-start: 10px; margin-block-start: 10px; }
+  body[data-game="shop"] .buttons > *:first-child { margin-inline-start: 0; }
+  body[data-game="shop"] .shop > * + * { margin-inline-start: 18px; }
+  body[data-game="shop"] .moneybox > * { margin-inline-start: 12px; margin-block-start: 12px; }
+  body[data-game="shop"] .moneybox > *:first-child { margin-inline-start: 0; }
+  body[data-game="shop"] .cart-list > * { margin-inline-start: 8px; margin-block-start: 8px; }
+  body[data-game="shop"] .cart-list > *:first-child { margin-inline-start: 0; }
+  body[data-game="shop"] .cart-item > * + * { margin-inline-start: 5px; }
+  /* Note: shop-game.html's own .app is only display:flex inside its
+     narrow-screen media query - at the Chromebook's 1366px width it is
+     a plain block container whose children already space themselves via
+     "margin:16px 0" on .shop/.panel, so no extra fallback is added here. */
+
+  /* ---- index.html train menu ---- */
+  body[data-game="menu"] .top > * + * { margin-inline-start: 8px; }
+  body[data-game="menu"] .subtitle > * + * { margin-inline-start: 8px; }
+  body[data-game="menu"] .train > * + * { margin-inline-start: 12px; }
+}
+
+/* ---------------------------------------------------------------------
+   5) REDUCE DECORATIVE LOAD ON OLD/WEAK GPUS
+   The Chromebook's Mali-T604 GPU struggles with many simultaneous
+   infinite CSS animations. "lack of gap support" is a reliable, honest
+   stand-in for "this is a pre-2020 browser/device" (no UA-sniffing),
+   so purely decorative background animations (sun, clouds, sparkles,
+   smoke) are turned off here. Nothing functional or informative is
+   touched - buttons, feedback states and win celebrations still animate.
+   --------------------------------------------------------------------- */
+@supports not (gap: 1px) {
+  body[data-game="menu"] .sun,
+  body[data-game="menu"] .cloud,
+  body[data-game="menu"] .spark,
+  body[data-game="catch"] .sun,
+  body[data-game="catch"] .wind {
+    animation: none !important;
+  }
+}
