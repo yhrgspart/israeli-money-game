@@ -1,0 +1,243 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>גלידריית דובי</title><style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;height:100%;overflow:hidden}body{font-family:Arial,'Rubik',sans-serif;color:#183c59;background:linear-gradient(#72daf5,#d8f7df 58%,#fff1a5);user-select:none}button{font-family:inherit}.app{height:100dvh;max-width:760px;margin:auto;padding:9px;display:flex;flex-direction:column;gap:8px}.top{display:flex;gap:6px;align-items:center;flex:0 0 auto}.ib{border:0;background:white;border-radius:15px;width:43px;height:38px;font-size:20px;box-shadow:0 4px #1684a8}.pill{flex:1;background:#fff;border-radius:14px;padding:7px 4px;text-align:center;font-weight:900;box-shadow:0 4px #dfb334;white-space:nowrap}.card{background:#fff;border-radius:22px;padding:10px;box-shadow:0 5px #1684a8}.btn{border:0;border-radius:18px;padding:12px;font-size:19px;font-weight:900;color:white;box-shadow:0 6px rgba(0,0,0,.2)}.btn:active,.ib:active{transform:translateY(3px)}.green{background:linear-gradient(135deg,#25d99c,#00b781)}.orange{background:linear-gradient(135deg,#ffb154,#ff851e)}.blue{background:linear-gradient(135deg,#4bc2ee,#168db7)}.pink{background:linear-gradient(135deg,#ff769a,#ff3b6b)}.purple{background:linear-gradient(135deg,#ae7bff,#8148ee)}
+.start{position:fixed;inset:0;z-index:20;background:linear-gradient(#76dcf4,#d4f4df 57%,#fff1a4);display:flex;overflow:auto;padding:15px}.start.hide{opacity:0;pointer-events:none}.inside{margin:auto;width:100%;max-width:440px;text-align:center}.title{font-size:36px;color:white;text-shadow:0 4px #ed8a31;margin:4px}.hero{font-size:76px;animation:bob 2s infinite}.bubble{display:inline-flex;align-items:center;gap:8px;background:white;border-radius:25px;padding:10px 19px;font-size:24px;font-weight:900;box-shadow:0 6px #1684a8;margin:6px}.levels{display:flex;flex-direction:column;gap:14px;margin-top:12px}.level{border:0;border-radius:25px;padding:13px 15px;color:white;display:flex;align-items:center;gap:12px;text-align:right;box-shadow:0 8px rgba(0,0,0,.25)}.level .stars{font-size:30px;min-width:108px;text-align:center;letter-spacing:-5px}.level b{font-size:25px}.level small{display:block;font-size:15px}.say{border:0;width:42px;height:42px;border-radius:50%;background:#ffd447;box-shadow:0 4px #d8a919;font-size:20px}.overlay{position:fixed;inset:0;background:#16364799;z-index:30;display:none;align-items:center;justify-content:center;padding:14px}.overlay.show{display:flex}.modal{width:min(480px,100%);background:white;border-radius:28px;padding:18px;text-align:center;box-shadow:0 10px #d7dce1;animation:pop .3s}.big{font-size:68px}.msg{font-size:28px;font-weight:900;color:#07966d}.sub{font-size:19px;font-weight:800;margin:7px}.options{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.option{border:0;border-radius:22px;background:#fff4cd;box-shadow:0 6px #d8a919;padding:13px;min-width:90px;font-size:22px;font-weight:900}.option.wrong{opacity:.32;filter:grayscale(1);pointer-events:none}.toast{position:fixed;z-index:40;bottom:18px;left:50%;transform:translate(-50%,30px);opacity:0;background:#183c59;color:white;border-radius:20px;padding:11px 18px;font-weight:900;transition:.25s}.toast.on{opacity:1;transform:translate(-50%,0)}#conf{position:fixed;inset:0;pointer-events:none;z-index:50}.money{filter:drop-shadow(0 4px 3px #0005);display:inline-block}.money img{display:block;object-fit:contain}.coin img{border-radius:50%}@keyframes bob{50%{transform:translateY(-9px) rotate(4deg)}}@keyframes pop{from{transform:scale(.5);opacity:0}}@keyframes shake{25%{transform:translateX(-7px)}50%{transform:translateX(7px)}75%{transform:translateX(-4px)}}.shake{animation:shake .35s}@media(max-width:500px){.title{font-size:29px}.hero{font-size:59px}.bubble{font-size:20px}.level b{font-size:21px}.level .stars{font-size:26px;min-width:92px}.pill{font-size:14px}}
+
+body{background:linear-gradient(#ffd9e8,#fff0c8 58%,#d3f8e3)}.start{background:linear-gradient(#ffd9e8,#fff0c8 58%,#d3f8e3)}.order{display:flex;align-items:center;gap:10px;flex:0 0 auto;border:4px solid #ff8daf;box-shadow:0 5px #d8517c}.customer{font-size:60px}.speech{flex:1}.speech b{font-size:19px}.speech #cost{font-size:28px;font-weight:900;color:#e83f70}.counter{flex:1;min-height:100px;text-align:center;background:linear-gradient(#ecfbff 0 70%,#d69452 70%);position:relative;overflow:hidden}.cone{font-size:72px;position:absolute;bottom:4px;left:50%;transform:translateX(-50%)}.scoops{position:absolute;bottom:54px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column-reverse;align-items:center}.scoop{font-size:48px;line-height:.72;filter:drop-shadow(0 4px 2px #0003);animation:pop .25s}.label{font-weight:900}.flavors{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;flex:0 0 auto}.flavor{border:0;background:#fff4fb;border-radius:18px;padding:7px;box-shadow:0 5px #e7a6c0;font-size:34px}.flavor small{display:block;font-size:12px;font-weight:900}.pay{display:grid;grid-template-columns:1fr 1fr auto auto;gap:8px;align-items:center;flex:0 0 auto}.pay>div{min-width:0}.pay b{font-size:14px}.pay .money{margin:2px}.change span{font-weight:900;color:#e83f70}.pay .btn{padding:10px;font-size:15px}.drawer{display:flex;gap:7px;align-items:center;justify-content:center;overflow-x:auto;flex:0 0 auto;padding:7px;border:4px solid #4bc2ee;box-shadow:0 5px #168db7}@media(max-width:500px){.customer{font-size:48px}.speech b{font-size:16px}.flavor{font-size:29px}.pay{grid-template-columns:1fr 1fr}.pay .btn{font-size:14px}.counter{min-height:110px}}
+
+/* ===== REAL COLORED ICE-CREAM SCOOPS ===== */
+.counter{background:linear-gradient(180deg,#fff9fc 0 65%,#f1c995 65% 71%,#b96f37 71% 100%);border:4px solid #e487a9;box-shadow:0 6px #b94970;min-height:185px}
+.counter:before{content:'';position:absolute;left:0;right:0;bottom:0;height:28%;background:repeating-linear-gradient(90deg,#bc713b 0 34px,#cc8550 34px 68px);opacity:.55}
+.cone{font-size:0;position:absolute;bottom:9px;left:50%;width:68px;height:88px;transform:translateX(-50%);clip-path:polygon(5% 0,95% 0,50% 100%);background:repeating-linear-gradient(45deg,#d88c36 0 7px,#efb85c 7px 14px);border-top:7px solid #9b5723;filter:drop-shadow(0 7px 4px #7b421e66);z-index:2}
+.scoops{position:absolute;bottom:78px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column-reverse;align-items:center;z-index:3;min-height:0}
+.scoop{position:relative;width:76px;height:65px;border-radius:52% 52% 47% 47%;margin-bottom:-11px;border:3px solid #ffffff88;box-shadow:inset -10px -10px 15px #0002,inset 10px 8px 12px #fff7,0 6px 5px #632c2455;animation:scoopDrop .38s cubic-bezier(.3,1.6,.5,1) both}
+.scoop:before{content:'';position:absolute;width:21px;height:10px;border-radius:50%;background:#fff8;left:13px;top:9px;transform:rotate(-24deg)}
+.scoop:after{content:'';position:absolute;left:8px;right:8px;bottom:-7px;height:17px;border-radius:0 0 50% 50%;background:inherit;filter:brightness(.93)}
+.scoop-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#452312;font-weight:900;font-size:12px;text-shadow:0 1px #fff9;z-index:2;pointer-events:none}
+@keyframes scoopDrop{from{transform:translateY(-80px) scale(.35) rotate(-15deg);opacity:0}}
+.flavors{background:linear-gradient(#fff,#ffeaf3);border:4px solid #ff9cbe;box-shadow:0 5px #c85078;padding:8px}
+.flavor{position:relative;min-width:91px;min-height:79px;border:3px solid #fff;background:#fff;border-radius:20px;padding:7px 7px 5px;box-shadow:0 5px #c97994;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#4a2834}
+.flavor:active{transform:translateY(4px);box-shadow:0 1px #c97994}.flavor-ball{width:44px;height:38px;border-radius:54% 54% 48% 48%;border:3px solid #fff9;box-shadow:inset -7px -7px 9px #0002,inset 7px 6px 9px #fff7,0 3px 4px #0003}.flavor b{font-size:14px}.flavor small{font-size:11px;font-weight:900;color:#76505d}.flavor.selected{outline:5px solid #27d99f;transform:scale(1.05)}
+.order{background:linear-gradient(100deg,#fff,#fff0f6);min-height:100px}.speech b{display:block}.order-summary{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}.order-chip{display:inline-flex;align-items:center;gap:5px;background:#fff;border:2px solid #efa2ba;border-radius:15px;padding:3px 7px;font-size:13px;font-weight:900}.color-dot{width:20px;height:20px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 3px #0004;display:inline-block}.scoop-count{display:inline-block;background:#ff3b6b;color:#fff;border-radius:12px;padding:2px 9px;font-size:16px;margin-bottom:3px}
+.label{position:relative;z-index:4;background:#ffffffd9;border-radius:12px;display:inline-block;padding:4px 10px;font-weight:900}.pay{background:linear-gradient(#fff,#f5fbff)}
+@media(max-width:500px){.counter{min-height:175px}.scoop{width:68px;height:58px}.scoops{bottom:75px}.cone{width:61px;height:82px}.flavor{min-width:78px;min-height:70px}.flavor-ball{width:38px;height:34px}.flavor b{font-size:12px}.order-chip{font-size:11px;padding:2px 5px}.color-dot{width:17px;height:17px}}
+@media(max-height:680px){.counter{min-height:145px}.scoop{width:58px;height:49px;margin-bottom:-9px}.scoops{bottom:62px}.cone{height:68px;width:54px}.flavor{min-height:59px;padding:4px}.flavor-ball{width:32px;height:29px}.flavors{padding:5px}.order{min-height:83px;padding:6px}}
+
+/* ===== SUBMIT BUTTON / VISIBLE VALIDATION ===== */
+.submit-feedback{flex:0 0 auto;min-height:42px;display:flex;align-items:center;justify-content:center;text-align:center;background:#fff8d7;border:3px solid #e6bd45;border-radius:16px;padding:6px 10px;font-size:15px;font-weight:900;color:#67420f;box-shadow:0 4px #ac7d20;transition:.22s;position:relative;z-index:8}
+.submit-feedback.bad{background:#fff0f3;border-color:#ff597d;color:#a51c43;box-shadow:0 4px #b42b4d;animation:feedbackPop .35s}
+.submit-feedback.good{background:#e9fff4;border-color:#20bd83;color:#087552;box-shadow:0 4px #087552;animation:feedbackPop .35s}
+.submit-feedback.info{background:#eaf8ff;border-color:#3bb7df;color:#12627e;box-shadow:0 4px #167b9c;animation:feedbackPop .35s}
+@keyframes feedbackPop{50%{transform:scale(1.035)}}
+.pay{position:relative;z-index:10;overflow:visible!important}.serve-btn{position:relative;z-index:20;pointer-events:auto!important;touch-action:manipulation;min-height:52px;font-size:18px!important}.serve-btn:active{transform:translateY(4px) scale(.97)}.serve-btn.checking{animation:none;filter:brightness(.9)}
+
+.counter.bad-zone{outline:7px solid #ff426d;animation:zoneShake .35s}.change.bad-zone{outline:5px solid #ff426d;border-radius:12px;background:#fff0f3}.counter.good-zone,.change.good-zone{outline:5px solid #20bd83;border-radius:12px}
+@keyframes zoneShake{25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
+@media(max-width:500px){.submit-feedback{min-height:38px;font-size:13px;padding:4px 7px}.serve-btn{min-height:48px}}
+
+/* ===== CLEAR CASH AREA (paid − price = change) ===== */
+.app{overflow-y:auto;max-width:900px}
+.counter{flex:1 1 auto;min-height:150px}
+.cashbox{flex:0 0 auto;padding:10px;border:4px solid #4bc2ee;box-shadow:0 5px #168db7}
+.cash-row{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:stretch}
+.cash-step{border:0;border-radius:20px;padding:8px 6px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;min-height:150px;font-family:inherit;color:#183c59;cursor:pointer}
+.cash-step:active{transform:scale(.98)}
+.paid-box{background:#e8f7ff;border:4px solid #4bc2ee}
+.price-box{background:#fff0f5;border:4px solid #ff7ea4}
+.cash-step.change{background:#e9fff4;border:4px dashed #20bd83}
+.step-title{font-size:18px;font-weight:900}
+.step-sum{font-size:38px;font-weight:900;line-height:1.05}
+.paid-box .step-sum{color:#0f6f93}.price-box .step-sum{color:#e83f70}.cash-step.change .step-sum{color:#087552}
+.step-icon{font-size:46px;line-height:1}
+.step-money{display:flex;flex-wrap:wrap;gap:4px;align-items:center;justify-content:center;min-height:56px}
+.cash-step.change .step-title{color:#087552}.cash-step .step-title{color:#183c59}.paid-box .step-title{color:#0f6f93}.price-box .step-title{color:#b8285a}
+.cash-op{align-self:center;font-size:46px;font-weight:900;color:#183c59}
+.cash-actions{display:flex;gap:10px;margin-top:10px}
+.cash-actions .btn{flex:1;font-size:21px;min-height:58px}
+.cash-actions .serve-btn{flex:2}
+.drawer-card{flex:0 0 auto;padding:8px 10px;border:4px solid #ffc94d;box-shadow:0 5px #d39b18;background:#fffbea}
+.drawer-title{font-size:18px;font-weight:900;text-align:center;margin-bottom:6px;color:#7a4c00}
+.drawer{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;border:0;box-shadow:none;padding:4px;overflow:visible}
+.drawer .money{cursor:pointer;transition:transform .12s}.drawer .money:active{transform:scale(.88)}
+#cost small{display:block;font-size:14px;color:#6b4a58}
+@media(max-width:600px){
+ .cash-row{gap:4px}.cash-step{min-height:118px;padding:6px 3px;border-width:3px}
+ .step-title{font-size:13px}.step-sum{font-size:26px}.step-icon{font-size:32px}.cash-op{font-size:28px}
+ .step-money{min-height:40px;gap:2px}.cash-actions .btn{font-size:17px;min-height:50px}
+ .drawer-title{font-size:14px}.drawer{gap:8px}.counter{min-height:140px}
+}
+
+/* layer order: start screen + popups always above game buttons */
+.start{z-index:1000!important}.overlay{z-index:1100!important}.toast{z-index:1200!important}#conf{z-index:1300!important}
+.cashbox{position:relative;z-index:1}
+
+/* ===== ICE CREAM: bigger counter + triangle scoops (no stacking on top of each other) ===== */
+.counter{min-height:300px!important}
+.counter .cone{width:84px!important;height:110px!important;bottom:14px!important}
+#scoops.scoops{display:block!important;flex-direction:initial!important;position:absolute!important;left:50%!important;transform:translateX(-50%)!important;bottom:112px!important;width:170px;height:130px;z-index:3}
+#scoops .scoop{position:absolute!important;margin:0!important;width:80px!important;height:70px!important}
+#scoops.n1 .scoop:nth-child(1){left:45px;bottom:0}
+#scoops.n2 .scoop:nth-child(1){left:8px;bottom:0}
+#scoops.n2 .scoop:nth-child(2){left:82px;bottom:0}
+#scoops.n3 .scoop:nth-child(1){left:8px;bottom:0}
+#scoops.n3 .scoop:nth-child(2){left:82px;bottom:0}
+#scoops.n3 .scoop:nth-child(3){left:45px;bottom:56px}
+.counter .scoop-label{font-size:14px!important}
+@media(max-width:600px){
+ .counter{min-height:260px!important}
+ .counter .cone{width:66px!important;height:88px!important;bottom:10px!important}
+ #scoops.scoops{bottom:90px!important;width:140px;height:110px}
+ #scoops .scoop{width:66px!important;height:58px!important}
+ #scoops.n1 .scoop:nth-child(1){left:37px}
+ #scoops.n2 .scoop:nth-child(1),#scoops.n3 .scoop:nth-child(1){left:6px}
+ #scoops.n2 .scoop:nth-child(2),#scoops.n3 .scoop:nth-child(2){left:68px}
+ #scoops.n3 .scoop:nth-child(3){left:37px;bottom:46px}
+}
+
+/* math row reads left-to-right: paid − price = change */
+.cash-row{direction:ltr}
+.cash-row .cash-step{direction:rtl}
+
+/* ===== Hello gate: shown only when the browser blocks sound before the first tap ===== */
+.hello-gate{position:fixed;inset:0;z-index:5000;display:none;align-items:center;justify-content:center;padding:18px;background:#0b3a5599}
+.hello-gate.show{display:flex}
+.hello-box{width:min(430px,94vw);background:#fff;border:6px solid #ffd447;border-radius:34px;padding:24px 20px;text-align:center;box-shadow:0 12px #137d9f,0 24px 50px #0005;animation:helloPop .35s cubic-bezier(.3,1.6,.5,1)}
+.hello-bear{font-size:88px;line-height:1;animation:helloWave 1.2s ease-in-out infinite}
+.hello-title{font:900 34px Arial,sans-serif;color:#123b61;margin:8px 0 16px}
+.hello-btn{border:0;border-radius:26px;width:100%;padding:20px;font:900 30px Arial,sans-serif;color:#fff;background:linear-gradient(135deg,#27d99f,#00b983);box-shadow:0 8px #078d6d;cursor:pointer;animation:helloPulse 1.4s infinite}
+.hello-btn:active{transform:translateY(5px);box-shadow:0 3px #078d6d}
+@keyframes helloPop{from{transform:scale(.6);opacity:0}}
+@keyframes helloWave{50%{transform:rotate(-10deg) scale(1.06)}}
+@keyframes helloPulse{50%{filter:brightness(1.12);transform:scale(1.03)}}
+</style></head><body><div class="hello-gate" id="helloGate"><div class="hello-box"><div class="hello-bear">🐻👋</div><div class="hello-title">שלום!</div><button class="hello-btn" id="helloBtn" type="button">▶️ בואו נתחיל!</button></div></div>
+
+<canvas id="conf"></canvas><div class="toast" id="toast"></div><div class="start" id="start"><div class="inside"><h1 class="title">🍦 גלידריית דובי</h1><div class="hero">🐻🍨</div><div class="bubble">איזה שלב? <button class="say" id="startSay">🔊</button></div><div class="levels"><button class="level green" data-l="1" data-say="כוכב אחד. גלידה קטנה!"><span class="stars">⭐</span><span><b>גביע קטן</b><small>עד 10 ₪</small></span></button><button class="level orange" data-l="2" data-say="שני כוכבים. גלידה גדולה!"><span class="stars">⭐⭐</span><span><b>גביע גדול</b><small>עד 20 ₪</small></span></button><button class="level purple" data-l="3" data-say="שלושה כוכבים. גלידת אלופים!"><span class="stars">⭐⭐⭐</span><span><b>גלידת אלופים 👑</b><small>עד 50 ₪ וחצאי שקל</small></span></button></div></div></div>
+<main class="app"><div class="top"><button class="ib" id="home">🏠</button><div class="pill" id="level">⭐</div><div class="pill">🍒 <b id="score">0</b></div><button class="ib" id="sound">🔊</button></div><section class="card order"><div class="customer" id="customer">🐰</div><div class="speech"><span class="scoop-count" id="scoopCount"></span><b id="order"></b><div class="order-summary" id="orderSummary"></div><div id="cost"></div></div><button class="say" id="replay">🔊</button></section><section class="card counter"><div class="cone" id="cone" aria-label="גביע גלידה"></div><div class="scoops" id="scoops"></div><div class="label">בנו את הגלידה לפי ההזמנה!</div></section><section class="card flavors" id="flavors"></section><div class="submit-feedback" id="submitFeedback" role="status" aria-live="polite">מוכנים? בנו את הגלידה והחזירו עודף 🍦</div><section class="card cashbox">
+ <div class="cash-row">
+  <button type="button" class="cash-step paid-box" id="paidBox"><span class="step-title">👛 הלקוח שילם</span><span class="step-sum" id="paidSum">0 ₪</span><span class="step-money" id="paid"></span></button>
+  <div class="cash-op">−</div>
+  <button type="button" class="cash-step price-box" id="priceBox"><span class="step-title">🍦 הגלידה עולה</span><span class="step-sum" id="priceSum">0 ₪</span><span class="step-icon">🍦</span></button>
+  <div class="cash-op">=</div>
+  <button type="button" class="cash-step change" id="changeBox"><span class="step-title">🪙 העודף שאתם נותנים</span><span class="step-sum" id="chgTotal">0 ₪</span><span class="step-money" id="change"></span></button>
+ </div>
+ <div class="cash-actions"><button type="button" class="btn blue" id="clear">🔄 להתחיל מחדש</button><button type="button" class="btn green serve-btn" id="serve">✅ להגיש ללקוח</button></div>
+</section>
+<section class="card drawer-card"><div class="drawer-title">🗃️ הקופה שלי – לחצו על כסף כדי לתת עודף</div><div class="drawer" id="drawer"></div></section></main><div class="overlay" id="over"><div class="modal" id="modal"></div></div>
+<script src="assets/dubi-sound.js"></script>
+<script>
+/* Safety: if assets/dubi-sound.js is not found (file opened outside the CHILD folder),
+   keep every button working and show a clear message instead of breaking the game. */
+if(!window.DubiSound){
+  window.DubiSound={speak(p,cb){if(typeof cb==='function')setTimeout(cb,0)},stop(){},sfx(){},setMuted(){},
+    money(v){let c=Math.round((+v||0)*100),s=Math.floor(c/100),a=c%100,o=[];if(s)o.push({id:'sh_'+s});if(a)o.push({id:(s?'and_ag_':'ag_')+a});return o.length?o:[{id:'sh_0'}]}};
+  addEventListener('DOMContentLoaded',()=>{const d=document.createElement('div');
+    d.style.cssText='position:fixed;top:0;left:0;right:0;z-index:2000;background:#ff3b6b;color:#fff;font:900 16px Arial;text-align:center;padding:8px';
+    d.textContent='⚠️ אין קול: הקובץ חייב להיות בתוך תיקיית CHILD ליד תיקיית assets';document.body.append(d)});
+}
+</script>
+<script>
+const $=id=>document.getElementById(id);const M=[{v:.1,n:'10 אגורות',f:'assets/coin-10-agorot.png',w:52,h:52,k:'coin',a:'m_0_1'},{v:.5,n:'חצי שקל',f:'assets/coin-half-shekel.png',w:62,h:62,k:'coin',a:'m_0_5'},{v:1,n:'שקל',f:'assets/coin-1-shekel.png',w:44,h:44,k:'coin',a:'m_1'},{v:2,n:'2 שקלים',f:'assets/coin-2-shekels.png',w:52,h:52,k:'coin',a:'m_2'},{v:5,n:'5 שקלים',f:'assets/coin-5-shekels.png',w:58,h:58,k:'coin',a:'m_5'},{v:10,n:'10 שקלים',f:'assets/coin-10-shekels.png',w:56,h:56,k:'coin',a:'m_10'},{v:20,n:'20 שקלים',f:'assets/bill-20.jpg',w:116,h:64,k:'bill',a:'m_20'},{v:50,n:'50 שקלים',f:'assets/bill-50.jpg',w:124,h:64,k:'bill',a:'m_50'}];
+let sound=true;
+/* ===== SOUND: asset files only (assets/dubi-sound.js) - the browser NEVER reads text ===== */
+function stop(){DubiSound.stop()}
+function talk(id,text,next){DubiSound.speak(sound&&id?[{id:id,text:text}]:[],next)}
+function sequence(parts,next){DubiSound.speak(sound?parts:[],next)}
+function priceTalk(n){return DubiSound.money(n)}
+function money(v,scale=.8,click){let m=M.find(x=>x.v===v),d=document.createElement('div');d.className='money '+m.k;let i=new Image;i.src=m.f;i.alt=m.n;i.style.width=m.w*scale+'px';i.style.height=m.h*scale+'px';d.append(i);if(click)d.onclick=()=>click(m);return d}function greedy(n,vals){let out=[],r=Math.round(n*10);for(let v of vals.slice().sort((a,b)=>b-a)){let x=Math.round(v*10);while(r>=x){out.push(v);r-=x}}return out}function choose(a){return a[Math.floor(Math.random()*a.length)]}function shuffle(a){return a.sort(()=>Math.random()-.5)}function toast(t){let e=$('toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2200)}function shake(e){e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake')}
+let cvs=$('conf'),ctx=cvs.getContext('2d'),bits=[];function resize(){cvs.width=innerWidth;cvs.height=innerHeight}resize();addEventListener('resize',resize);function confetti(){bits=[];for(let i=0;i<130;i++)bits.push({x:innerWidth/2,y:innerHeight*.35,vx:(Math.random()-.5)*13,vy:-6-Math.random()*10,c:choose(['#ff3b6b','#ffd447','#00c995','#168db7','#9b5cff']),l:90});(function d(){ctx.clearRect(0,0,cvs.width,cvs.height);bits=bits.filter(b=>b.l-->0);bits.forEach(b=>{b.x+=b.vx;b.y+=b.vy;b.vy+=.28;ctx.fillStyle=b.c;ctx.fillRect(b.x,b.y,7,5)});if(bits.length)requestAnimationFrame(d)})()}
+function levelStart(handler,welcome){document.querySelectorAll('.level').forEach(b=>b.onclick=()=>{let l=+b.dataset.l;talk('lvl'+l,b.dataset.say);setTimeout(()=>{$('start').classList.add('hide');handler(l)},500)});$('startSay').onclick=()=>sayWelcome();$('home').onclick=()=>{stop();$('start').classList.remove('hide');sayWelcome()}}function win(text,next){DubiSound.sfx('celebrate');confetti();$('modal').innerHTML='<div class="big">🎉</div><div class="msg">כל הכבוד!</div><div class="sub">'+text+'</div><button class="btn green" id="continue">ממשיכים! ➡️</button>';$('over').classList.add('show');$('continue').onclick=()=>{$('over').classList.remove('show');next()};talk('correct1','כל הכבוד! בדיוק נכון!')}
+$('sound').onclick=()=>{sound=!sound;DubiSound.setMuted(!sound);$('sound').textContent=sound?'🔊':'🔇'};
+function sayWelcome(){sequence([['ice_hello','שלום! ברוכים הבאים לגלידריית הקשת של דובי!'],['ice_explain','הלקוח יגיד לכם איזו גלידה הוא רוצה. בחרו כדורים בצבעים הנכונים. אחר כך תראו כמה הלקוח שילם, ותנו לו עודף מהקופה למטה. בסוף לחצו על להגיש ללקוח!'],['q_stars','כמה כוכבים?']])}
+/* ===== Say hello + explain when the page opens =====
+   If the browser allows sound -> speak right away.
+   If the browser blocks sound -> show one big "start" button; tapping it speaks. */
+function helloOnOpen(sayHello){
+  const gate=document.getElementById('helloGate'),btn=document.getElementById('helloBtn');
+  let done=false;
+  const go=()=>{if(done)return;done=true;gate.classList.remove('show');sayHello()};
+  btn.addEventListener('click',go);
+  let probe;try{probe=new Audio('data:audio/wav;base64,UklGRkQDAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YSADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==');probe.volume=0}catch(e){gate.classList.add('show');return}
+  let p;try{p=probe.play()}catch(e){p=Promise.reject(e)}
+  Promise.resolve(p).then(()=>{setTimeout(go,300)}).catch(()=>{if(!done)gate.classList.add('show')});
+}
+
+
+const FL=[
+ {id:'strawberry',flavor:'תות',color:'ורוד',hex:'#f58aaa',dark:'#c74872',voice:'fl_strawberry'},
+ {id:'chocolate',flavor:'שוקולד',color:'חום',hex:'#98613f',dark:'#61351f',voice:'fl_chocolate'},
+ {id:'vanilla',flavor:'וניל',color:'לבן שמנת',hex:'#fff1c7',dark:'#d7bd80',voice:'fl_vanilla'},
+ {id:'banana',flavor:'בננה',color:'צהוב',hex:'#f4dd59',dark:'#c7a821',voice:'fl_banana'},
+ {id:'mango',flavor:'מנגו',color:'כתום',hex:'#f5a33c',dark:'#c96a18',voice:'fl_mango'},
+ {id:'blueberry',flavor:'אוכמניות',color:'סגול',hex:'#8b73d6',dark:'#55419b',voice:'fl_blueberry'}
+];
+let L=1,score=0,want=[],made=[],price=0,paid=0,change=[],vals=[],parts=[];
+function flavorPhrase(f){return 'כדור '+f.color+' בטעם '+f.flavor}
+function start(l){L=l;score=0;$('score').textContent=0;$('level').textContent='⭐'.repeat(l);vals=l===1?[10,5,2,1]:l===2?[20,10,5,2,1]:[50,20,10,5,2,1,.5];buildFlavors();round()}
+function buildFlavors(){let box=$('flavors');box.innerHTML='';FL.forEach((f,i)=>{let b=document.createElement('button');b.className='flavor';b.dataset.i=i;b.dataset.sfx='scoop';b.setAttribute('aria-label',flavorPhrase(f));b.innerHTML='<span class="flavor-ball" style="background:linear-gradient(135deg,'+f.hex+','+f.dark+')"></span><b>'+f.color+'</b><small>'+f.flavor+'</small>';b.onclick=()=>{if(made.length>=3){toast('אפשר עד 3 כדורים');talk('ice_max3','אפשר עד שלושה כדורים');return}made.push(i);drawScoops();refreshFlavorButtons();talk(f.voice,flavorPhrase(f))};box.append(b)})}
+function refreshFlavorButtons(){document.querySelectorAll('.flavor').forEach(b=>{let i=+b.dataset.i;b.classList.toggle('selected',made.includes(i))})}
+function newOrderCount(){return 1+Math.floor(Math.random()*3)}
+function round(){made=[];change=[];clearValidation();if($('submitFeedback'))setFeedback('מוכנים? בנו את הגלידה והחזירו עודף 🍦','');let n=newOrderCount();want=shuffle([...Array(FL.length).keys()]).slice(0,n);price=L===1?Math.ceil(Math.random()*10):L===2?Math.ceil(Math.random()*20):Math.round((2+Math.random()*48)*2)/2;let bigger=vals.filter(v=>v>=price);paid=choose(bigger.length?bigger:[price]);if(paid===price&&Math.random()<.6){let x=vals.find(v=>v>price);if(x)paid=x}$('customer').textContent=choose(['🐰','🐶','🐱','🦊','🐼','🐸']);$('scoopCount').textContent=n+' '+(n===1?'כדור':'כדורים');$('order').textContent=n===1?'אני רוצה כדור אחד:':'אני רוצה '+n+' כדורים:';let summary=$('orderSummary');summary.innerHTML='';want.forEach(i=>{let f=FL[i],chip=document.createElement('span');chip.className='order-chip';chip.innerHTML='<span class="color-dot" style="background:'+f.hex+'"></span>'+f.color+' – '+f.flavor;summary.append(chip)});$('cost').innerHTML='<small>💰 מחיר</small>'+price+' ₪';drawPaid();drawScoops();drawChange();parts=[['ice_want_'+n,n===1?'אני רוצה כדור אחד':n===2?'אני רוצה שני כדורים':'אני רוצה שלושה כדורים']];want.forEach(i=>parts.push([FL[i].voice,flavorPhrase(FL[i])]));parts.push(['ice_cost','זה עולה'],...priceTalk(price),...paidParts());sequence(parts)}
+function drawScoops(){let s=$('scoops');s.innerHTML='';s.className='scoops n'+made.length;made.forEach((i,pos)=>{let f=FL[i],d=document.createElement('div');d.className='scoop';d.style.background='linear-gradient(135deg,'+f.hex+','+f.dark+')';d.style.zIndex=10+pos;d.innerHTML='<span class="scoop-label">'+f.color+'</span>';d.title=flavorPhrase(f);d.onclick=()=>{made.splice(pos,1);drawScoops();refreshFlavorButtons()};s.append(d)});refreshFlavorButtons()}
+function isSmall(){return innerWidth<=600}
+function sum(a){return Math.round(a.reduce((x,y)=>x+y,0)*10)/10}
+function paidParts(){return[['cs_here','הנה הכסף.'],...priceTalk(paid)]}
+function drawChange(){
+ const sm=isSmall();
+ $('chgTotal').textContent=sum(change)+' ₪';
+ let c=$('change');c.innerHTML='';
+ change.forEach((v,i)=>{let e=money(v,sm?.42:.6);e.onclick=ev=>{ev.stopPropagation();change.splice(i,1);drawChange()};c.append(e)});
+ let d=$('drawer');d.innerHTML='';
+ vals.forEach(v=>{let e=money(v,sm?.78:1.05);e.onclick=()=>{change.push(v);drawChange();let m=M.find(x=>x.v===v);talk(m.a,m.n)};d.append(e)});
+}
+function drawPaid(){
+ const sm=isSmall();
+ $('paidSum').textContent=paid+' ₪';$('priceSum').textContent=price+' ₪';
+ $('paid').innerHTML='';greedy(paid,vals).forEach(v=>$('paid').append(money(v,sm?.5:.8)));
+}
+let submitBusy=false;
+function setFeedback(text,type){let f=$('submitFeedback');f.textContent=text;f.className='submit-feedback '+(type||'');f.scrollIntoView({behavior:'smooth',block:'nearest'})}
+function clearValidation(){document.querySelector('.counter').classList.remove('bad-zone','good-zone');document.querySelector('.change').classList.remove('bad-zone','good-zone')}
+function sameScoops(){return made.length===want.length&&made.every((v,i)=>v===want[i])}
+function describeScoopProblem(){
+ if(made.length<want.length)return 'חסרים '+(want.length-made.length)+' כדורי גלידה. הוסיפו את הכדורים לפי ההזמנה.';
+ if(made.length>want.length)return 'יש יותר מדי כדורי גלידה. לחצו על כדור כדי להסיר אותו.';
+ let bad=made.findIndex((v,i)=>v!==want[i]);
+ if(bad>=0){let need=FL[want[bad]];return 'הכדור מספר '+(bad+1)+' לא נכון. צריך '+need.color+' בטעם '+need.flavor+'.';}
+ return '';
+}
+function scoopProblemParts(){
+ if(made.length<want.length)return[['ice_need_more','חסרים כדורי גלידה. הוסיפו כדורים לפי ההזמנה.']];
+ if(made.length>want.length)return[['ice_too_many','יש יותר מדי כדורי גלידה. לחצו על כדור כדי להסיר אותו.']];
+ let bad=made.findIndex((v,i)=>v!==want[i]);
+ if(bad>=0){let need=FL[want[bad]];return[['ice_wrong_'+(bad+1),['הכדור הראשון','הכדור השני','הכדור השלישי'][bad]+' לא נכון. צריך'],[need.voice,flavorPhrase(need)]]}
+ return[['gen_try','לא בדיוק. תסתכלו שוב!']];
+}
+function submitOrder(ev){
+ if(ev){ev.preventDefault();ev.stopPropagation()}
+ if(submitBusy||$('over').classList.contains('show'))return false;
+ submitBusy=true;let btn=$('serve');btn.classList.add('checking');clearValidation();
+
+ if(!sameScoops()){
+   document.querySelector('.counter').classList.add('bad-zone');
+   let text=describeScoopProblem();setFeedback('🍦 '+text,'bad');
+   DubiSound.sfx('wrong');sequence(scoopProblemParts());setTimeout(()=>{submitBusy=false;btn.classList.remove('checking')},180);return false;
+ }
+ document.querySelector('.counter').classList.add('good-zone');
+ let ch=Math.round(change.reduce((a,b)=>a+b,0)*10)/10,need=Math.round((paid-price)*10)/10;
+ if(ch!==need){
+   document.querySelector('.change').classList.add('bad-zone');
+   let text=ch<need?'חסר עודף. צריך להחזיר '+need+' ₪, ובחרתם '+ch+' ₪.':'יש יותר מדי עודף. צריך להחזיר '+need+' ₪, ובחרתם '+ch+' ₪.';
+   setFeedback('🪙 '+text,'bad');DubiSound.sfx('wrong');sequence([ch<need?['cs_change_less','חסר לי עוד עודף. נסו שוב!']:['cs_change_more','זה יותר מדי עודף. נסו שוב!'],['ice_need_back','צריך להחזיר'],...priceTalk(need)]);setTimeout(()=>{submitBusy=false;btn.classList.remove('checking')},180);return false;
+ }
+ document.querySelector('.change').classList.add('good-zone');setFeedback('✅ מצוין! הגלידה והעודף נכונים. מגישים ללקוח!','good');
+ score++;$('score').textContent=score;
+ setTimeout(()=>{btn.classList.remove('checking');win('בנינו בדיוק את '+want.length+' '+(want.length===1?'הכדור':'הכדורים')+' בצבעים ובטעמים הנכונים! 🍦',()=>{submitBusy=false;setFeedback('מוכנים להזמנה חדשה? 🍦','info');clearValidation();round()})},450);
+ return false;
+}
+$('serve').onclick=submitOrder;
+$('paidBox').onclick=()=>sequence(paidParts());
+$('priceBox').onclick=()=>sequence([['ice_cost','זה עולה'],...priceTalk(price)]);
+$('changeBox').onclick=()=>sequence(priceTalk(sum(change)));
+let rzT=null;addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTimeout(()=>{if(vals.length){drawPaid();drawChange()}},150)});
+$('clear').onclick=()=>{made=[];change=[];drawScoops();drawChange()};$('replay').onclick=()=>sequence(parts);levelStart(start,'ברוכים הבאים לגלידריית דובי!');
+helloOnOpen(()=>{if(!$('start').classList.contains('hide'))sayWelcome()});
+</script></body></html>

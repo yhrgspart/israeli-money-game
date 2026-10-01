@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>הקופאי הקטן</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%}
+body{font-family:Rubik,Arial,sans-serif;color:#123b61;background:linear-gradient(180deg,#7ddcf2 0%,#cdf0e2 55%,#fff1a9 100%);overflow:hidden;-webkit-user-select:none;user-select:none}
+button{font-family:inherit;cursor:pointer;color:inherit}
+.app{height:100vh;height:100dvh;max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom))}
+
+/* ---------- top bar ---------- */
+.top{display:flex;gap:6px;align-items:center;flex:0 0 auto}
+.iconbtn{border:0;background:#fff;border-radius:14px;width:46px;height:40px;font-size:21px;box-shadow:0 4px #137d9f;flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:0}
+.iconbtn:active{transform:translateY(3px);box-shadow:0 1px #137d9f}
+.pill{flex:1 1 0;background:#fff;border-radius:14px;padding:8px 6px;font-weight:800;font-size:16px;text-align:center;box-shadow:0 4px #ddae35;white-space:nowrap;overflow:hidden}
+.pill.lvl{background:#fff7e6;letter-spacing:-2px}
+.pill.bump{animation:bump .5s}
+@keyframes bump{0%,100%{transform:scale(1)}40%{transform:scale(1.18)}}
+
+/* ---------- panels / buttons ---------- */
+.panel{background:#fff;border-radius:20px;box-shadow:0 5px #137d9f;padding:10px 12px}
+.say{border:0;background:#ffd447;border-radius:50%;width:42px;height:42px;font-size:20px;box-shadow:0 4px #ddae35;flex-shrink:0;padding:0}
+.say:active{transform:translateY(3px);box-shadow:0 1px #ddae35}
+.bigbtn{border:0;border-radius:18px;padding:12px 18px;font-size:20px;font-weight:900;color:#fff;box-shadow:0 6px rgba(0,0,0,.2)}
+.bigbtn:active{transform:translateY(4px);box-shadow:0 2px rgba(0,0,0,.2)}
+.bigbtn.go{background:linear-gradient(135deg,#ffb45c,#ff8a1f);box-shadow:0 6px #c86510}
+.bigbtn.ok{background:linear-gradient(135deg,#27d99f,#00b983);box-shadow:0 6px #078d6d}
+.bigbtn.blue{background:linear-gradient(135deg,#4cc3ee,#168db7);box-shadow:0 6px #0c6a8c}
+.linkbtn{border:0;background:none;font-size:16px;font-weight:800;color:#137d9f;padding:8px;margin-top:4px}
+.shake{animation:shake .45s}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px) rotate(-3deg)}40%{transform:translateX(8px) rotate(3deg)}60%{transform:translateX(-6px)}80%{transform:translateX(5px)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+@keyframes popIn{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+
+/* ---------- money ---------- */
+.money{filter:drop-shadow(0 4px 4px #0005);transition:transform .15s;flex:0 0 auto}
+.money.tap{cursor:pointer}
+.money.tap:active{transform:scale(.9)}
+.money img{display:block;object-fit:contain}
+.money.coin img{border-radius:50%}
+.money.new{animation:popIn .35s both}
+
+/* ---------- start screen ---------- */
+.start{position:fixed;inset:0;z-index:8000;background:linear-gradient(180deg,#7ddcf2 0%,#cdf0e2 55%,#fff1a9 100%);overflow-y:auto;display:flex;padding:16px 16px calc(16px + env(safe-area-inset-bottom));transition:opacity .35s}
+.start.gone{opacity:0;pointer-events:none}
+.start .inner{margin:auto;width:100%;max-width:460px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.start-title{font-size:36px;font-weight:900;color:#fff;text-shadow:0 4px #ed8a31;margin:0;text-align:center}
+.sbear{font-size:78px;line-height:1;animation:bob 2.2s ease-in-out infinite}
+.bubble{background:#fff;border-radius:24px;padding:10px 20px;font-size:25px;font-weight:900;box-shadow:0 6px #137d9f;position:relative;display:flex;align-items:center;gap:10px}
+.bubble:after{content:'';position:absolute;top:-20px;right:50%;border:10px solid transparent;border-bottom:12px solid #fff}
+.cards{display:flex;flex-direction:column;gap:16px;width:100%}
+.card{position:relative;border:0;border-radius:26px;padding:14px 16px;display:flex;align-items:center;gap:12px;color:#fff;text-align:right;transition:transform .15s,filter .15s;animation:popIn .5s both}
+.card:nth-child(2){animation-delay:.1s}.card:nth-child(3){animation-delay:.2s}
+.card:active{transform:translateY(6px) scale(.98)}
+.card.picked{transform:scale(1.06);filter:brightness(1.12)}
+.card.picked:after{content:'✅';position:absolute;top:-12px;left:-8px;font-size:34px;animation:popIn .3s both}
+.card .big{font-size:34px;letter-spacing:-4px;min-width:92px;text-align:center;filter:drop-shadow(0 3px 0 #0003);line-height:1.1}
+.card .txt{font-size:25px;font-weight:900;flex:1;min-width:0}
+.card .txt small{display:block;font-size:16px;font-weight:700;opacity:.95;margin-top:1px}
+.card .wins{display:inline-block;font-size:14px;font-weight:800;background:#ffffff38;border-radius:10px;padding:1px 8px;margin-top:4px}
+.mini{display:flex;flex-wrap:wrap;gap:3px;align-items:center;margin-top:5px}
+.mini img{display:block;height:26px;width:26px;border-radius:50%;filter:drop-shadow(0 2px 2px #0004)}
+.mini img.b{height:24px;width:44px;object-fit:cover;border-radius:3px}
+.card.cg{background:linear-gradient(135deg,#27d99f,#00b983);box-shadow:0 8px #078d6d}
+.card.co{background:linear-gradient(135deg,#ffb45c,#ff8a1f);box-shadow:0 8px #c86510}
+.card.cp{background:linear-gradient(135deg,#b07cff,#8a4dff);box-shadow:0 8px #5f2cc0}
+@media(max-height:680px){.sbear{font-size:54px}.start-title{font-size:28px}.bubble{font-size:21px;padding:8px 16px}.card{padding:10px 12px}.card .big{font-size:28px;min-width:78px}.card .txt{font-size:21px}.cards{gap:12px}.start .inner{gap:10px}}
+
+/* ---------- overlay sheet ---------- */
+.veil{position:fixed;inset:0;z-index:9000;background:rgba(10,35,45,.55);display:none;align-items:flex-end;justify-content:center;padding:12px}
+.veil.show{display:flex}
+.sheet{width:100%;max-width:520px;max-height:calc(100dvh - 24px);overflow-y:auto;background:#fff;border-radius:28px;padding:16px;box-shadow:0 10px 0 #d8dee6,0 20px 40px rgba(0,0,0,.3);text-align:center;animation:sheetUp .35s cubic-bezier(.3,1.4,.5,1) both;margin-bottom:env(safe-area-inset-bottom)}
+@keyframes sheetUp{from{transform:translateY(60%);opacity:0}to{transform:translateY(0);opacity:1}}
+.win .winbig{font-size:70px;line-height:1;animation:popIn .5s both}
+.win .wint{font-size:32px;font-weight:900;color:#00976e;margin:6px 0}
+.win .wsub{font-size:22px;font-weight:800}
+.win .wsub b{color:#e83f70;font-size:28px}
+.win .winstars{font-size:22px;font-weight:900;margin:8px 0;color:#ff9e40}
+
+/* ---------- toast / confetti ---------- */
+#celebration{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(24px);background:#123b61;color:#fff;padding:12px 22px;border-radius:22px;font-weight:800;font-size:17px;box-shadow:0 6px 18px rgba(0,0,0,.35);opacity:0;transition:opacity .3s,transform .3s;z-index:10001;pointer-events:none;text-align:center;max-width:92vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:700px){.pill{font-size:14px;padding:6px 4px}.iconbtn{width:40px;height:34px;font-size:18px}.toast{font-size:15px}}
+
+/* ================= CASHIER ================= */
+body{background:linear-gradient(180deg,#ffd9e8 0%,#fff1c9 45%,#d9f5e6 100%)}
+.start{background:linear-gradient(180deg,#ffd9e8 0%,#fff1c9 45%,#d9f5e6 100%)}
+.dayrow{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border-radius:16px;padding:5px 12px;box-shadow:0 4px #e7a6c0;font-weight:900;font-size:16px}
+.slots{display:flex;gap:4px;font-size:22px;direction:ltr}
+.slots span{transition:transform .3s}
+.slots span.on{animation:popIn .4s both}
+.scene{flex:0 0 auto;position:relative;display:flex;align-items:flex-end;gap:10px;min-height:118px;padding:8px 12px 0;background:linear-gradient(#fff7fb 0 70%,#c98b4e 70%);border-radius:22px;box-shadow:0 5px #b06f33;overflow:hidden}
+.scene:before{content:'';position:absolute;left:0;right:0;top:0;height:16px;background:repeating-linear-gradient(90deg,#ff7aa8 0 24px,#fff 24px 48px)}
+.cust{font-size:84px;line-height:1;margin-bottom:6px;filter:drop-shadow(0 4px 2px #0003);flex:0 0 auto;position:relative}
+.cust.enter{animation:walkIn .7s cubic-bezier(.3,1.3,.5,1) both}
+.cust.leave{animation:walkOut .6s ease-in both}
+.cust.happy{animation:hop .5s 2}
+@keyframes walkIn{from{transform:translateX(170%) rotate(10deg)}to{transform:translateX(0)}}
+@keyframes walkOut{to{transform:translateX(180%) rotate(8deg);opacity:.2}}
+@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.heart{position:absolute;font-size:26px;animation:heartUp 1.2s ease-out forwards;pointer-events:none}
+@keyframes heartUp{from{transform:translateY(0) scale(.5);opacity:1}to{transform:translateY(-80px) scale(1.3);opacity:0}}
+.sbub{position:relative;flex:1;align-self:center;margin-top:10px;background:#fff;border:3px solid #ffb3cf;border-radius:22px;padding:8px 12px;display:flex;align-items:center;gap:10px;box-shadow:0 4px #ffb3cf;animation:popIn .4s .3s both}
+.sbub:after{content:'';position:absolute;right:-22px;bottom:16px;border:9px solid transparent;border-left:14px solid #ffb3cf}
+.want{display:flex;align-items:center;gap:6px;flex:1;min-width:0}
+.want .pe{font-size:42px;line-height:1}
+.want .pn{font-size:21px;font-weight:900}
+.ptag{background:#ff3b6b;color:#fff;font-weight:900;font-size:24px;border-radius:14px;padding:4px 12px;transform:rotate(-4deg);box-shadow:0 4px #b91f40;white-space:nowrap}
+.ptitle{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:16px;font-weight:900;margin-bottom:4px}
+.helper{background:#e9fff7;border:2px solid #00c995;color:#08795b;border-radius:12px;padding:1px 9px;font-size:16px;font-weight:900;white-space:nowrap}
+.helper.need{background:#fff4e0;border-color:#ff9e40;color:#b35a00}
+.app:not(.h-need) .helper.need,.app:not(.h-chsum) .helper.chs,.app:not(.h-paid) .helper.paid{display:none}
+.mbox{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;overflow:hidden;border-radius:14px}
+.counter{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;background:linear-gradient(#fff,#fff8ef);border:4px solid #c98b4e;box-shadow:0 5px #8f5a26}
+.counter .mbox{flex:1;min-height:70px;background:#fff3df}
+.ask{flex:0 0 auto;text-align:center}
+.q{font-size:21px;font-weight:900;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:8px}
+.choices{display:flex;gap:10px}
+.choice{flex:1 1 0;border:0;border-radius:20px;padding:10px 4px;color:#fff;font-size:21px;font-weight:900;display:flex;flex-direction:column;align-items:center;line-height:1.1;animation:popIn .4s both}
+.choice span{font-size:36px;margin-bottom:2px}
+.choice small{font-size:13px;font-weight:700;opacity:.95}
+.choice:nth-child(2){animation-delay:.08s}.choice:nth-child(3){animation-delay:.16s}
+.choice:active{transform:translateY(5px)}
+.choice.cl{background:linear-gradient(135deg,#ff8aa5,#ff3b6b);box-shadow:0 7px #b91f40}
+.choice.ce{background:linear-gradient(135deg,#27d99f,#00b983);box-shadow:0 7px #078d6d}
+.choice.cm{background:linear-gradient(135deg,#4cc3ee,#168db7);box-shadow:0 7px #0c6a8c}
+.change{display:none;flex:1 1 auto;min-height:0;flex-direction:column;gap:4px;border:4px solid #4cc3ee;box-shadow:0 5px #0c6a8c}
+.app.ph-change .ask{display:none}
+.app.ph-change .change{display:flex}
+.app.ph-change .counter{flex:0 0 auto}
+.app.ph-change .counter .mbox{flex:0 0 auto;height:64px;min-height:0}
+.app.ph-change .scene{min-height:92px}
+.app.ph-change .cust{font-size:62px}
+.app.ph-change .want .pe{font-size:32px}
+.change .tray{flex:0 0 auto;height:76px;background:#e8f7fd;border:3px dashed #4cc3ee}
+.change .tray:empty:before{content:'לחצו על מטבעות מהקופה 👇';color:#3a86a6;font-weight:800;font-size:14px}
+.drawer{flex:1 1 auto;min-height:60px;background:linear-gradient(#5a6b7a,#3f4d59);border-radius:16px;padding:6px;box-shadow:inset 0 4px 8px #0006}
+.crow{display:flex;gap:8px;flex:0 0 auto;margin-top:2px}
+.crow .bigbtn{flex:1;font-size:18px;padding:11px 8px}
+.crow .bigbtn.blue{flex:0 0 72px}
+.daydone .wsub{margin:4px 0 10px}
+.daydone .bigbtn{width:100%;margin-top:6px}
+@media(max-width:700px){
+.app{gap:7px;padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
+.dayrow{font-size:14px;padding:4px 10px}.slots{font-size:18px}
+.scene{min-height:100px}.cust{font-size:66px}
+.want .pe{font-size:34px}.want .pn{font-size:17px}.ptag{font-size:20px;padding:3px 9px}
+.q{font-size:18px}.choice{font-size:18px;padding:8px 2px}.choice span{font-size:30px}
+.ptitle{font-size:14px}.helper{font-size:14px}
+.app.ph-change .scene{min-height:80px}.app.ph-change .cust{font-size:50px}
+.change .tray{height:66px}
+}
+@media(max-height:640px){.scene{min-height:88px}.cust{font-size:56px}.app.ph-change .scene{min-height:70px}.app.ph-change .cust{font-size:44px}.app.ph-change .counter .mbox{height:52px}.change .tray{height:56px}}
+</style>
+</head>
+<body>
+<canvas id="celebration" aria-hidden="true"></canvas>
+<div class="toast" id="toast"></div>
+
+<!-- ================= START ================= -->
+<div class="start" id="start"><div class="inner">
+  <h1 class="start-title">🧑‍💼 הקופאי הקטן</h1>
+  <div class="sbear">🐰🐶🐱</div>
+  <div class="bubble">כמה כוכבים? <button class="say" id="startSay" aria-label="השמע">🔊</button></div>
+  <div class="cards">
+    <button class="card cg" data-level="1" data-audio="lvl1" data-say="כוכב אחד. קל!">
+      <span class="big">⭐</span>
+      <span class="txt">קל<small>🏷️ מחירים עד 10 ₪</small><span class="mini" data-mini="1"></span><span class="wins" data-wins="1"></span></span>
+    </button>
+    <button class="card co" data-level="2" data-audio="lvl2" data-say="שני כוכבים. בינוני!">
+      <span class="big">⭐⭐</span>
+      <span class="txt">בינוני<small>🏷️ מחירים עד 50 ₪</small><span class="mini" data-mini="2"></span><span class="wins" data-wins="2"></span></span>
+    </button>
+    <button class="card cp" data-level="3" data-audio="lvl3" data-say="שלושה כוכבים. אלוף!">
+      <span class="big">⭐⭐⭐</span>
+      <span class="txt">אלוף 👑<small>🏷️ עד 100 ₪ וחצאי שקל</small><span class="mini" data-mini="3"></span><span class="wins" data-wins="3"></span></span>
+    </button>
+  </div>
+</div></div>
+
+<!-- ================= GAME ================= -->
+<main class="app" id="app">
+  <div class="top">
+    <button class="iconbtn" id="homeBtn" aria-label="בית">🏠</button>
+    <div class="pill lvl" id="levelPill">⭐</div>
+    <div class="pill" id="starPill">⭐ <b id="stars">0</b></div>
+    <button class="iconbtn" id="soundBtn" aria-label="קול">🔊</button>
+  </div>
+  <div class="dayrow"><span id="dayLbl">☀️ יום 1</span><span class="slots" id="slots"></span></div>
+  <section class="scene" id="scene">
+    <div class="cust" id="cust">🐰</div>
+    <div class="sbub" id="sbub">
+      <div class="want"><span class="pe" id="pEmoji"></span><span class="pn" id="pName"></span></div>
+      <div class="ptag" id="pPrice"></div>
+      <button class="say" id="replay" aria-label="השמע שוב">🔊</button>
+    </div>
+  </section>
+  <section class="panel counter">
+    <div class="ptitle">💵 הלקוח שילם <span class="helper paid" id="paidLbl"></span></div>
+    <div class="mbox" id="paidBox"></div>
+  </section>
+  <section class="panel ask" id="askP">
+    <div class="q">הלקוח שילם...</div>
+    <div class="choices">
+      <button class="choice cl" data-a="-1"><span>😟</span>חסר</button>
+      <button class="choice ce" data-a="0"><span>👌</span>בדיוק</button>
+      <button class="choice cm" data-a="1"><span>🪙</span>יותר<small>צריך עודף</small></button>
+    </div>
+  </section>
+  <section class="panel change" id="chP">
+    <div class="ptitle">🤲 עודף ללקוח <span class="helper need" id="needLbl"></span><span class="helper chs" id="chLbl"></span></div>
+    <div class="mbox tray" id="chBox"></div>
+    <div class="ptitle">🗄️ הקופה שלי</div>
+    <div class="mbox drawer" id="drawer"></div>
+    <div class="crow">
+      <button class="bigbtn blue" id="chClear" aria-label="לנקות">🔄</button>
+      <button class="bigbtn ok" id="chGive">✅ לתת עודף</button>
+    </div>
+  </section>
+</main>
+
+<div class="veil" id="veil"><div class="sheet" id="sheet"></div></div>
+
+<script src="assets/dubi-sound.js"></script>
+<script>
+'use strict';
+const $=x=>document.getElementById(x);
+
+/* ================= MONEY (values in agorot: 100 = 1 ₪) ================= */
+const M=[
+{c:10,n:'10 אגורות',f:'assets/coin-10-agorot.png',w:66,h:66,k:'coin',a:'m_0_1'},
+{c:50,n:'חצי שקל',f:'assets/coin-half-shekel.png',w:78,h:78,k:'coin',a:'m_0_5'},
+{c:100,n:'שקל אחד',f:'assets/coin-1-shekel.png',w:54,h:54,k:'coin',a:'m_1'},
+{c:200,n:'שני שקלים',f:'assets/coin-2-shekels.png',w:65,h:65,k:'coin',a:'m_2'},
+{c:500,n:'חמישה שקלים',f:'assets/coin-5-shekels.png',w:72,h:72,k:'coin',a:'m_5'},
+{c:1000,n:'עשרה שקלים',f:'assets/coin-10-shekels.png',w:69,h:69,k:'coin',a:'m_10'},
+{c:2000,n:'עשרים שקלים',f:'assets/bill-20.jpg',w:200,h:110,k:'bill',a:'m_20'},
+{c:5000,n:'חמישים שקלים',f:'assets/bill-50.jpg',w:211,h:110,k:'bill',a:'m_50'},
+{c:10000,n:'מאה שקלים',f:'assets/bill-100.jpg',w:222,h:110,k:'bill',a:'m_100'},
+{c:20000,n:'מאתיים שקלים',f:'assets/bill-200.jpg',w:233,h:110,k:'bill',a:'m_200'}];
+function MC(c){return M.find(m=>m.c===c)}
+
+/* ================= PRODUCTS (voice: assets/audio/p_<k>.mp3) ================= */
+const P=[
+{k:'apple',n:'תפוח',e:'🍎'},{k:'banana',n:'בננה',e:'🍌'},{k:'carrot',n:'גזר',e:'🥕'},
+{k:'cookie',n:'עוגייה',e:'🍪'},{k:'candy',n:'סוכרייה',e:'🍭'},{k:'juice',n:'מיץ',e:'🧃'},
+{k:'milk',n:'חלב',e:'🥛'},{k:'bread',n:'לחם',e:'🍞'},{k:'cheese',n:'גבינה',e:'🧀'},
+{k:'icecream',n:'גלידה',e:'🍦'},{k:'balloon',n:'בלון',e:'🎈'},{k:'crayons',n:'צבעים',e:'🖍️'},
+{k:'teddy',n:'בובה',e:'🧸'},{k:'ball',n:'כדור',e:'⚽'},{k:'book',n:'ספר',e:'📚'},
+{k:'watermelon',n:'אבטיח',e:'🍉'},{k:'chocolate',n:'שוקולד',e:'🍫'},{k:'pizza',n:'פיצה',e:'🍕'},
+{k:'cake',n:'עוגה',e:'🎂'},{k:'car',n:'מכונית',e:'🚗'}];
+
+/* ================= SMALL HELPERS ================= */
+function fmt(c){return c%100?(c/100).toFixed(2):String(c/100)}
+function rnd(a,b){return a+Math.floor(Math.random()*(b-a+1))}
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function sum(a){return a.reduce((x,y)=>x+y,0)}
+function isMobile(){return innerWidth<=700}
+/* fewest pieces */
+function greedyCoins(amount,denoms){
+  const out=[];let r=amount;
+  for(const d of [...denoms].sort((a,b)=>b-a)){while(r>=d){out.push(d);r-=d}}
+  return out;
+}
+/* a "natural" mix of coins, like a real customer pays */
+function randomCoins(amount,denoms,maxPieces){
+  maxPieces=maxPieces||6;
+  const ds=[...denoms].sort((a,b)=>b-a),out=[];let r=amount;
+  while(r>0){
+    const cand=ds.filter(d=>d<=r);if(!cand.length)break;
+    let d=cand[0];
+    if(cand.length>1&&out.length<maxPieces-2&&Math.random()<.4)d=cand[1];
+    out.push(d);r-=d;
+  }
+  if(out.length>maxPieces+1)return greedyCoins(amount,denoms);
+  return out.sort((a,b)=>b-a);
+}
+
+/* ================= SAVE ================= */
+function loadStore(key,maxStage){
+  const d={stage:[0,0,0],run:[0,0,0],wins:[0,0,0],stars:0,sound:true};
+  try{
+    const s=JSON.parse(localStorage.getItem(key)||'{}');
+    ['stage','run','wins'].forEach(k=>{if(Array.isArray(s[k])&&s[k].length===3)d[k]=s[k].map(x=>Math.max(0,Math.floor(+x)||0))});
+    d.stage=d.stage.map(x=>Math.min(maxStage,x));
+    if(Number.isFinite(+s.stars))d.stars=Math.max(0,Math.floor(+s.stars));
+    if(typeof s.sound==='boolean')d.sound=s.sound;
+  }catch(e){}
+  return d;
+}
+function saveStore(key,d){try{localStorage.setItem(key,JSON.stringify(d))}catch(e){}}
+
+/* ================= SOUND: asset files only (assets/dubi-sound.js) ================= */
+/* parts = [{id:'mp3 name', text:'caption only'}] - the browser NEVER reads the text */
+const Sound={on:true};
+function stopSound(){DubiSound.stop()}
+function speak(parts,onDone){DubiSound.speak(Sound.on?parts:[],onDone)}
+/* price in agorot: 1250 -> [sh_12, and_ag_50] ; 30 -> [ag_30] ; 0 -> [sh_0] */
+function priceParts(c){return DubiSound.money(c/100)}
+function prodPart(p){return{id:'p_'+p.k,text:p.n}}
+function moneyPart(m){return{id:m.a,text:m.n}}
+const PRAISE=[{id:'correct1',text:'כל הכבוד! בדיוק נכון!'},{id:'correct2',text:'מעולה! איזה יופי!'},{id:'correct3',text:'וואו! אתה אלוף!'}];
+const TRY_AGAIN={id:'gen_try',text:'לא בדיוק. תסתכלו שוב!'};
+const WHEELS_ON={id:'wheels_on',text:'הנה עזרה קטנה!'};
+function wheelsParts(kind){
+  return kind==='all'?[{id:'wheels_all',text:'וואו! עכשיו משחקים בלי שום עזרה!'}]
+                     :[{id:'wheels_off',text:'מעולה! אתם כבר גדולים! הורדנו עזר אחד'}];
+}
+/* training wheels: 3 first-try wins in a row -> remove one helper */
+function wheelsAfterWin(store,L,firstTry,maxStage){
+  if(!firstTry){store.run[L]=0;return null}
+  store.run[L]++;
+  if(store.run[L]>=3&&store.stage[L]<maxStage){store.stage[L]++;store.run[L]=0;return store.stage[L]===maxStage?'all':'off'}
+  return null;
+}
+function wheelsBack(store,L){if(store.stage[L]>0){store.stage[L]--;store.run[L]=0;return true}return false}
+
+/* ================= UI HELPERS ================= */
+let toastTimer=null;
+function toast(text,ms){
+  const el=$('toast');el.textContent=text;el.classList.add('show');
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),ms||2800);
+}
+function bump(id){const e=$(id);if(!e)return;e.classList.remove('bump');void e.offsetWidth;e.classList.add('bump')}
+function shakeEl(e){DubiSound.sfx('wrong');e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake')}
+function moneyEl(m,s,onTap){
+  const d=document.createElement('div');d.className='money '+m.k+(onTap?' tap':'');
+  const i=new Image();i.src=m.f;i.alt=m.n;i.draggable=false;
+  i.style.width=Math.round(m.w*s)+'px';i.style.height=Math.round(m.h*s)+'px';
+  d.append(i);if(onTap)d.onclick=onTap;return d;
+}
+/* draws money into a box and shrinks it until it fits */
+function fillFit(box,list,s0,minS,onTap,newIndex){
+  let s=s0;
+  const draw=()=>{box.innerHTML='';list.forEach((m,j)=>{const el=moneyEl(m,s,onTap?()=>onTap(m,j):null);if(j===newIndex)el.classList.add('new');box.append(el)})};
+  draw();let t=0;
+  while(box.scrollHeight>box.clientHeight+2&&s>minS&&t<25){s=Math.max(minS,s-.05);draw();t++}
+  return s;
+}
+function miniMoney(box,cents){
+  box.innerHTML='';
+  cents.forEach(c=>{const m=MC(c),i=new Image();i.src=m.f;i.alt=m.n;i.draggable=false;if(m.k==='bill')i.className='b';box.append(i)});
+}
+
+/* ================= CONFETTI ================= */
+const cvs=$('celebration'),ctx=cvs.getContext('2d');let bits=[],cfFrame=0;
+function resizeCvs(){const d=window.devicePixelRatio||1;cvs.width=innerWidth*d;cvs.height=innerHeight*d;cvs.style.width=innerWidth+'px';cvs.style.height=innerHeight+'px';ctx.setTransform(d,0,0,d,0,0)}
+addEventListener('resize',resizeCvs);resizeCvs();
+function celebrate(){
+  DubiSound.sfx('celebrate');
+  cancelAnimationFrame(cfFrame);bits=[];
+  const colors=['#ff3b6b','#ffd447','#00c995','#168db7','#9b5cff','#ff9e40'];
+  for(let i=0;i<170;i++)bits.push({x:innerWidth/2+(Math.random()-.5)*140,y:innerHeight*.4,vx:(Math.random()-.5)*15,vy:-8-Math.random()*12,g:.25+Math.random()*.18,r:Math.random()*6.28,w:6+Math.random()*8,h:4+Math.random()*7,c:colors[i%colors.length],life:90+Math.random()*45});
+  (function draw(){
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    bits=bits.filter(p=>p.life-->0);
+    for(const p of bits){p.x+=p.vx;p.y+=p.vy;p.vy+=p.g;p.r+=.18;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore()}
+    if(bits.length)cfFrame=requestAnimationFrame(draw);else ctx.clearRect(0,0,innerWidth,innerHeight);
+  })();
+}
+
+/* ================= START SCREEN ================= */
+const Start={busy:false,onPick:null,welcome:[],store:null};
+function initStart(o){
+  Start.onPick=o.onPick;Start.welcome=o.welcome;Start.store=o.store;
+  document.querySelectorAll('[data-mini]').forEach(b=>miniMoney(b,o.mini(+b.dataset.mini)));
+  document.querySelectorAll('.card[data-level]').forEach(c=>c.onclick=()=>{
+    if(Start.busy)return;Start.busy=true;
+    c.classList.add('picked');
+    speak([{id:c.dataset.audio,text:c.dataset.say}]);
+    setTimeout(()=>{$('start').classList.add('gone');Start.busy=false;Start.onPick(+c.dataset.level)},700);
+  });
+  $('startSay').onclick=e=>{e.stopPropagation();speak(Start.welcome.concat([{id:'q_stars',text:'כמה כוכבים?'}]))};
+}
+function openStart(){
+  Start.busy=false;
+  document.querySelectorAll('[data-wins]').forEach(w=>{const n=Start.store.wins[+w.dataset.wins-1];w.textContent='🏆 '+n;w.style.display=n>0?'':'none'});
+  document.querySelectorAll('.card[data-level]').forEach(c=>{c.classList.remove('picked');c.style.animation='none';void c.offsetWidth;c.style.animation=''});
+  $('start').classList.remove('gone');
+  speak(Start.welcome.concat([{id:'q_stars',text:'כמה כוכבים?'}]));
+}
+function setupTopBar(store,key,onHome){
+  const upd=()=>{$('soundBtn').textContent=Sound.on?'🔊':'🔇'};
+  $('soundBtn').onclick=()=>{Sound.on=!Sound.on;DubiSound.setMuted(!Sound.on);store.sound=Sound.on;saveStore(key,store);upd()};
+  $('homeBtn').onclick=onHome;upd();
+}
+
+/* ================= CASHIER GAME ================= */
+const KEY='dubiCashier.v1',MAXS=3,DAY=5;
+/* stages: 0 all helpers | 1 no "change needed" | 2 no change total | 3 no paid total */
+const store=loadStore(KEY,MAXS);Sound.on=store.sound;DubiSound.setMuted(!Sound.on);
+const LV={
+  1:{price:()=>rnd(1,9)*100,unit:100,pay:[1000,500,200,100],chg:[500,200,100],short:()=>rnd(1,3)*100,extra:()=>rnd(1,5)*100},
+  2:{price:()=>rnd(3,45)*100,unit:100,pay:[5000,2000,1000,500,200,100],chg:[2000,1000,500,200,100],short:()=>rnd(1,5)*100,extra:()=>rnd(1,9)*100},
+  3:{price:()=>rnd(2,190)*50,unit:50,pay:[10000,5000,2000,1000,500,200,100,50],chg:[5000,2000,1000,500,200,100,50],short:()=>rnd(1,10)*50,extra:()=>rnd(1,18)*50}};
+const ANIMALS=['🐰','🐶','🐱','🦊','🐼','🐸','🐵','🐷','🐨','🦁','🐯','🐮','🐔','🐧'];
+let level=1,cfg=LV[1],cust=null,phase='ask',paid=[],change=[],wrongs=0,busy=false,served=0,day=1,pendingW=null,token=0,greet=[],lastAnimal='';
+
+function stage(){return store.stage[level-1]}
+function paidSum(){return sum(paid)}
+function changeSum(){return sum(change)}
+function changeNeed(){return paidSum()-cust.price}
+function genCustomer(){
+  const p=pick(P),price=cfg.price();
+  const r=Math.random();let type=r<.2?'less':r<.5?'exact':'more',pay;
+  if(type==='less'){const s=cfg.short();if(price-s>=cfg.unit)pay=randomCoins(price-s,cfg.pay);else type='exact'}
+  if(type==='exact')pay=randomCoins(price,cfg.pay);
+  if(type==='more'){
+    const d=cfg.pay.filter(v=>v>price).sort((a,b)=>a-b)[0];
+    pay=(d!==undefined&&Math.random()<.6)?[d]:randomCoins(price+cfg.extra(),cfg.pay);
+  }
+  let a;do{a=pick(ANIMALS)}while(a===lastAnimal);lastAnimal=a;
+  return{a,p,price,type,pay};
+}
+function drawPaid(newFrom){
+  fillFit($('paidBox'),paid.map(MC),isMobile()?.95:1.1,.3,null,newFrom);
+  if(newFrom!==undefined)[...$('paidBox').children].forEach((e,i)=>{if(i>=newFrom)e.classList.add('new')});
+}
+function render(){
+  const st=stage(),app=$('app');
+  app.classList.toggle('ph-change',phase==='change');
+  app.classList.toggle('h-need',st<1);app.classList.toggle('h-chsum',st<2);app.classList.toggle('h-paid',st<3);
+  $('levelPill').textContent='⭐'.repeat(level);
+  $('stars').textContent=store.stars;
+  $('dayLbl').textContent='☀️ יום '+day;
+  $('slots').innerHTML=Array.from({length:DAY},(_,i)=>'<span class="'+(i<served?'on':'')+'">'+(i<served?'😊':'⚪')+'</span>').join('');
+  $('pEmoji').textContent=cust.p.e;$('pName').textContent=cust.p.n;$('pPrice').textContent=fmt(cust.price)+' ₪';
+  $('paidLbl').textContent='שולם '+fmt(paidSum())+' ₪';
+  drawPaid();
+  if(phase==='change')renderChange();
+}
+function renderChange(newIdx){
+  $('needLbl').textContent='צריך להחזיר '+fmt(changeNeed())+' ₪';
+  $('chLbl').textContent='נתתם '+fmt(changeSum())+' ₪';
+  fillFit($('chBox'),change.map(MC),isMobile()?.8:.9,.3,(m,j)=>{if(busy)return;change.splice(j,1);renderChange()},newIdx);
+  fillFit($('drawer'),cfg.chg.map(MC),isMobile()?1:1.15,.35,m=>{
+    if(busy||phase!=='change')return;
+    change.push(m.c);renderChange(change.length-1);speak([moneyPart(m)]);
+  });
+}
+function newCustomer(prefix){
+  token++;busy=false;phase='ask';wrongs=0;change=[];
+  $('veil').classList.remove('show');
+  cust=genCustomer();paid=cust.pay.slice();DubiSound.sfx('cash');
+  const pre=(prefix||[]).slice();
+  if(pendingW){
+    toast(pendingW==='all'?'🏆 וואו! עכשיו בלי שום עזרה!':'🚲 אתם כבר גדולים! הורדנו עזר אחד');
+    pre.push(...wheelsParts(pendingW));pendingW=null;
+  }
+  render();
+  const c=$('cust');c.className='cust';void c.offsetWidth;c.classList.add('enter');
+  const b=$('sbub');b.style.animation='none';void b.offsetWidth;b.style.animation='';
+  greet=[{id:'cs_want',text:'שלום! אני רוצה'},prodPart(cust.p),{id:'cs_costs',text:'זה עולה'}]
+    .concat(priceParts(cust.price),[{id:'cs_here',text:'הנה הכסף.'},{id:'cs_q_pay',text:'שילמו לך חסר, בדיוק, או יותר?'}]);
+  speak(pre.concat(greet));
+}
+function wrongOnce(parts){
+  wrongs++;
+  if(wrongs===2&&wheelsBack(store,level-1)){saveStore(KEY,store);toast('🛟 הנה עזרה קטנה!');parts.push(WHEELS_ON);render()}
+  speak(parts);
+}
+function answer(a,btn){
+  if(busy||phase!=='ask')return;
+  const cmp=Math.sign(paidSum()-cust.price);
+  if(a!==cmp){shakeEl(btn);wrongOnce([TRY_AGAIN]);return}
+  if(cmp===0){win('exact');return}
+  if(cmp>0){
+    phase='change';change=[];render();
+    speak([{id:'cs_need_change',text:'נכון! עכשיו תנו לי עודף, בבקשה.'}]);
+    return;
+  }
+  // paid less -> customer adds money, then asks again
+  busy=true;const my=token;
+  let spoke=false,waited=false;
+  const addMoney=()=>{
+    if(my!==token||!spoke||!waited)return;
+    const needAmt=cust.price-paidSum();
+    const add=Math.random()<.5?needAmt:needAmt+cfg.extra();
+    const from=paid.length;
+    paid=paid.concat(randomCoins(add,cfg.pay));
+    busy=false;
+    $('paidLbl').textContent='שולם '+fmt(paidSum())+' ₪';
+    drawPaid(from);bump('paidBox');
+    speak([{id:'cs_q_pay',text:'שילמו לך חסר, בדיוק, או יותר?'}]);
+  };
+  setTimeout(()=>{waited=true;addMoney()},1200);
+  speak([{id:'cs_less_ok',text:'נכון! חסר כסף.'},{id:'cs_oops_more',text:'אופס! סליחה, הנה עוד כסף.'}],()=>{spoke=true;addMoney()});
+  setTimeout(()=>{spoke=true;waited=true;addMoney()},6000);
+}
+function give(){
+  if(busy||phase!=='change')return;
+  if(!change.length){shakeEl($('drawer'));speak([{id:'cs_pick',text:'תבחרו מטבעות מהקופה.'}]);return}
+  const s=changeSum(),n=changeNeed();
+  if(s===n){win('change');return}
+  shakeEl($('chBox'));
+  wrongOnce([s<n?{id:'cs_change_less',text:'חסר לי עוד עודף. נסו שוב!'}:{id:'cs_change_more',text:'זה יותר מדי עודף. נסו שוב!'}]);
+}
+function hearts(){
+  const sc=$('scene'),r=$('cust').getBoundingClientRect(),s=sc.getBoundingClientRect();
+  for(let i=0;i<5;i++){
+    const h=document.createElement('div');h.className='heart';h.textContent=pick(['💖','⭐','💛','✨']);
+    h.style.left=(r.left-s.left+r.width/2-13+(Math.random()-.5)*60)+'px';h.style.top=(r.top-s.top+10)+'px';
+    h.style.animationDelay=(i*.12)+'s';sc.append(h);setTimeout(()=>h.remove(),1700);
+  }
+}
+function win(kind){
+  busy=true;const my=++token;
+  served++;store.stars++;store.wins[level-1]++;
+  pendingW=wheelsAfterWin(store,level-1,wrongs===0,MAXS);
+  saveStore(KEY,store);
+  render();bump('starPill');celebrate();hearts();
+  const c=$('cust');c.className='cust happy';
+  const parts=[kind==='exact'?{id:'cs_exact_ok',text:'נכון! בדיוק! תודה רבה!'}:{id:'cs_change_ok',text:'תודה רבה! העודף בדיוק נכון!'}];
+  let minPassed=false,voiceDone=false,moved=false;
+  const go=()=>{
+    if(moved||my!==token)return;moved=true;
+    c.className='cust leave';
+    setTimeout(()=>{if(my!==token)return;if(served>=DAY)dayDone();else newCustomer()},550);
+  };
+  setTimeout(()=>{minPassed=true;if(voiceDone)go()},2200);
+  setTimeout(go,7000);
+  speak(parts,()=>{voiceDone=true;if(minPassed)go()});
+}
+function dayDone(){
+  busy=true;token++;
+  $('sheet').innerHTML='<div class="win daydone"><div class="winbig">🏪</div><div class="wint">סגרנו את הקופה!</div>'+
+    '<div class="wsub">'+DAY+' לקוחות מרוצים 😊</div><div class="winstars">'+'⭐'.repeat(DAY)+'</div>'+
+    '<button class="bigbtn go" id="newDay">☀️ יום חדש</button><button class="linkbtn" id="dayHome">🏠 לבחור שלב</button></div>';
+  $('veil').classList.add('show');celebrate();
+  $('newDay').onclick=()=>{day++;served=0;newCustomer([{id:'cs_new_day',text:'יום חדש בחנות!'}])};
+  $('dayHome').onclick=()=>{$('veil').classList.remove('show');openStart()};
+  speak([{id:'cs_day_done',text:'כל הכבוד! סגרנו את הקופה להיום!'}]);
+}
+function startLevel(l){level=l;cfg=LV[l];served=0;day=1;pendingW=null;newCustomer([{id:'go',text:'יאללה!'}])}
+
+document.querySelectorAll('.choice').forEach(b=>b.onclick=()=>answer(+b.dataset.a,b));
+$('chGive').onclick=give;
+$('chClear').onclick=()=>{if(busy)return;change=[];renderChange()};
+$('replay').onclick=()=>speak(phase==='change'?[{id:'cs_need_change',text:'נכון! עכשיו תנו לי עודף, בבקשה.'}]:greet);
+setupTopBar(store,KEY,()=>{token++;busy=false;$('veil').classList.remove('show');openStart()});
+initStart({store,welcome:[{id:'cs_welcome',text:'ברוכים הבאים! היום אתם הקופאים!'}],mini:l=>LV[l].pay.slice().reverse(),onPick:startLevel});
+let rT=null;addEventListener('resize',()=>{clearTimeout(rT);rT=setTimeout(()=>{if(cust&&$('start').classList.contains('gone'))render()},150)});
+openStart();
+</script>
+</body>
+</html>
