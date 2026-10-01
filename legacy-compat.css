@@ -17,6 +17,11 @@
        it (the train menu title) would simply lose its font-size.
 
    HOW THIS FILE WORKS (no browser/device sniffing at all):
+   NOTE: "@supports (gap)" can NOT detect flexbox gap - Chrome 75 says
+   "yes" because it supports gap for grid only. So a tiny script in each
+   game's <head> really tests flexbox gap and adds class="legacy" to
+   <html> when it is missing. Rules that start with "html.legacy" only
+   apply then. The other sections use normal @supports queries.
    Every fix below lives inside an "@supports not (...)" feature query.
    That means: a modern phone, tablet, or PC - old Chromebook included
    only gets these rules IF its own browser actually lacks the feature.
@@ -107,132 +112,122 @@
    game; shared design-system classes with one consistent value are
    left unscoped so this file stays easy to maintain.
    --------------------------------------------------------------------- */
-@supports not (gap: 1px) {
-
+/* (old-browser rules: active only when <html class="legacy"> is set by the detector script in each game) */
   /* ---- shared top bar (cashier / market / ice-cream-shop / treasure-map / catch-the-money) ---- */
-  .top > * + * { margin-inline-start: 6px; }
+  html.legacy .top > * + * { margin-inline-start: 6px; }
   /* index.html's top bar uses a slightly larger gap */
-  body[data-game="menu"] .top > * + * { margin-inline-start: 8px; }
+  html.legacy body[data-game="menu"] .top > * + * { margin-inline-start: 8px; }
   /* shop-game.html's equivalent top bar is called .stats (shares a combined
      rule with .buttons below it, both at 10px) */
-  body[data-game="shop"] .stats > * + * { margin-inline-start: 10px; }
-
+  html.legacy body[data-game="shop"] .stats > * + * { margin-inline-start: 10px; }
   /* ---- "how many stars" start screen, old-style (icecream/treasure/catch) ---- */
-  .levels > * + * { margin-block-start: 14px; }
-  .level > * + * { margin-inline-start: 12px; }
-  .inside .bubble > * + * { margin-inline-start: 8px; }
-  .options > * { margin-inline-start: 10px; margin-block-start: 10px; }
-  .options > *:first-child { margin-inline-start: 0; }
-
+  html.legacy .levels > * + * { margin-block-start: 14px; }
+  html.legacy .level > * + * { margin-inline-start: 12px; }
+  html.legacy .inside .bubble > * + * { margin-inline-start: 8px; }
+  html.legacy .options > * { margin-inline-start: 10px; margin-block-start: 10px; }
+  html.legacy .options > *:first-child { margin-inline-start: 0; }
   /* ---- "how many stars" start screen, new-style (cashier/market/shop-game) ---- */
-  .cards > * + * { margin-block-start: 16px; }
-  .card > * + * { margin-inline-start: 12px; }
-  .start .inner > * + * { margin-block-start: 14px; }
-  .inner .bubble > * + * { margin-inline-start: 10px; }
-  .mini > * { margin-inline-start: 3px; margin-block-start: 3px; }
-  .mini > *:first-child { margin-inline-start: 0; }
-
+  html.legacy .cards > * + * { margin-block-start: 16px; }
+  html.legacy .card > * + * { margin-inline-start: 12px; }
+  html.legacy .start .inner > * + * { margin-block-start: 14px; }
+  html.legacy .inner .bubble > * + * { margin-inline-start: 10px; }
+  html.legacy .mini > * { margin-inline-start: 3px; margin-block-start: 3px; }
+  html.legacy .mini > *:first-child { margin-inline-start: 0; }
   /* ---- cashier.html specific ---- */
-  body[data-game="cashier"] .app > * + * { margin-block-start: 8px; }
-  body[data-game="cashier"] .dayrow > * + * { margin-inline-start: 8px; }
-  body[data-game="cashier"] .slots > * + * { margin-inline-start: 4px; }
-  body[data-game="cashier"] .scene > * + * { margin-inline-start: 10px; }
-  body[data-game="cashier"] .sbub > * + * { margin-inline-start: 10px; }
-  body[data-game="cashier"] .want > * + * { margin-inline-start: 6px; }
-  body[data-game="cashier"] .ptitle > * { margin-inline-start: 8px; margin-block-start: 8px; }
-  body[data-game="cashier"] .ptitle > *:first-child { margin-inline-start: 0; }
-  body[data-game="cashier"] .mbox > * { margin-inline-start: 8px; margin-block-start: 8px; }
-  body[data-game="cashier"] .mbox > *:first-child { margin-inline-start: 0; }
-  body[data-game="cashier"] .q > * + * { margin-inline-start: 8px; }
-  body[data-game="cashier"] .choices > * + * { margin-inline-start: 10px; }
-  body[data-game="cashier"] .change > * + * { margin-block-start: 4px; }
-  body[data-game="cashier"] .crow > * + * { margin-inline-start: 8px; }
-
+  html.legacy body[data-game="cashier"] .app > * + * { margin-block-start: 8px; }
+  html.legacy body[data-game="cashier"] .dayrow > * + * { margin-inline-start: 8px; }
+  html.legacy body[data-game="cashier"] .slots > * + * { margin-inline-start: 4px; }
+  html.legacy body[data-game="cashier"] .scene > * + * { margin-inline-start: 10px; }
+  html.legacy body[data-game="cashier"] .sbub > * + * { margin-inline-start: 10px; }
+  html.legacy body[data-game="cashier"] .want > * + * { margin-inline-start: 6px; }
+  html.legacy body[data-game="cashier"] .ptitle > * { margin-inline-start: 8px; margin-block-start: 8px; }
+  html.legacy body[data-game="cashier"] .ptitle > *:first-child { margin-inline-start: 0; }
+  html.legacy body[data-game="cashier"] .mbox > * { margin-inline-start: 8px; margin-block-start: 8px; }
+  html.legacy body[data-game="cashier"] .mbox > *:first-child { margin-inline-start: 0; }
+  html.legacy body[data-game="cashier"] .q > * + * { margin-inline-start: 8px; }
+  html.legacy body[data-game="cashier"] .choices > * + * { margin-inline-start: 10px; }
+  html.legacy body[data-game="cashier"] .change > * + * { margin-block-start: 4px; }
+  html.legacy body[data-game="cashier"] .crow > * + * { margin-inline-start: 8px; }
   /* ---- market.html specific ---- */
-  body[data-game="market"] .app > * + * { margin-block-start: 8px; }
-  body[data-game="market"] .mission > * + * { margin-inline-start: 10px; }
-  body[data-game="market"] .wallet > * + * { margin-inline-start: 8px; }
-  body[data-game="market"] .wcoins > * { margin-inline-start: 6px; margin-block-start: 6px; }
-  body[data-game="market"] .wcoins > *:first-child { margin-inline-start: 0; }
-  body[data-game="market"] .prod > * + * { margin-block-start: 2px; }
-  body[data-game="market"] .basket > * + * { margin-inline-start: 8px; }
-  body[data-game="market"] .bhead > * + * { margin-inline-start: 6px; }
-  body[data-game="market"] .bitems > * + * { margin-inline-start: 6px; }
-  body[data-game="market"] .sh-head > * + * { margin-inline-start: 10px; }
-  body[data-game="market"] .sh-q > * + * { margin-inline-start: 8px; }
-  body[data-game="market"] .rl > * + * { margin-inline-start: 10px; }
-  body[data-game="market"] .sh-coins > * { margin-inline-start: 6px; margin-block-start: 6px; }
-  body[data-game="market"] .sh-coins > *:first-child { margin-inline-start: 0; }
-  body[data-game="market"] .opts > * + * { margin-inline-start: 12px; }
-
+  html.legacy body[data-game="market"] .app > * + * { margin-block-start: 8px; }
+  html.legacy body[data-game="market"] .mission > * + * { margin-inline-start: 10px; }
+  html.legacy body[data-game="market"] .wallet > * + * { margin-inline-start: 8px; }
+  html.legacy body[data-game="market"] .wcoins > * { margin-inline-start: 6px; margin-block-start: 6px; }
+  html.legacy body[data-game="market"] .wcoins > *:first-child { margin-inline-start: 0; }
+  html.legacy body[data-game="market"] .prod > * + * { margin-block-start: 2px; }
+  html.legacy body[data-game="market"] .basket > * + * { margin-inline-start: 8px; }
+  html.legacy body[data-game="market"] .bhead > * + * { margin-inline-start: 6px; }
+  html.legacy body[data-game="market"] .bitems > * + * { margin-inline-start: 6px; }
+  html.legacy body[data-game="market"] .sh-head > * + * { margin-inline-start: 10px; }
+  html.legacy body[data-game="market"] .sh-q > * + * { margin-inline-start: 8px; }
+  html.legacy body[data-game="market"] .rl > * + * { margin-inline-start: 10px; }
+  html.legacy body[data-game="market"] .sh-coins > * { margin-inline-start: 6px; margin-block-start: 6px; }
+  html.legacy body[data-game="market"] .sh-coins > *:first-child { margin-inline-start: 0; }
+  html.legacy body[data-game="market"] .opts > * + * { margin-inline-start: 12px; }
   /* ---- catch-the-money.html specific ---- */
-  body[data-game="catch"] .game > * + * { margin-block-start: 7px; }
-  body[data-game="catch"] .hud > * + * { margin-inline-start: 7px; }
-  body[data-game="catch"] .power-row > * + * { margin-inline-start: 5px; }
-  body[data-game="catch"] .btns > * + * { margin-inline-start: 9px; }
-
+  html.legacy body[data-game="catch"] .game > * + * { margin-block-start: 7px; }
+  html.legacy body[data-game="catch"] .hud > * + * { margin-inline-start: 7px; }
+  html.legacy body[data-game="catch"] .power-row > * + * { margin-inline-start: 5px; }
+  html.legacy body[data-game="catch"] .btns > * + * { margin-inline-start: 9px; }
   /* ---- ice-cream-shop.html specific ---- */
-  body[data-game="icecream"] .app > * + * { margin-block-start: 8px; }
-  body[data-game="icecream"] .order > * + * { margin-inline-start: 10px; }
-  body[data-game="icecream"] .flavors > * { margin-inline-start: 7px; margin-block-start: 7px; }
-  body[data-game="icecream"] .flavors > *:first-child { margin-inline-start: 0; }
-  body[data-game="icecream"] .flavor > * + * { margin-block-start: 2px; }
-  body[data-game="icecream"] .order-summary > * { margin-inline-start: 5px; margin-block-start: 5px; }
-  body[data-game="icecream"] .order-summary > *:first-child { margin-inline-start: 0; }
-  body[data-game="icecream"] .order-chip > * + * { margin-inline-start: 5px; }
-  body[data-game="icecream"] .cash-step > * + * { margin-block-start: 4px; }
-  body[data-game="icecream"] .step-money > * { margin-inline-start: 4px; margin-block-start: 4px; }
-  body[data-game="icecream"] .step-money > *:first-child { margin-inline-start: 0; }
-  body[data-game="icecream"] .cash-actions > * + * { margin-inline-start: 10px; }
+  html.legacy body[data-game="icecream"] .app > * + * { margin-block-start: 8px; }
+  html.legacy body[data-game="icecream"] .order > * + * { margin-inline-start: 10px; }
+  html.legacy body[data-game="icecream"] .flavors > * { margin-inline-start: 7px; margin-block-start: 7px; }
+  html.legacy body[data-game="icecream"] .flavors > *:first-child { margin-inline-start: 0; }
+  html.legacy body[data-game="icecream"] .flavor > * + * { margin-block-start: 2px; }
+  html.legacy body[data-game="icecream"] .order-summary > * { margin-inline-start: 5px; margin-block-start: 5px; }
+  html.legacy body[data-game="icecream"] .order-summary > *:first-child { margin-inline-start: 0; }
+  html.legacy body[data-game="icecream"] .order-chip > * + * { margin-inline-start: 5px; }
+  html.legacy body[data-game="icecream"] .cash-step > * + * { margin-block-start: 4px; }
+  html.legacy body[data-game="icecream"] .step-money > * { margin-inline-start: 4px; margin-block-start: 4px; }
+  html.legacy body[data-game="icecream"] .step-money > *:first-child { margin-inline-start: 0; }
+  html.legacy body[data-game="icecream"] .cash-actions > * + * { margin-inline-start: 10px; }
   /* ice-cream-shop's own "#drawer" coin tray (not to be confused with cashier's .mbox.drawer box) */
-  body[data-game="icecream"] .drawer:not(.mbox) > * { margin-inline-start: 12px; margin-block-start: 12px; }
-  body[data-game="icecream"] .drawer:not(.mbox) > *:first-child { margin-inline-start: 0; }
-
+  html.legacy body[data-game="icecream"] .drawer:not(.mbox) > * { margin-inline-start: 12px; margin-block-start: 12px; }
+  html.legacy body[data-game="icecream"] .drawer:not(.mbox) > *:first-child { margin-inline-start: 0; }
   /* ---- treasure-map.html specific ---- */
-  body[data-game="treasure"] .app > * + * { margin-block-start: 8px; }
-  body[data-game="treasure"] .quest > * + * { margin-inline-start: 10px; }
-  body[data-game="treasure"] .bag .wallet > * + * { margin-inline-start: 7px; }
-  body[data-game="treasure"] #bag > * + * { margin-inline-start: 5px; }
-  body[data-game="treasure"] .final-buttons > * + * { margin-inline-start: 10px; }
-
+  html.legacy body[data-game="treasure"] .app > * + * { margin-block-start: 8px; }
+  html.legacy body[data-game="treasure"] .quest > * + * { margin-inline-start: 10px; }
+  html.legacy body[data-game="treasure"] .bag .wallet > * + * { margin-inline-start: 7px; }
+  html.legacy body[data-game="treasure"] #bag > * + * { margin-inline-start: 5px; }
+  html.legacy body[data-game="treasure"] .final-buttons > * + * { margin-inline-start: 10px; }
   /* ---- shop-game.html specific ---- */
-  body[data-game="shop"] .buttons > * { margin-inline-start: 10px; margin-block-start: 10px; }
-  body[data-game="shop"] .buttons > *:first-child { margin-inline-start: 0; }
-  body[data-game="shop"] .shop > * + * { margin-inline-start: 18px; }
-  body[data-game="shop"] .moneybox > * { margin-inline-start: 12px; margin-block-start: 12px; }
-  body[data-game="shop"] .moneybox > *:first-child { margin-inline-start: 0; }
-  body[data-game="shop"] .cart-list > * { margin-inline-start: 8px; margin-block-start: 8px; }
-  body[data-game="shop"] .cart-list > *:first-child { margin-inline-start: 0; }
-  body[data-game="shop"] .cart-item > * + * { margin-inline-start: 5px; }
+  html.legacy body[data-game="shop"] .buttons > * { margin-inline-start: 10px; margin-block-start: 10px; }
+  html.legacy body[data-game="shop"] .buttons > *:first-child { margin-inline-start: 0; }
+  html.legacy body[data-game="shop"] .shop > * + * { margin-inline-start: 18px; }
+  html.legacy body[data-game="shop"] .moneybox > * { margin-inline-start: 12px; margin-block-start: 12px; }
+  html.legacy body[data-game="shop"] .moneybox > *:first-child { margin-inline-start: 0; }
+  html.legacy body[data-game="shop"] .cart-list > * { margin-inline-start: 8px; margin-block-start: 8px; }
+  html.legacy body[data-game="shop"] .cart-list > *:first-child { margin-inline-start: 0; }
+  html.legacy body[data-game="shop"] .cart-item > * + * { margin-inline-start: 5px; }
   /* Note: shop-game.html's own .app is only display:flex inside its
      narrow-screen media query - at the Chromebook's 1366px width it is
      a plain block container whose children already space themselves via
      "margin:16px 0" on .shop/.panel, so no extra fallback is added here. */
-
   /* ---- index.html train menu ---- */
-  body[data-game="menu"] .top > * + * { margin-inline-start: 8px; }
-  body[data-game="menu"] .subtitle > * + * { margin-inline-start: 8px; }
-  body[data-game="menu"] .train > * + * { margin-inline-start: 12px; }
-}
+  html.legacy body[data-game="menu"] .top > * + * { margin-inline-start: 8px; }
+  html.legacy body[data-game="menu"] .subtitle > * + * { margin-inline-start: 8px; }
+  html.legacy body[data-game="menu"] .train > * + * { margin-inline-start: 12px; }
+
 
 /* ---------------------------------------------------------------------
    5) REDUCE DECORATIVE LOAD ON OLD/WEAK GPUS
    The Chromebook's Mali-T604 GPU struggles with many simultaneous
-   infinite CSS animations. "lack of gap support" is a reliable, honest
+   infinite CSS animations. "no flexbox gap" (detected by script) is a reliable
    stand-in for "this is a pre-2020 browser/device" (no UA-sniffing),
    so purely decorative background animations (sun, clouds, sparkles,
    smoke) are turned off here. Nothing functional or informative is
    touched - buttons, feedback states and win celebrations still animate.
    --------------------------------------------------------------------- */
-@supports not (gap: 1px) {
-  body[data-game="menu"] .sun,
-  body[data-game="menu"] .cloud,
-  body[data-game="menu"] .spark,
-  body[data-game="catch"] .sun,
-  body[data-game="catch"] .wind {
+/* (old-browser rules: active only when <html class="legacy"> is set by the detector script in each game) */
+  html.legacy body[data-game="menu"] .sun,
+  html.legacy body[data-game="menu"] .cloud,
+  html.legacy body[data-game="menu"] .spark,
+  html.legacy body[data-game="catch"] .sun,
+  html.legacy body[data-game="catch"] .wind {
     animation: none !important;
   }
-}
+
 
 /* ---------------------------------------------------------------------
    6) "100dvh" FIXED-HEIGHT CONTAINER FALLBACK (functional fix)
@@ -258,26 +253,35 @@
 }
 
 /* ---------------------------------------------------------------------
-   7) SCROLL SAFETY NET for old browsers
-   These five games intentionally lock html/body scrolling and rely on
-   an inner region (flex:1;min-height:0;overflow-y:auto) to absorb any
-   extra content, trusting the outer container to be exactly one
-   viewport tall (fixed by section 6 above). As an extra safety net for
-   old/quirky engines, let the page itself scroll too instead of being
-   hard-locked, so nothing can ever end up permanently unreachable.
-   index.html and shop-game.html already allow normal page scrolling
-   (they only ever blocked horizontal scroll), so they do not need this
-   and are intentionally left out.
+   7) LET THE PAGE SCROLL ON OLD BROWSERS
+   Five games lock the page to exactly one screen height. On the old
+   Chromebook the content is taller than its small screen, so the bottom
+   was cut off and could not be reached. Here the page is allowed to
+   grow and scroll normally. index.html and shop-game.html already
+   scroll, so they are left alone.
    --------------------------------------------------------------------- */
-@supports not (gap: 1px) {
-  html,
-  body[data-game="cashier"],
-  body[data-game="catch"],
-  body[data-game="icecream"],
-  body[data-game="market"],
-  body[data-game="treasure"] {
-    overflow: auto !important;
-    height: auto !important;
-    min-height: 100%;
-  }
+html.legacy,
+html.legacy body[data-game="cashier"],
+html.legacy body[data-game="catch"],
+html.legacy body[data-game="icecream"],
+html.legacy body[data-game="market"],
+html.legacy body[data-game="treasure"] {
+  height: auto !important;
+  min-height: 100%;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
 }
+html.legacy body[data-game="cashier"] .app,
+html.legacy body[data-game="market"] .app,
+html.legacy body[data-game="icecream"] .app,
+html.legacy body[data-game="treasure"] .app,
+html.legacy body[data-game="catch"] .game {
+  height: auto !important;
+  min-height: 100vh;
+  overflow: visible !important;
+}
+/* play areas that used to stretch to "the rest of the screen" get a real size */
+html.legacy body[data-game="catch"] .arena { flex: 1 0 auto; min-height: 380px; }
+html.legacy body[data-game="treasure"] .map { flex: 1 0 auto; min-height: 380px; }
+html.legacy body[data-game="market"] .shelf { flex: 1 0 auto; min-height: 300px; }
+html.legacy body[data-game="cashier"] .counter { flex: 1 0 auto; min-height: 260px; }
