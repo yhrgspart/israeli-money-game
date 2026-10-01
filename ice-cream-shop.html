@@ -108,7 +108,8 @@ body{background:linear-gradient(#ffd9e8,#fff0c8 58%,#d3f8e3)}.start{background:l
 @keyframes helloPop{from{transform:scale(.6);opacity:0}}
 @keyframes helloWave{50%{transform:rotate(-10deg) scale(1.06)}}
 @keyframes helloPulse{50%{filter:brightness(1.12);transform:scale(1.03)}}
-</style></head><body><div class="hello-gate" id="helloGate"><div class="hello-box"><div class="hello-bear">🐻👋</div><div class="hello-title">שלום!</div><button class="hello-btn" id="helloBtn" type="button">▶️ בואו נתחיל!</button></div></div>
+</style>
+<link rel="stylesheet" href="assets/legacy-compat.css"></head><body data-game="icecream"><div class="hello-gate" id="helloGate"><div class="hello-box"><div class="hello-bear">🐻👋</div><div class="hello-title">שלום!</div><button class="hello-btn" id="helloBtn" type="button">▶️ בואו נתחיל!</button></div></div>
 
 <canvas id="conf"></canvas><div class="toast" id="toast"></div><div class="start" id="start"><div class="inside"><h1 class="title">🍦 גלידריית דובי</h1><div class="hero">🐻🍨</div><div class="bubble">איזה שלב? <button class="say" id="startSay">🔊</button></div><div class="levels"><button class="level green" data-l="1" data-say="כוכב אחד. גלידה קטנה!"><span class="stars">⭐</span><span><b>גביע קטן</b><small>עד 10 ₪</small></span></button><button class="level orange" data-l="2" data-say="שני כוכבים. גלידה גדולה!"><span class="stars">⭐⭐</span><span><b>גביע גדול</b><small>עד 20 ₪</small></span></button><button class="level purple" data-l="3" data-say="שלושה כוכבים. גלידת אלופים!"><span class="stars">⭐⭐⭐</span><span><b>גלידת אלופים 👑</b><small>עד 50 ₪ וחצאי שקל</small></span></button></div></div></div>
 <main class="app"><div class="top"><button class="ib" id="home">🏠</button><div class="pill" id="level">⭐</div><div class="pill">🍒 <b id="score">0</b></div><button class="ib" id="sound">🔊</button></div><section class="card order"><div class="customer" id="customer">🐰</div><div class="speech"><span class="scoop-count" id="scoopCount"></span><b id="order"></b><div class="order-summary" id="orderSummary"></div><div id="cost"></div></div><button class="say" id="replay">🔊</button></section><section class="card counter"><div class="cone" id="cone" aria-label="גביע גלידה"></div><div class="scoops" id="scoops"></div><div class="label">בנו את הגלידה לפי ההזמנה!</div></section><section class="card flavors" id="flavors"></section><div class="submit-feedback" id="submitFeedback" role="status" aria-live="polite">מוכנים? בנו את הגלידה והחזירו עודף 🍦</div><section class="card cashbox">
@@ -135,7 +136,10 @@ if(!window.DubiSound){
 }
 </script>
 <script>
-const $=id=>document.getElementById(id);const M=[{v:.1,n:'10 אגורות',f:'assets/coin-10-agorot.png',w:52,h:52,k:'coin',a:'m_0_1'},{v:.5,n:'חצי שקל',f:'assets/coin-half-shekel.png',w:62,h:62,k:'coin',a:'m_0_5'},{v:1,n:'שקל',f:'assets/coin-1-shekel.png',w:44,h:44,k:'coin',a:'m_1'},{v:2,n:'2 שקלים',f:'assets/coin-2-shekels.png',w:52,h:52,k:'coin',a:'m_2'},{v:5,n:'5 שקלים',f:'assets/coin-5-shekels.png',w:58,h:58,k:'coin',a:'m_5'},{v:10,n:'10 שקלים',f:'assets/coin-10-shekels.png',w:56,h:56,k:'coin',a:'m_10'},{v:20,n:'20 שקלים',f:'assets/bill-20.jpg',w:116,h:64,k:'bill',a:'m_20'},{v:50,n:'50 שקלים',f:'assets/bill-50.jpg',w:124,h:64,k:'bill',a:'m_50'}];
+const $=id=>document.getElementById(id);
+/* Lower-powered / pre-2020 browsers (feature-checked, not UA-sniffed) get a lighter confetti burst. */
+const FX_LITE=!(window.CSS&&CSS.supports&&CSS.supports('gap','1px'));
+const M=[{v:.1,n:'10 אגורות',f:'assets/coin-10-agorot.png',w:52,h:52,k:'coin',a:'m_0_1'},{v:.5,n:'חצי שקל',f:'assets/coin-half-shekel.png',w:62,h:62,k:'coin',a:'m_0_5'},{v:1,n:'שקל',f:'assets/coin-1-shekel.png',w:44,h:44,k:'coin',a:'m_1'},{v:2,n:'2 שקלים',f:'assets/coin-2-shekels.png',w:52,h:52,k:'coin',a:'m_2'},{v:5,n:'5 שקלים',f:'assets/coin-5-shekels.png',w:58,h:58,k:'coin',a:'m_5'},{v:10,n:'10 שקלים',f:'assets/coin-10-shekels.png',w:56,h:56,k:'coin',a:'m_10'},{v:20,n:'20 שקלים',f:'assets/bill-20.jpg',w:116,h:64,k:'bill',a:'m_20'},{v:50,n:'50 שקלים',f:'assets/bill-50.jpg',w:124,h:64,k:'bill',a:'m_50'}];
 let sound=true;
 /* ===== SOUND: asset files only (assets/dubi-sound.js) - the browser NEVER reads text ===== */
 function stop(){DubiSound.stop()}
@@ -143,7 +147,7 @@ function talk(id,text,next){DubiSound.speak(sound&&id?[{id:id,text:text}]:[],nex
 function sequence(parts,next){DubiSound.speak(sound?parts:[],next)}
 function priceTalk(n){return DubiSound.money(n)}
 function money(v,scale=.8,click){let m=M.find(x=>x.v===v),d=document.createElement('div');d.className='money '+m.k;let i=new Image;i.src=m.f;i.alt=m.n;i.style.width=m.w*scale+'px';i.style.height=m.h*scale+'px';d.append(i);if(click)d.onclick=()=>click(m);return d}function greedy(n,vals){let out=[],r=Math.round(n*10);for(let v of vals.slice().sort((a,b)=>b-a)){let x=Math.round(v*10);while(r>=x){out.push(v);r-=x}}return out}function choose(a){return a[Math.floor(Math.random()*a.length)]}function shuffle(a){return a.sort(()=>Math.random()-.5)}function toast(t){let e=$('toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2200)}function shake(e){e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake')}
-let cvs=$('conf'),ctx=cvs.getContext('2d'),bits=[];function resize(){cvs.width=innerWidth;cvs.height=innerHeight}resize();addEventListener('resize',resize);function confetti(){bits=[];for(let i=0;i<130;i++)bits.push({x:innerWidth/2,y:innerHeight*.35,vx:(Math.random()-.5)*13,vy:-6-Math.random()*10,c:choose(['#ff3b6b','#ffd447','#00c995','#168db7','#9b5cff']),l:90});(function d(){ctx.clearRect(0,0,cvs.width,cvs.height);bits=bits.filter(b=>b.l-->0);bits.forEach(b=>{b.x+=b.vx;b.y+=b.vy;b.vy+=.28;ctx.fillStyle=b.c;ctx.fillRect(b.x,b.y,7,5)});if(bits.length)requestAnimationFrame(d)})()}
+let cvs=$('conf'),ctx=cvs.getContext('2d'),bits=[];function resize(){cvs.width=innerWidth;cvs.height=innerHeight}resize();addEventListener('resize',resize);function confetti(){bits=[];for(let i=0,N=FX_LITE?45:130;i<N;i++)bits.push({x:innerWidth/2,y:innerHeight*.35,vx:(Math.random()-.5)*13,vy:-6-Math.random()*10,c:choose(['#ff3b6b','#ffd447','#00c995','#168db7','#9b5cff']),l:90});(function d(){ctx.clearRect(0,0,cvs.width,cvs.height);bits=bits.filter(b=>b.l-->0);bits.forEach(b=>{b.x+=b.vx;b.y+=b.vy;b.vy+=.28;ctx.fillStyle=b.c;ctx.fillRect(b.x,b.y,7,5)});if(bits.length)requestAnimationFrame(d)})()}
 function levelStart(handler,welcome){document.querySelectorAll('.level').forEach(b=>b.onclick=()=>{let l=+b.dataset.l;talk('lvl'+l,b.dataset.say);setTimeout(()=>{$('start').classList.add('hide');handler(l)},500)});$('startSay').onclick=()=>sayWelcome();$('home').onclick=()=>{stop();$('start').classList.remove('hide');sayWelcome()}}function win(text,next){DubiSound.sfx('celebrate');confetti();$('modal').innerHTML='<div class="big">🎉</div><div class="msg">כל הכבוד!</div><div class="sub">'+text+'</div><button class="btn green" id="continue">ממשיכים! ➡️</button>';$('over').classList.add('show');$('continue').onclick=()=>{$('over').classList.remove('show');next()};talk('correct1','כל הכבוד! בדיוק נכון!')}
 $('sound').onclick=()=>{sound=!sound;DubiSound.setMuted(!sound);$('sound').textContent=sound?'🔊':'🔇'};
 function sayWelcome(){sequence([['ice_hello','שלום! ברוכים הבאים לגלידריית הקשת של דובי!'],['ice_explain','הלקוח יגיד לכם איזו גלידה הוא רוצה. בחרו כדורים בצבעים הנכונים. אחר כך תראו כמה הלקוח שילם, ותנו לו עודף מהקופה למטה. בסוף לחצו על להגיש ללקוח!'],['q_stars','כמה כוכבים?']])}
@@ -196,19 +200,34 @@ function drawPaid(){
 let submitBusy=false;
 function setFeedback(text,type){let f=$('submitFeedback');f.textContent=text;f.className='submit-feedback '+(type||'');f.scrollIntoView({behavior:'smooth',block:'nearest'})}
 function clearValidation(){document.querySelector('.counter').classList.remove('bad-zone','good-zone');document.querySelector('.change').classList.remove('bad-zone','good-zone')}
-function sameScoops(){return made.length===want.length&&made.every((v,i)=>v===want[i])}
+/* Scoops only need to match the ORDER's set of flavors - the stacking order the
+   child clicked them in does not matter (a scoop of pink then brown is the same
+   ice-cream as brown then pink). Comparing by count instead of by position fixes
+   the bug where a correct combination was sometimes rejected as "wrong colors". */
+function counts(arr){let c={};arr.forEach(i=>c[i]=(c[i]||0)+1);return c}
+function flavorDiff(){
+ let wc=counts(want),mc=counts(made),missing=null,extra=null;
+ let keys=new Set([...Object.keys(wc),...Object.keys(mc)]);
+ for(let k of keys){let w=wc[k]||0,m=mc[k]||0;if(w>m&&missing===null)missing=+k;if(m>w&&extra===null)extra=+k}
+ return{missing,extra};
+}
+function sameScoops(){
+ if(made.length!==want.length)return false;
+ let wc=counts(want),mc=counts(made);
+ return Object.keys(wc).every(k=>(mc[k]||0)===wc[k])&&Object.keys(mc).every(k=>(wc[k]||0)===mc[k]);
+}
 function describeScoopProblem(){
  if(made.length<want.length)return 'חסרים '+(want.length-made.length)+' כדורי גלידה. הוסיפו את הכדורים לפי ההזמנה.';
  if(made.length>want.length)return 'יש יותר מדי כדורי גלידה. לחצו על כדור כדי להסיר אותו.';
- let bad=made.findIndex((v,i)=>v!==want[i]);
- if(bad>=0){let need=FL[want[bad]];return 'הכדור מספר '+(bad+1)+' לא נכון. צריך '+need.color+' בטעם '+need.flavor+'.';}
+ let{missing,extra}=flavorDiff();
+ if(missing!=null&&extra!=null){let need=FL[missing],has=FL[extra];return 'יש כדור '+has.color+' בטעם '+has.flavor+' שלא צריך. צריך להחליף אותו בכדור '+need.color+' בטעם '+need.flavor+'.';}
  return '';
 }
 function scoopProblemParts(){
  if(made.length<want.length)return[['ice_need_more','חסרים כדורי גלידה. הוסיפו כדורים לפי ההזמנה.']];
  if(made.length>want.length)return[['ice_too_many','יש יותר מדי כדורי גלידה. לחצו על כדור כדי להסיר אותו.']];
- let bad=made.findIndex((v,i)=>v!==want[i]);
- if(bad>=0){let need=FL[want[bad]];return[['ice_wrong_'+(bad+1),['הכדור הראשון','הכדור השני','הכדור השלישי'][bad]+' לא נכון. צריך'],[need.voice,flavorPhrase(need)]]}
+ let{missing}=flavorDiff();
+ if(missing!=null){let need=FL[missing];return[['gen_try','לא בדיוק. תסתכלו שוב!'],[need.voice,'צריך גם '+flavorPhrase(need)]]}
  return[['gen_try','לא בדיוק. תסתכלו שוב!']];
 }
 function submitOrder(ev){

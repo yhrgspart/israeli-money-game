@@ -14,7 +14,8 @@
 @keyframes helloPop{from{transform:scale(.6);opacity:0}}
 @keyframes helloWave{50%{transform:rotate(-10deg) scale(1.06)}}
 @keyframes helloPulse{50%{filter:brightness(1.12);transform:scale(1.03)}}
-</style></head><body><div class="hello-gate" id="helloGate"><div class="hello-box"><div class="hello-bear">🐻👋</div><div class="hello-title">שלום!</div><button class="hello-btn" id="helloBtn" type="button">▶️ בואו נתחיל!</button></div></div>
+</style>
+<link rel="stylesheet" href="assets/legacy-compat.css"></head><body data-game="menu"><div class="hello-gate" id="helloGate"><div class="hello-box"><div class="hello-bear">🐻👋</div><div class="hello-title">שלום!</div><button class="hello-btn" id="helloBtn" type="button">▶️ בואו נתחיל!</button></div></div>
 <main class="world"><div class="sky"><div class="sun">☀️</div><div class="cloud c1">☁️</div><div class="cloud c2">☁️</div><span class="spark" style="top:20%;left:18%">✦</span><span class="spark" style="top:12%;left:61%">✦</span></div><section class="station"><div class="top"><button class="sound" id="sound" type="button" aria-label="קול">🔊</button><div class="badge">🏆 תחנת משחקי הכסף</div><div class="badge">⭐ בחרו קרון</div></div><header class="hero"><h1 class="title">🚂 רכבת ההרפתקאות של דובי</h1><div class="subtitle"><span class="conductor">🐻‍❄️🎩</span><span>איזה משחק נוסע היום?</span><button class="sound" id="say" type="button">🔊</button></div></header><div class="board">🚉 כל קרון מוביל להרפתקת כסף אחרת. לחצו על הקרון ויוצאים לדרך!</div><div class="train-wrap"><nav class="train" aria-label="משחקים">
 <button class="car engine" data-url="shop-game.html" data-audio="menu_shop" data-say="החנות של דובי. קונים, משלמים ומחזירים עודף!" type="button"><span class="chimney">🏭</span><span class="smoke">☁️</span><div class="roof"></div><div class="window"><span class="scene">🐻🛒</span></div><div class="ctitle">החנות של דובי</div><div class="desc">קונים, משלמים ומחזירים עודף</div><span class="go">בואו נשחק! ➡️</span><i class="wheel w1"></i><i class="wheel w2"></i><i class="coupler"></i></button>
 <button class="car green" data-url="market.html" data-audio="menu_market" data-say="השוק של דובי. בוחרים מוצרים ושומרים על התקציב!" type="button"><div class="ribbon">חדש!</div><div class="roof"></div><div class="window"><span class="scene">🧺🍎🥕</span></div><div class="ctitle">השוק של דובי</div><div class="desc">בוחרים מוצרים ושומרים על התקציב</div><span class="go">לשוק! ➡️</span><i class="wheel w1"></i><i class="wheel w2"></i><i class="coupler"></i></button>
@@ -52,7 +53,17 @@ document.querySelectorAll('.car').forEach(c=>{
     talk(c.dataset.audio,()=>setTimeout(go,150));
   };
 });
-window.addEventListener('pageshow',e=>{if(e.persisted){leaving=false;document.querySelectorAll('.car.selected').forEach(c=>c.classList.remove('selected'))}});
+/* Fix: going "back" to this menu can restore the page exactly as it was the instant
+   a car was tapped (leaving=true, car marked "selected"), which silently blocked every
+   future tap. Reset this state every time the menu becomes visible again - on a fresh
+   load this is a harmless no-op, and on a back/forward-cache restore it unsticks the menu. */
+function resetMenuState(){
+  leaving=false;
+  document.querySelectorAll('.car.selected').forEach(c=>c.classList.remove('selected'));
+}
+window.addEventListener('pageshow',resetMenuState);
+window.addEventListener('focus',resetMenuState);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)resetMenuState()});
 function sayHello(){if(sound&&!leaving)DubiSound.speak(HELLO)}
 document.getElementById('say').onclick=()=>sayHello();
 document.getElementById('sound').onclick=()=>{sound=!sound;DubiSound.setMuted(!sound);document.getElementById('sound').textContent=sound?'\uD83D\uDD0A':'\uD83D\uDD07'};

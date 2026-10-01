@@ -160,8 +160,9 @@ body{background:linear-gradient(180deg,#ffd9e8 0%,#fff1c9 45%,#d9f5e6 100%)}
 }
 @media(max-height:640px){.scene{min-height:88px}.cust{font-size:56px}.app.ph-change .scene{min-height:70px}.app.ph-change .cust{font-size:44px}.app.ph-change .counter .mbox{height:52px}.change .tray{height:56px}}
 </style>
+<link rel="stylesheet" href="assets/legacy-compat.css">
 </head>
-<body>
+<body data-game="cashier">
 <canvas id="celebration" aria-hidden="true"></canvas>
 <div class="toast" id="toast"></div>
 
@@ -233,6 +234,8 @@ body{background:linear-gradient(180deg,#ffd9e8 0%,#fff1c9 45%,#d9f5e6 100%)}
 <script>
 'use strict';
 const $=x=>document.getElementById(x);
+/* Lower-powered / pre-2020 browsers (feature-checked, not UA-sniffed) get a lighter confetti burst. */
+const FX_LITE=!(window.CSS&&CSS.supports&&CSS.supports('gap','1px'));
 
 /* ================= MONEY (values in agorot: 100 = 1 ₪) ================= */
 const M=[
@@ -359,7 +362,7 @@ function celebrate(){
   DubiSound.sfx('celebrate');
   cancelAnimationFrame(cfFrame);bits=[];
   const colors=['#ff3b6b','#ffd447','#00c995','#168db7','#9b5cff','#ff9e40'];
-  for(let i=0;i<170;i++)bits.push({x:innerWidth/2+(Math.random()-.5)*140,y:innerHeight*.4,vx:(Math.random()-.5)*15,vy:-8-Math.random()*12,g:.25+Math.random()*.18,r:Math.random()*6.28,w:6+Math.random()*8,h:4+Math.random()*7,c:colors[i%colors.length],life:90+Math.random()*45});
+  for(let i=0,N=FX_LITE?55:170;i<N;i++)bits.push({x:innerWidth/2+(Math.random()-.5)*140,y:innerHeight*.4,vx:(Math.random()-.5)*15,vy:-8-Math.random()*12,g:.25+Math.random()*.18,r:Math.random()*6.28,w:6+Math.random()*8,h:4+Math.random()*7,c:colors[i%colors.length],life:90+Math.random()*45});
   (function draw(){
     ctx.clearRect(0,0,innerWidth,innerHeight);
     bits=bits.filter(p=>p.life-->0);
